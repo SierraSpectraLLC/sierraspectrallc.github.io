@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sierra Spectra - Analytical Instrument Service Specialists</title>
+    <style>
+        :root {
+            --primary: #0d47a1;
+            --secondary: #4caf50;
+            --light: #f5f5f5;
+            --dark: #333;
+            --accent: #ff9800;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1565c0 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+        
+        .contact-info {
+            text-align: right;
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+        }
+        
+        nav {
+            background-color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #388e3c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .about-image {
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Clients Section */
+        .clients {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .client-logos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .client-logo {
+            padding: 20px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info-container h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        .submit-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-button:hover {
+            background-color: #1565c0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                text-align: center;
+                margin-top: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container logo-container">
+            <div>
+                <div class="logo">SIERRA SPECTRA</div>
+                <div class="tagline">Analytical Instrument Service Specialists</div>
+            </div>
+            <div class="contact-info">
+                <p>Call us: (833) 574-3772</p>
+                <p>Email: info@sierraspectra.com</p>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Expert LC/MS & Analytical Instrument Service</h1>
+        <p>Specialized maintenance and repair services for mass spectrometry, liquid chromatography, and analytical instrumentation with rapid response times and expert technical knowledge.</p>
+        <a href="#contact" class="cta-button">Request Service</a>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive solutions for your analytical instrumentation needs</p>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3 class="service-title">Mass Spectrometry Service</h3>
+                    <p>Expert maintenance, repair, and optimization for Sciex, Agilent, Waters, and Shimadzu MS systems. From routine maintenance to complex troubleshooting, our specialists ensure peak performance.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">LC System Maintenance</h3>
+                    <p>Comprehensive service for HPLC and UHPLC systems including pumps, autosamplers, detectors, and columns. We provide preventative maintenance, repairs, and performance optimization.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3 class="service-title">Preventative Maintenance</h3>
+                    <p>Scheduled maintenance programs designed to maximize uptime, extend instrument life, and ensure consistent analytical results. Custom PM schedules based on your specific usage patterns.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Emergency Response</h3>
+                    <p>Rapid response services for critical instrument failures. Our team provides same-day or next-day onsite support to minimize downtime and get your lab back up and running quickly.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">System Integration</h3>
+                    <p>Expert assistance with instrument networking, data systems, and software integration. We help optimize your lab's entire analytical workflow for maximum efficiency.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📝</div>
+                    <h3 class="service-title">Service Contracts</h3>
+                    <p>Flexible service agreement options from basic coverage to comprehensive plans with dedicated engineer support. Customized to meet your lab's specific needs and budget requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Sierra Spectra</h2>
+                    <p>Sierra Spectra was founded with a singular mission: to provide analytical laboratories with service excellence that exceeds industry standards. Our team consists of OEM-trained engineers with extensive experience across all major analytical instrument platforms.</p>
+                    
+                    <p>What sets us apart is our dedication to responsive communication, rapid service delivery, and a deep understanding of the critical role these instruments play in your operations. We don't just fix instruments—we partner with you to ensure your analytical capabilities remain consistently available and reliable.</p>
+                    
+                    <p>Our founder's background includes years of experience as an engineer for major instrument manufacturers, giving us unique insight into the complexities of modern analytical systems. This expertise allows us to offer solutions that address not just immediate issues but underlying causes, resulting in more reliable instrument performance long-term.</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Lab equipment being serviced">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Clients Section (placeholder) -->
+    <section class="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted By Leading Laboratories</h2>
+                <p>Providing expert service to pharmaceutical, research, and industrial labs across California</p>
+            </div>
+            
+            <div class="client-logos">
+                <div class="client-logo">
+                    <img src="/api/placeholder/150/80" alt="Client Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="/api/placeholder/150/80" alt="Client Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="/api/placeholder/150/80" alt="Client Logo">
+                </div>
+                <div class="client-logo">
+                    <img src="/api/placeholder/150/80" alt="Client Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Reach out for service inquiries, quotes, or to discuss your laboratory's specific needs</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info-container">
+                    <h3>Our Contact Information</h3>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <p>Northern California Region</p>
+                            <p>Roseville, CA 95678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <p>Toll Free: (833) 574-3772</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <p>info@sierraspectra.com</p>
+                            <p>sales@sierraspectra.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                            <p>Weekend emergency service available for contract clients</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Sierra Spectra, LLC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
