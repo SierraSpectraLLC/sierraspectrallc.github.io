@@ -9,13 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy:    #0f172a;
-            --blue:    #2563eb;
-            --blue-dk: #1e40af;
+            /* Brand palette — derived from Sierra Spectra logo */
+            --coral:   #E8756A;   /* logo: leftmost dot  */
+            --orange:  #E8A370;   /* logo: 2nd dot       */
+            --lime:    #C5D44A;   /* logo: valley dot    */
+            --sky:     #7BAFD4;   /* logo: peak dot      */
+            --purple:  #9B8EB8;   /* logo: rightmost dot */
+
+            /* Functional aliases */
+            --navy:    #1e2035;   /* dark text / header bg */
+            --blue:    #7BAFD4;   /* sky blue — links, icons, accents */
+            --blue-dk: #5A94BC;   /* darker sky — hover states */
             --slate:   #64748b;
             --slate-lt:#94a3b8;
             --border:  #e2e8f0;
-            --gray-bg: #f1f5f9;
+            --gray-bg: #f8f7f5;   /* very slightly warm off-white */
             --white:   #ffffff;
         }
 
@@ -53,6 +61,14 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
+        /* Spectrum accent bar — mirrors the logo's color gradient */
+        .nav::after {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(to right, #E8756A, #E8A370, #C5D44A, #7BAFD4, #9B8EB8);
+        }
+
         .nav-inner {
             display: flex;
             align-items: center;
@@ -62,8 +78,16 @@
 
         .nav-logo {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.6rem;
             text-decoration: none;
+        }
+
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            flex-shrink: 0;
         }
 
         .nav-logo-name {
@@ -117,9 +141,9 @@
         .nav-phone {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--blue-dk);
+            color: var(--coral);
             text-decoration: none;
-            border: 1.5px solid var(--blue);
+            border: 1.5px solid var(--coral);
             border-radius: 6px;
             padding: 0.4rem 0.9rem;
             transition: all 0.2s;
@@ -127,7 +151,7 @@
         }
 
         .nav-phone:hover {
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
         }
 
@@ -146,7 +170,7 @@
             min-height: 520px;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #1e40af 100%);
+            background: linear-gradient(135deg, #1e2035 0%, #2a3a5a 55%, #3a5878 100%);
             overflow: hidden;
         }
 
@@ -169,7 +193,7 @@
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #93c5fd;
+            color: #a8d4f0;
             margin-bottom: 1.25rem;
         }
 
@@ -199,7 +223,7 @@
 
         .btn-primary {
             display: inline-block;
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
             font-size: 0.9rem;
             font-weight: 600;
@@ -207,12 +231,12 @@
             border-radius: 6px;
             text-decoration: none;
             transition: all 0.2s;
-            border: 2px solid var(--blue);
+            border: 2px solid var(--coral);
         }
 
         .btn-primary:hover {
-            background: var(--blue-dk);
-            border-color: var(--blue-dk);
+            background: #c95c52;
+            border-color: #c95c52;
             transform: translateY(-1px);
         }
 
@@ -300,7 +324,7 @@
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--blue);
+            color: var(--coral);
             margin-bottom: 0.5rem;
         }
 
@@ -345,15 +369,15 @@
         }
 
         .service-card:hover {
-            border-left-color: var(--blue);
-            box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+            border-left-color: var(--coral);
+            box-shadow: 0 4px 16px rgba(232,117,106,0.12);
             transform: translateY(-2px);
         }
 
         .service-card-icon {
             width: 44px;
             height: 44px;
-            background: #eff6ff;
+            background: #eaf4fb;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -474,7 +498,7 @@
             gap: 0.4rem;
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--blue);
+            color: var(--coral);
             text-decoration: none;
             margin-top: 0.5rem;
             transition: gap 0.2s;
@@ -500,7 +524,7 @@
         .highlight-card svg {
             width: 20px;
             height: 20px;
-            stroke: #93c5fd;
+            stroke: #a8d4f0;
             margin-bottom: 0.6rem;
         }
 
@@ -546,7 +570,7 @@
         .contact-detail-icon {
             width: 36px;
             height: 36px;
-            background: #eff6ff;
+            background: #eaf4fb;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -634,7 +658,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 3px rgba(123,175,212,0.2);
         }
 
         .form-group textarea {
@@ -650,7 +674,7 @@
 
         .btn-submit {
             width: 100%;
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
             border: none;
             padding: 0.75rem;
@@ -664,7 +688,7 @@
         }
 
         .btn-submit:hover {
-            background: var(--blue-dk);
+            background: #c95c52;
         }
 
         /* ===== FOOTER ===== */
@@ -758,7 +782,7 @@
             border-top: 1px solid var(--border);
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--blue);
+            color: var(--coral);
             text-decoration: none;
         }
 
@@ -824,8 +848,11 @@
             <div class="container">
                 <div class="nav-inner">
                     <a href="#home" class="nav-logo">
-                        <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
-                        <div class="nav-logo-tag">Analytical Instrument Service</div>
+                        <img src="assets/logo-mark.svg" alt="Sierra Spectra logo mark" class="nav-logo-img">
+                        <div>
+                            <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
+                            <div class="nav-logo-tag">Analytical Instrument Service</div>
+                        </div>
                     </a>
 
                     <div class="nav-right">
