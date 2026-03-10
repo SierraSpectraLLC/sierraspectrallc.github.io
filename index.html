@@ -3,167 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sierra Spectra — Analytical Instrument Service Specialists</title>
+
+    <!-- SEO -->
+    <title>Sierra Spectra — LC/MS & Analytical Instrument Service | Roseville, CA</title>
+    <meta name="description" content="OEM-trained engineers providing rapid-response maintenance, repair, and service contracts for mass spectrometry and LC systems. Serving pharma and research labs in Northern California.">
+    <link rel="canonical" href="https://sierraspectra.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sierraspectra.com/">
+    <meta property="og:title" content="Sierra Spectra — LC/MS & Analytical Instrument Service">
+    <meta property="og:description" content="OEM-trained engineers providing rapid-response maintenance, repair, and service contracts for mass spectrometry and LC systems in Northern California.">
+    <meta property="og:image" content="https://sierraspectra.com/assets/logo.svg">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="/assets/css/shared.css">
+
     <style>
-        :root {
-            /* Brand palette — derived from Sierra Spectra logo */
-            --coral:   #E8756A;   /* logo: leftmost dot  */
-            --orange:  #E8A370;   /* logo: 2nd dot       */
-            --lime:    #C5D44A;   /* logo: valley dot    */
-            --sky:     #7BAFD4;   /* logo: peak dot      */
-            --purple:  #9B8EB8;   /* logo: rightmost dot */
-
-            /* Functional aliases */
-            --navy:    #1e2035;   /* dark text / header bg */
-            --blue:    #7BAFD4;   /* sky blue — links, icons, accents */
-            --blue-dk: #5A94BC;   /* darker sky — hover states */
-            --slate:   #64748b;
-            --slate-lt:#94a3b8;
-            --border:  #e2e8f0;
-            --gray-bg: #f8f7f5;   /* very slightly warm off-white */
-            --white:   #ffffff;
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--navy);
-            background: var(--white);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-
-        /* Spectrum accent bar — mirrors the logo's color gradient */
-        .nav::after {
-            content: '';
-            display: block;
-            height: 3px;
-            background: linear-gradient(to right, #E8756A, #E8A370, #C5D44A, #7BAFD4, #9B8EB8);
-        }
-
-        .nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 68px;
-        }
-
-        .nav-logo {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-        }
-
-        .nav-logo-img {
-            height: 40px;
-            width: auto;
-            flex-shrink: 0;
-        }
-
-        .nav-logo-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            color: var(--navy);
-        }
-
-        .nav-logo-name span {
-            font-weight: 400;
-            font-size: 0.7rem;
-            color: var(--slate);
-            letter-spacing: 0.04em;
-            vertical-align: super;
-            margin-left: 2px;
-        }
-
-        .nav-logo-tag {
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: var(--slate);
-            letter-spacing: 0.04em;
-            margin-top: -2px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--slate);
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--blue);
-        }
-
-        .nav-phone {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--coral);
-            text-decoration: none;
-            border: 1.5px solid var(--coral);
-            border-radius: 6px;
-            padding: 0.4rem 0.9rem;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .nav-phone:hover {
-            background: var(--coral);
-            color: var(--white);
-        }
-
-        .nav-hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            color: var(--navy);
-        }
-
         /* ===== HERO ===== */
         .hero {
             position: relative;
@@ -221,43 +80,6 @@
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            display: inline-block;
-            background: var(--coral);
-            color: var(--white);
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.75rem 1.75rem;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 2px solid var(--coral);
-        }
-
-        .btn-primary:hover {
-            background: #c95c52;
-            border-color: #c95c52;
-            transform: translateY(-1px);
-        }
-
-        .btn-ghost {
-            display: inline-block;
-            background: transparent;
-            color: var(--white);
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.75rem 1.75rem;
-            border-radius: 6px;
-            text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.4);
-            transition: all 0.2s;
-        }
-
-        .btn-ghost:hover {
-            border-color: rgba(255,255,255,0.8);
-            background: rgba(255,255,255,0.1);
-        }
-
         /* ===== STATS BAR ===== */
         .stats-bar {
             background: var(--gray-bg);
@@ -293,7 +115,6 @@
         .stat-icon svg {
             width: 18px;
             height: 18px;
-            color: var(--blue);
             stroke: var(--blue);
         }
 
@@ -307,44 +128,6 @@
             font-size: 0.75rem;
             color: var(--slate);
             margin-top: -2px;
-        }
-
-        /* ===== SECTION HEADERS ===== */
-        .section-header {
-            margin-bottom: 3rem;
-        }
-
-        .section-header.centered {
-            text-align: center;
-        }
-
-        .section-eyebrow {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--coral);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1.25;
-        }
-
-        .section-header p {
-            margin-top: 0.75rem;
-            font-size: 1rem;
-            color: var(--slate);
-            max-width: 560px;
-        }
-
-        .section-header.centered p {
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* ===== SERVICES ===== */
@@ -404,15 +187,27 @@
             line-height: 1.65;
         }
 
-        /* ===== PLATFORMS WE SERVICE ===== */
+        .service-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--coral);
+            text-decoration: none;
+            margin-top: 0.9rem;
+            transition: gap 0.15s;
+        }
+
+        .service-card-link:hover { gap: 0.5rem; }
+
+        /* ===== PLATFORMS ===== */
         .platforms {
             padding: 4.5rem 0;
             background: var(--gray-bg);
         }
 
-        .scroll-row {
-            margin-top: 1.5rem;
-        }
+        .scroll-row { margin-top: 1.5rem; }
 
         .scroll-row-label {
             font-size: 0.7rem;
@@ -432,9 +227,7 @@
             -ms-overflow-style: none;
         }
 
-        .scroll-track::-webkit-scrollbar {
-            display: none;
-        }
+        .scroll-track::-webkit-scrollbar { display: none; }
 
         .scroll-pill {
             flex-shrink: 0;
@@ -451,13 +244,8 @@
             transition: border-color 0.15s;
         }
 
-        .scroll-pill:hover {
-            border-color: var(--blue);
-        }
-
-        .scroll-row + .scroll-row {
-            margin-top: 1.25rem;
-        }
+        .scroll-pill:hover { border-color: var(--blue); }
+        .scroll-row + .scroll-row { margin-top: 1.25rem; }
 
         .platforms-note {
             margin-top: 1.75rem;
@@ -504,9 +292,7 @@
             transition: gap 0.2s;
         }
 
-        .about-cta:hover {
-            gap: 0.7rem;
-        }
+        .about-cta:hover { gap: 0.7rem; }
 
         .about-highlights {
             display: grid;
@@ -597,7 +383,7 @@
         }
 
         .contact-detail-text a:hover {
-            color: var(--blue);
+            color: var(--coral);
             text-decoration: underline;
         }
 
@@ -611,7 +397,6 @@
             margin-bottom: 2px;
         }
 
-        /* Contact Form */
         .contact-form-wrap {
             background: var(--white);
             border: 1px solid var(--border);
@@ -626,177 +411,8 @@
             margin-bottom: 1.5rem;
         }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--navy);
-            margin-bottom: 0.35rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.625rem 0.875rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-family: inherit;
-            color: var(--navy);
-            background: var(--white);
-            transition: border-color 0.15s, box-shadow 0.15s;
-            appearance: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(123,175,212,0.2);
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--coral);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            font-family: inherit;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 0.5rem;
-        }
-
-        .btn-submit:hover {
-            background: #c95c52;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--navy);
-            color: #94a3b8;
-            padding: 2.5rem 0;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .footer-contact a {
-            color: #94a3b8;
-            text-decoration: none;
-        }
-
-        .footer-contact a:hover {
-            color: var(--white);
-        }
-
-        .footer-copy {
-            font-size: 0.8rem;
-            color: #475569;
-        }
-
-        /* ===== MOBILE NAV ===== */
-        .mobile-menu {
-            display: none;
-            padding: 1rem 0;
-            border-top: 1px solid var(--border);
-            background: var(--white);
-        }
-
-        .mobile-menu.open {
-            display: block;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .mobile-menu a {
-            display: block;
-            padding: 0.6rem 0;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--navy);
-            text-decoration: none;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--blue);
-        }
-
-        .mobile-phone {
-            display: block;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--coral);
-            text-decoration: none;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .nav-links,
-            .nav-phone {
-                display: none;
-            }
-
-            .nav-hamburger {
-                display: flex;
-            }
-
             .stats-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -809,83 +425,54 @@
                 gap: 2.5rem;
             }
 
-            .about-highlights {
-                grid-template-columns: 1fr 1fr;
-            }
+            .about-highlights { grid-template-columns: 1fr 1fr; }
 
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-ctas {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .hero-ctas { flex-direction: column; align-items: flex-start; }
 
             .btn-primary,
-            .btn-ghost {
-                width: 100%;
-                text-align: center;
-            }
+            .btn-ghost { width: 100%; text-align: center; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-highlights {
-                grid-template-columns: 1fr;
-            }
+            .stats-grid { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr; }
         }
     </style>
+
+    <!-- LocalBusiness structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Sierra Spectra LLC",
+        "description": "OEM-trained engineers providing maintenance, repair, and service contracts for mass spectrometry, HPLC, and analytical instrumentation. Serving pharmaceutical, biotech, and research laboratories in Northern California.",
+        "url": "https://sierraspectra.com",
+        "telephone": "+18335743772",
+        "email": "info@sierraspectra.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Roseville",
+            "addressRegion": "CA",
+            "postalCode": "95678",
+            "addressCountry": "US"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 38.7521, "longitude": -121.2880 },
+            "geoRadius": "150000"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+        }
+    }
+    </script>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <nav class="nav">
-            <div class="container">
-                <div class="nav-inner">
-                    <a href="#home" class="nav-logo">
-                        <img src="assets/logo-mark.svg" alt="Sierra Spectra logo mark" class="nav-logo-img">
-                        <div>
-                            <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
-                            <div class="nav-logo-tag">Analytical Instrument Service</div>
-                        </div>
-                    </a>
-
-                    <div class="nav-right">
-                        <ul class="nav-links">
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#platforms">Platforms</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                        <a href="tel:8335743772" class="nav-phone">(833) 574-3772</a>
-                    </div>
-
-                    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <line x1="3" y1="12" x2="21" y2="12"/>
-                            <line x1="3" y1="18" x2="21" y2="18"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="mobile-menu">
-                    <ul>
-                        <li><a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
-                        <li><a href="#platforms" onclick="this.closest('.mobile-menu').classList.remove('open')">Platforms</a></li>
-                        <li><a href="#about" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
-                        <li><a href="#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
-                    </ul>
-                    <a href="tel:8335743772" class="mobile-phone">(833) 574-3772</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div id="nav-root"></div>
 
     <!-- HERO -->
     <section id="home" class="hero">
@@ -895,8 +482,8 @@
             <h1>Expert LC/MS &amp; Analytical Instrument Service</h1>
             <p class="hero-sub">OEM-trained engineers providing rapid-response maintenance, repair, and support for mass spectrometry, liquid chromatography, and analytical instrumentation across pharmaceutical, research, and industrial laboratories.</p>
             <div class="hero-ctas">
-                <a href="#contact" class="btn-primary">Request Service</a>
-                <a href="#services" class="btn-ghost">View Services</a>
+                <a href="/contact.html" class="btn-primary">Request Service</a>
+                <a href="/services.html" class="btn-ghost">View Services</a>
             </div>
         </div>
     </section>
@@ -971,7 +558,6 @@
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Flask / beaker icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 3h6m-6 0v6l-4 9a1 1 0 00.9 1.45h12.2A1 1 0 0019 18l-4-9V3M9 3H7m8 0h2"/>
                             <path d="M7.8 15h8.4"/>
@@ -979,11 +565,11 @@
                     </div>
                     <h3>Mass Spectrometry Service</h3>
                     <p>Expert maintenance, repair, and optimization for Sciex, Agilent, Waters, and Shimadzu MS systems. From routine maintenance to complex troubleshooting, our specialists ensure peak performance.</p>
+                    <a href="/services.html#mass-spectrometry" class="service-card-link">Learn more →</a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Chart / LC icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 3v18h18"/>
                             <path d="M7 16l4-6 4 3 4-7"/>
@@ -991,33 +577,33 @@
                     </div>
                     <h3>LC System Maintenance</h3>
                     <p>Comprehensive service for HPLC and UHPLC systems including pumps, autosamplers, detectors, and columns. We provide preventative maintenance, repairs, and performance optimization.</p>
+                    <a href="/services.html#lc-maintenance" class="service-card-link">Learn more →</a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Wrench icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
                         </svg>
                     </div>
                     <h3>Preventative Maintenance</h3>
                     <p>Scheduled maintenance programs designed to maximize uptime, extend instrument life, and ensure consistent analytical results. Custom PM schedules based on your specific usage patterns.</p>
+                    <a href="/services.html#preventative-maintenance" class="service-card-link">Learn more →</a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Lightning bolt icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                         </svg>
                     </div>
                     <h3>Emergency Response</h3>
                     <p>Rapid response services for critical instrument failures. Our team provides same-day or next-day onsite support to minimize downtime and get your lab back up and running quickly.</p>
+                    <a href="/services.html#emergency-response" class="service-card-link">Learn more →</a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Network / server icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="3" width="20" height="4" rx="1"/>
                             <rect x="2" y="10" width="20" height="4" rx="1"/>
@@ -1027,11 +613,11 @@
                     </div>
                     <h3>System Integration</h3>
                     <p>Expert assistance with instrument networking, data systems, and software integration. We help optimize your lab's entire analytical workflow for maximum efficiency.</p>
+                    <a href="/services.html#system-integration" class="service-card-link">Learn more →</a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-card-icon">
-                        <!-- Document / contract icon -->
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
                             <rect x="9" y="3" width="6" height="4" rx="1"/>
@@ -1040,13 +626,14 @@
                     </div>
                     <h3>Service Contracts</h3>
                     <p>Flexible service agreement options from basic coverage to comprehensive plans with dedicated engineer support. Customized to meet your lab's specific needs and budget requirements.</p>
+                    <a href="/pricing.html" class="service-card-link">View plans →</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- PLATFORMS WE SERVICE -->
+    <!-- PLATFORMS -->
     <section id="platforms" class="platforms">
         <div class="container">
             <div class="section-header">
@@ -1085,7 +672,7 @@
                 </div>
             </div>
 
-            <p class="platforms-note">Don't see your instrument? <a href="#contact" style="color: var(--blue);">Contact us</a> — our expertise extends to many additional platforms and configurations.</p>
+            <p class="platforms-note">Don't see your instrument? <a href="/contact.html" style="color: var(--blue);">Contact us</a> — our expertise extends to many additional platforms and configurations.</p>
         </div>
     </section>
 
@@ -1103,8 +690,8 @@
 
                     <p>Our founder's background includes years of experience as an engineer for major instrument manufacturers, giving us unique insight into the complexities of modern analytical systems. This expertise allows us to offer solutions that address not just immediate issues but underlying causes, resulting in more reliable instrument performance long-term.</p>
 
-                    <a href="#contact" class="about-cta">
-                        Request a service quote
+                    <a href="/about.html" class="about-cta">
+                        Learn more about us
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -1246,26 +833,8 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#services">Services</a>
-                    <a href="#platforms">Platforms</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-contact">
-                    <a href="tel:8335743772">(833) 574-3772</a>
-                    &nbsp;&middot;&nbsp;
-                    <a href="mailto:info@sierraspectra.com">info@sierraspectra.com</a>
-                </div>
-                <div class="footer-copy">&copy; 2025 Sierra Spectra, LLC. All Rights Reserved.</div>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-root"></div>
+    <script src="/components/components.js"></script>
 
 </body>
 </html>
