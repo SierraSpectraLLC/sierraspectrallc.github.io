@@ -1,0 +1,32 @@
+name: Deploy Preview
+
+on:
+  push:
+    branches: ['claude/**']
+
+permissions:
+  contents: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Derive URL slug
+        id: slug
+        run: |
+          # e.g. claude/redesign-index-page-183gg → redesign-index-page-183gg
+          SLUG=$(echo "${{ github.ref_name }}" | sed 's|claude/||' | sed 's|[^a-zA-Z0-9_-]|-|g')
+          echo "slug=$SLUG" >> $GITHUB_OUTPUT
+
+      - name: Deploy to gh-pages (preview subdirectory)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
+          clean: true
+          target-folder: previews/${{ steps.slug.outputs.slug }}
+
+      - name: Print preview URL
+        run: echo "Preview → https://sierraspectra.com/previews/${{ steps.slug.outputs.slug }}/"
