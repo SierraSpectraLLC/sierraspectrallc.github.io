@@ -1,0 +1,47 @@
+<header>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <img src="/assets/logo-mark.svg" alt="Sierra Spectra logo mark" class="nav-logo-img">
+                    <div>
+                        <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
+                        <div class="nav-logo-tag">Analytical Instrument Service</div>
+                    </div>
+                </a>
+
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/pricing.html">Pricing</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                    <a href="tel:8335743772" class="nav-phone">(833) 574-3772</a>
+                </div>
+
+                <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mobile-menu">
+                <ul>
+                    <li><a href="/services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
+                    <li><a href="/pricing.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
+                    <li><a href="/about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
+                    <li><a href="/faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
+                    <li><a href="/blog/" onclick="this.closest('.mobile-menu').classList.remove('open')">Blog</a></li>
+                    <li><a href="/contact.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
+                </ul>
+                <a href="tel:8335743772" class="mobile-phone">(833) 574-3772</a>
+            </div>
+        </div>
+    </nav>
+</header>
