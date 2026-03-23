@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Admin — Sierra Spectra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral:   #E8756A;
+            --navy:    #1e2035;
+            --blue:    #7BAFD4;
+            --blue-dk: #5A94BC;
+            --slate:   #64748b;
+            --slate-lt:#94a3b8;
+            --border:  #e2e8f0;
+            --gray-bg: #f8f7f5;
+            --white:   #ffffff;
+            --green:   #16a34a;
+            --red:     #dc2626;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px; line-height: 1.6; color: var(--navy); background: var(--gray-bg);
+        }
+
+        /* LAYOUT */
+        .admin-header {
+            background: var(--navy); color: var(--white); padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .admin-header h1 { font-size: 1.1rem; font-weight: 600; }
+        .admin-header a { color: var(--blue); text-decoration: none; font-size: 0.85rem; }
+        .admin-header a:hover { text-decoration: underline; }
+
+        .admin-body { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* TOOLBAR */
+        .toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+        }
+        .toolbar h2 { font-size: 1.25rem; font-weight: 700; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5rem 1rem; border: none; border-radius: 6px;
+            font-size: 0.85rem; font-weight: 600; font-family: inherit;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .btn-coral { background: var(--coral); color: var(--white); }
+        .btn-coral:hover { background: #c95c52; }
+        .btn-navy { background: var(--navy); color: var(--white); }
+        .btn-navy:hover { background: #2a3050; }
+        .btn-outline { background: var(--white); color: var(--navy); border: 1px solid var(--border); }
+        .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+        .btn-danger { background: var(--white); color: var(--red); border: 1px solid var(--red); }
+        .btn-danger:hover { background: var(--red); color: var(--white); }
+        .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
+        .btn svg { width: 16px; height: 16px; }
+
+        .toolbar-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        /* TABLE */
+        .resource-table {
+            width: 100%; background: var(--white); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden;
+        }
+        .resource-table table { width: 100%; border-collapse: collapse; }
+        .resource-table th {
+            text-align: left; padding: 0.75rem 1rem; font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate);
+            background: var(--gray-bg); border-bottom: 1px solid var(--border);
+        }
+        .resource-table td {
+            padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+            font-size: 0.9rem; vertical-align: middle;
+        }
+        .resource-table tr:last-child td { border-bottom: none; }
+        .resource-table tr:hover td { background: #fafbfc; }
+
+        .tag-pill {
+            display: inline-block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 4px;
+        }
+        .tag-pill.guide { background: #eaf4fb; color: var(--blue-dk); }
+        .tag-pill.tool { background: #f0fdf4; color: #16a34a; }
+        .tag-pill.link { background: #fef3c7; color: #d97706; }
+        .tag-pill.video { background: #fce7f3; color: #db2777; }
+
+        .status-dot {
+            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+            margin-right: 0.4rem; vertical-align: middle;
+        }
+        .status-dot.published { background: var(--green); }
+        .status-dot.draft { background: var(--slate-lt); }
+
+        .actions-cell { display: flex; gap: 0.35rem; }
+
+        .empty-table { text-align: center; padding: 3rem 1rem; color: var(--slate); }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 1000; align-items: flex-start; justify-content: center;
+            padding: 3rem 1rem; overflow-y: auto;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: var(--white); border-radius: 10px; width: 100%; max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border);
+        }
+        .modal-header h3 { font-size: 1.1rem; font-weight: 600; }
+        .modal-close {
+            background: none; border: none; cursor: pointer; color: var(--slate);
+            padding: 4px; font-size: 1.25rem; line-height: 1;
+        }
+        .modal-body { padding: 1.5rem; }
+        .modal-footer {
+            display: flex; justify-content: flex-end; gap: 0.5rem;
+            padding: 1rem 1.5rem; border-top: 1px solid var(--border);
+        }
+
+        /* FORM */
+        .field { margin-bottom: 1rem; }
+        .field label {
+            display: block; font-size: 0.8rem; font-weight: 600; color: var(--navy);
+            margin-bottom: 0.3rem;
+        }
+        .field input, .field select, .field textarea {
+            width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--border);
+            border-radius: 6px; font-size: 0.9rem; font-family: inherit; color: var(--navy);
+            background: var(--white); transition: border-color 0.15s;
+        }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(123,175,212,0.2);
+        }
+        .field textarea { min-height: 300px; resize: vertical; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.85rem; line-height: 1.6; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .field small { font-size: 0.75rem; color: var(--slate-lt); margin-top: 0.25rem; display: block; }
+        .field-check {
+            display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;
+        }
+        .field-check input[type="checkbox"] { width: auto; }
+
+        /* TOAST */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem; background: var(--navy);
+            color: var(--white); padding: 0.75rem 1.25rem; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 500; z-index: 2000;
+            opacity: 0; transform: translateY(10px); transition: all 0.3s;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        /* IMPORT */
+        .import-area {
+            border: 2px dashed var(--border); border-radius: 8px; padding: 2rem;
+            text-align: center; color: var(--slate); cursor: pointer; transition: border-color 0.15s;
+        }
+        .import-area:hover { border-color: var(--blue); }
+        .import-area input { display: none; }
+
+        @media (max-width: 768px) {
+            .admin-body { padding: 1rem; }
+            .field-row { grid-template-columns: 1fr; }
+            .resource-table { overflow-x: auto; }
+            .resource-table table { min-width: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">
+        <h1>Sierra Spectra CMS</h1>
+        <div style="display:flex;gap:1.5rem;align-items:center;">
+            <a href="resources.html">View site resources</a>
+            <a href="index.html">Back to site</a>
+        </div>
+    </div>
+
+    <div class="admin-body">
+        <div class="toolbar">
+            <h2>Resources</h2>
+            <div class="toolbar-actions">
+                <button class="btn btn-outline" onclick="importJSON()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Import JSON
+                </button>
+                <button class="btn btn-outline" onclick="exportJSON()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export JSON
+                </button>
+                <button class="btn btn-navy" onclick="copyJSON()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copy JSON
+                </button>
+                <button class="btn btn-coral" onclick="openEditor()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    New Resource
+                </button>
+            </div>
+        </div>
+
+        <div class="resource-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr><td colspan="5" class="empty-table">Loading resources...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.25rem;">
+                <h3 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">How to publish changes</h3>
+                <ol style="font-size:0.85rem;color:var(--slate);padding-left:1.25rem;line-height:1.8;">
+                    <li>Make your changes using the editor above</li>
+                    <li>Click <strong>Export JSON</strong> to download the updated <code>resources.json</code> file, or <strong>Copy JSON</strong> to copy it to your clipboard</li>
+                    <li>Replace the file at <code>content/resources.json</code> in your repository</li>
+                    <li>Commit and push — your site will update automatically</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDITOR MODAL -->
+    <div class="modal-overlay" id="editor-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="editor-title">New Resource</h3>
+                <button class="modal-close" onclick="closeEditor()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-index" value="-1">
+                <div class="field-row">
+                    <div class="field">
+                        <label for="edit-title">Title</label>
+                        <input type="text" id="edit-title" placeholder="e.g. LC Column Care Guide">
+                    </div>
+                    <div class="field">
+                        <label for="edit-id">ID (slug)</label>
+                        <input type="text" id="edit-id" placeholder="e.g. lc-column-care-guide">
+                        <small>Auto-generated from title if left empty</small>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="edit-summary">Summary</label>
+                    <input type="text" id="edit-summary" placeholder="Brief description shown on cards">
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="edit-type">Type</label>
+                        <select id="edit-type">
+                            <option value="guide">Guide</option>
+                            <option value="tool">Tool</option>
+                            <option value="link">Link</option>
+                            <option value="video">Video</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="edit-date">Date</label>
+                        <input type="date" id="edit-date">
+                    </div>
+                </div>
+                <div class="field" id="url-field" style="display:none;">
+                    <label for="edit-url">URL</label>
+                    <input type="url" id="edit-url" placeholder="https://...">
+                    <small>External link URL (for link/tool/video types)</small>
+                </div>
+                <div class="field" id="content-field">
+                    <label for="edit-content">Content (Markdown)</label>
+                    <textarea id="edit-content" placeholder="# Title&#10;&#10;Write your guide content in Markdown...&#10;&#10;## Section&#10;&#10;- Bullet point&#10;- Another point&#10;&#10;**Bold text** and *italic text* are supported."></textarea>
+                    <small>Supports headings (#, ##, ###), lists (- or 1.), bold (**), italic (*), links [text](url), tables, and horizontal rules (---)</small>
+                </div>
+                <div class="field-check">
+                    <input type="checkbox" id="edit-published" checked>
+                    <label for="edit-published" style="margin-bottom:0;">Published</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeEditor()">Cancel</button>
+                <button class="btn btn-outline" onclick="previewResource()">Preview</button>
+                <button class="btn btn-coral" onclick="saveResource()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORT MODAL -->
+    <div class="modal-overlay" id="import-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Import Resources</h3>
+                <button class="modal-close" onclick="closeImport()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="import-area" onclick="document.getElementById('import-file').click()">
+                    <input type="file" id="import-file" accept=".json" onchange="handleImport(event)">
+                    <p style="font-weight:500;margin-bottom:0.25rem;">Click to select a JSON file</p>
+                    <p style="font-size:0.8rem;">or drag and drop your resources.json file here</p>
+                </div>
+                <div style="margin-top:1rem;text-align:center;">
+                    <p style="font-size:0.8rem;color:var(--slate-lt);">Or paste JSON below and click Import:</p>
+                    <textarea id="import-paste" style="width:100%;min-height:150px;margin-top:0.5rem;padding:0.75rem;border:1px solid var(--border);border-radius:6px;font-family:'SF Mono','Fira Code','Consolas',monospace;font-size:0.8rem;" placeholder='{"resources": [...]}'></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeImport()">Cancel</button>
+                <button class="btn btn-coral" onclick="doImportPaste()">Import</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREVIEW MODAL -->
+    <div class="modal-overlay" id="preview-modal">
+        <div class="modal" style="max-width:800px;">
+            <div class="modal-header">
+                <h3>Preview</h3>
+                <button class="modal-close" onclick="document.getElementById('preview-modal').classList.remove('open')">&times;</button>
+            </div>
+            <div class="modal-body" id="preview-body" style="max-height:70vh;overflow-y:auto;"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+    var resources = [];
+    var STORAGE_KEY = 'ss_cms_resources';
+
+    // --- Init ---
+    function init() {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try { resources = JSON.parse(saved); } catch(e) { resources = []; }
+        }
+        if (!resources.length) {
+            fetch('content/resources.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    resources = data.resources || [];
+                    save();
+                    renderTable();
+                })
+                .catch(function() { renderTable(); });
+        } else {
+            renderTable();
+        }
+    }
+
+    function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(resources));
+    }
+
+    function toast(msg) {
+        var el = document.getElementById('toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(function() { el.classList.remove('show'); }, 2500);
+    }
+
+    // --- Table ---
+    function renderTable() {
+        var tbody = document.getElementById('table-body');
+        if (!resources.length) {
+            tbody.innerHTML = '<tr><td colspan="5" class="empty-table">No resources yet. Click "New Resource" to create one.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = resources.map(function(r, i) {
+            return '<tr>' +
+                '<td><strong>' + esc(r.title) + '</strong></td>' +
+                '<td><span class="tag-pill ' + r.type + '">' + r.type + '</span></td>' +
+                '<td style="font-size:0.85rem;color:var(--slate);">' + r.date + '</td>' +
+                '<td><span class="status-dot ' + (r.published ? 'published' : 'draft') + '"></span>' + (r.published ? 'Published' : 'Draft') + '</td>' +
+                '<td><div class="actions-cell">' +
+                    '<button class="btn btn-outline btn-sm" onclick="openEditor(' + i + ')">Edit</button>' +
+                    '<button class="btn btn-outline btn-sm" onclick="duplicateResource(' + i + ')">Dup</button>' +
+                    '<button class="btn btn-danger btn-sm" onclick="deleteResource(' + i + ')">Del</button>' +
+                '</div></td>' +
+                '</tr>';
+        }).join('');
+    }
+
+    function esc(s) {
+        var d = document.createElement('div');
+        d.textContent = s || '';
+        return d.innerHTML;
+    }
+
+    // --- Editor ---
+    function openEditor(index) {
+        var modal = document.getElementById('editor-modal');
+        var r = index !== undefined ? resources[index] : null;
+        document.getElementById('edit-index').value = index !== undefined ? index : -1;
+        document.getElementById('editor-title').textContent = r ? 'Edit Resource' : 'New Resource';
+        document.getElementById('edit-title').value = r ? r.title : '';
+        document.getElementById('edit-id').value = r ? r.id : '';
+        document.getElementById('edit-summary').value = r ? r.summary : '';
+        document.getElementById('edit-type').value = r ? r.type : 'guide';
+        document.getElementById('edit-date').value = r ? r.date : new Date().toISOString().slice(0, 10);
+        document.getElementById('edit-url').value = r ? (r.url || '') : '';
+        document.getElementById('edit-content').value = r ? (r.content || '') : '';
+        document.getElementById('edit-published').checked = r ? r.published : true;
+        toggleUrlField();
+        modal.classList.add('open');
+    }
+
+    function closeEditor() {
+        document.getElementById('editor-modal').classList.remove('open');
+    }
+
+    function toggleUrlField() {
+        var type = document.getElementById('edit-type').value;
+        document.getElementById('url-field').style.display = (type === 'link' || type === 'tool' || type === 'video') ? '' : 'none';
+        document.getElementById('content-field').style.display = (type === 'guide') ? '' : 'none';
+    }
+    document.getElementById('edit-type').addEventListener('change', toggleUrlField);
+
+    function slugify(text) {
+        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function saveResource() {
+        var title = document.getElementById('edit-title').value.trim();
+        if (!title) { toast('Title is required'); return; }
+
+        var id = document.getElementById('edit-id').value.trim() || slugify(title);
+        var index = parseInt(document.getElementById('edit-index').value);
+        var type = document.getElementById('edit-type').value;
+
+        var entry = {
+            id: id,
+            title: title,
+            summary: document.getElementById('edit-summary').value.trim(),
+            type: type,
+            date: document.getElementById('edit-date').value,
+            published: document.getElementById('edit-published').checked
+        };
+
+        if (type === 'guide') {
+            entry.content = document.getElementById('edit-content').value;
+        }
+        if (type === 'link' || type === 'tool' || type === 'video') {
+            entry.url = document.getElementById('edit-url').value.trim();
+        }
+
+        if (index >= 0) {
+            resources[index] = entry;
+            toast('Resource updated');
+        } else {
+            resources.push(entry);
+            toast('Resource created');
+        }
+
+        save();
+        renderTable();
+        closeEditor();
+    }
+
+    function deleteResource(index) {
+        if (!confirm('Delete "' + resources[index].title + '"?')) return;
+        resources.splice(index, 1);
+        save();
+        renderTable();
+        toast('Resource deleted');
+    }
+
+    function duplicateResource(index) {
+        var copy = JSON.parse(JSON.stringify(resources[index]));
+        copy.id = copy.id + '-copy';
+        copy.title = copy.title + ' (Copy)';
+        copy.published = false;
+        resources.push(copy);
+        save();
+        renderTable();
+        toast('Resource duplicated');
+    }
+
+    // --- Preview ---
+    function previewResource() {
+        var content = document.getElementById('edit-content').value;
+        var title = document.getElementById('edit-title').value;
+        var body = document.getElementById('preview-body');
+        body.innerHTML = '<h2 style="margin-bottom:1rem;">' + esc(title) + '</h2>' +
+            '<div class="preview-content">' + md(content) + '</div>';
+        document.getElementById('preview-modal').classList.add('open');
+    }
+
+    // Minimal markdown renderer (matches resource.html)
+    function md(text) {
+        if (!text) return '<p style="color:var(--slate);">No content yet.</p>';
+        var html = text
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+            .replace(/^---$/gm, '<hr>')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/`([^`]+)`/g, '<code style="background:var(--gray-bg);padding:0.1rem 0.3rem;border-radius:3px;font-size:0.9em;">$1</code>')
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color:var(--blue);">$1</a>');
+
+        html = html.replace(/((?:^\|.+\|$\n?)+)/gm, function(block) {
+            var rows = block.trim().split('\n');
+            if (rows.length < 2) return block;
+            var thead = rows[0].split('|').filter(function(c) { return c.trim(); });
+            var isAlign = /^\|[\s\-:|]+\|$/.test(rows[1]);
+            var bodyStart = isAlign ? 2 : 1;
+            var t = '<table style="width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;"><thead><tr>' + thead.map(function(c) { return '<th style="padding:0.5rem;border:1px solid var(--border);background:var(--gray-bg);font-weight:600;">' + c.trim() + '</th>'; }).join('') + '</tr></thead><tbody>';
+            for (var i = bodyStart; i < rows.length; i++) {
+                var cols = rows[i].split('|').filter(function(c) { return c.trim(); });
+                t += '<tr>' + cols.map(function(c) { return '<td style="padding:0.5rem;border:1px solid var(--border);">' + c.trim() + '</td>'; }).join('') + '</tr>';
+            }
+            return t + '</tbody></table>';
+        });
+
+        html = html.replace(/((?:^- .+$\n?)+)/gm, function(block) {
+            return '<ul style="margin:0.5rem 0 1rem 1.5rem;">' + block.trim().split('\n').map(function(l) {
+                return '<li>' + l.replace(/^- /, '') + '</li>';
+            }).join('') + '</ul>';
+        });
+
+        html = html.replace(/<li>\[ \] /g, '<li>&#9744; ').replace(/<li>\[x\] /g, '<li>&#9745; ');
+
+        html = html.replace(/((?:^\d+\. .+$\n?)+)/gm, function(block) {
+            return '<ol style="margin:0.5rem 0 1rem 1.5rem;">' + block.trim().split('\n').map(function(l) {
+                return '<li>' + l.replace(/^\d+\. /, '') + '</li>';
+            }).join('') + '</ol>';
+        });
+
+        html = html.replace(/^(?!<[houplt]|<hr|<img|<table|<\/)(.*\S.*)$/gm, '<p>$1</p>');
+        return html;
+    }
+
+    // --- Import / Export ---
+    function exportJSON() {
+        var data = JSON.stringify({ resources: resources }, null, 2);
+        var blob = new Blob([data], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'resources.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast('JSON file downloaded');
+    }
+
+    function copyJSON() {
+        var data = JSON.stringify({ resources: resources }, null, 2);
+        navigator.clipboard.writeText(data).then(function() {
+            toast('JSON copied to clipboard');
+        }).catch(function() {
+            // Fallback
+            var ta = document.createElement('textarea');
+            ta.value = data;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            toast('JSON copied to clipboard');
+        });
+    }
+
+    function importJSON() {
+        document.getElementById('import-paste').value = '';
+        document.getElementById('import-modal').classList.add('open');
+    }
+
+    function closeImport() {
+        document.getElementById('import-modal').classList.remove('open');
+    }
+
+    function handleImport(event) {
+        var file = event.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                var data = JSON.parse(e.target.result);
+                resources = data.resources || [];
+                save();
+                renderTable();
+                closeImport();
+                toast('Imported ' + resources.length + ' resources');
+            } catch(err) {
+                toast('Invalid JSON file');
+            }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+    }
+
+    function doImportPaste() {
+        var text = document.getElementById('import-paste').value.trim();
+        if (!text) { toast('Paste JSON first'); return; }
+        try {
+            var data = JSON.parse(text);
+            resources = data.resources || [];
+            save();
+            renderTable();
+            closeImport();
+            toast('Imported ' + resources.length + ' resources');
+        } catch(err) {
+            toast('Invalid JSON');
+        }
+    }
+
+    // Drag and drop for import
+    var importArea = document.querySelector('.import-area');
+    if (importArea) {
+        importArea.addEventListener('dragover', function(e) { e.preventDefault(); importArea.style.borderColor = 'var(--blue)'; });
+        importArea.addEventListener('dragleave', function() { importArea.style.borderColor = ''; });
+        importArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            importArea.style.borderColor = '';
+            var file = e.dataTransfer.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        var data = JSON.parse(ev.target.result);
+                        resources = data.resources || [];
+                        save();
+                        renderTable();
+                        closeImport();
+                        toast('Imported ' + resources.length + ' resources');
+                    } catch(err) { toast('Invalid JSON file'); }
+                };
+                reader.readAsText(file);
+            }
+        });
+    }
+
+    init();
+    </script>
+</body>
+</html>

@@ -691,6 +691,104 @@
             background: #c95c52;
         }
 
+        /* ===== RESOURCES ===== */
+        .resources {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: var(--white);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            border-color: var(--blue);
+            box-shadow: 0 4px 16px rgba(123,175,212,0.12);
+            transform: translateY(-2px);
+        }
+
+        .resource-card-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            width: fit-content;
+        }
+
+        .resource-card-tag.guide { background: #eaf4fb; color: var(--blue-dk); }
+        .resource-card-tag.tool { background: #f0fdf4; color: #16a34a; }
+        .resource-card-tag.link { background: #fef3c7; color: #d97706; }
+        .resource-card-tag.video { background: #fce7f3; color: #db2777; }
+
+        .resource-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .resource-card p {
+            font-size: 0.85rem;
+            color: var(--slate);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .resource-card-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--blue);
+        }
+
+        .resource-card-footer svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--blue);
+        }
+
+        .resources-more {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .resources-more a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--coral);
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+
+        .resources-more a:hover {
+            gap: 0.7rem;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--navy);
@@ -860,6 +958,7 @@
                             <li><a href="#services">Services</a></li>
                             <li><a href="#platforms">Platforms</a></li>
                             <li><a href="#about">About</a></li>
+                            <li><a href="resources.html">Resources</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                         <a href="tel:8335743772" class="nav-phone">(833) 574-3772</a>
@@ -879,6 +978,7 @@
                         <li><a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
                         <li><a href="#platforms" onclick="this.closest('.mobile-menu').classList.remove('open')">Platforms</a></li>
                         <li><a href="#about" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
+                        <li><a href="resources.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Resources</a></li>
                         <li><a href="#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
                     </ul>
                     <a href="tel:8335743772" class="mobile-phone">(833) 574-3772</a>
@@ -1151,6 +1251,28 @@
         </div>
     </section>
 
+    <!-- RESOURCES -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <div class="section-header centered">
+                <div class="section-eyebrow">Knowledge Base</div>
+                <h2>Resources &amp; Guides</h2>
+                <p>Helpful tools, guides, and reference materials for analytical instrument maintenance and best practices.</p>
+            </div>
+            <div class="resources-grid" id="resources-grid">
+                <!-- Populated by JS from content/resources.json -->
+            </div>
+            <div class="resources-more">
+                <a href="resources.html">
+                    View all resources
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1255,6 +1377,7 @@
                     <a href="#services">Services</a>
                     <a href="#platforms">Platforms</a>
                     <a href="#about">About</a>
+                    <a href="resources.html">Resources</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-contact">
@@ -1267,5 +1390,38 @@
         </div>
     </footer>
 
+    <script>
+    (function() {
+        var grid = document.getElementById('resources-grid');
+        if (!grid) return;
+        fetch('content/resources.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var items = (data.resources || [])
+                    .filter(function(r) { return r.published; })
+                    .sort(function(a, b) { return new Date(b.date) - new Date(a.date); })
+                    .slice(0, 6);
+                if (!items.length) {
+                    grid.innerHTML = '<p style="text-align:center;color:var(--slate);grid-column:1/-1;">Resources coming soon.</p>';
+                    return;
+                }
+                grid.innerHTML = items.map(function(r) {
+                    var href = r.type === 'link' ? r.url : 'resource.html?id=' + r.id;
+                    var target = r.type === 'link' ? ' target="_blank" rel="noopener"' : '';
+                    var label = r.type === 'guide' ? 'Read guide' : r.type === 'tool' ? 'Open tool' : r.type === 'video' ? 'Watch video' : 'Visit link';
+                    return '<a class="resource-card" href="' + href + '"' + target + '>' +
+                        '<span class="resource-card-tag ' + r.type + '">' + r.type + '</span>' +
+                        '<h3>' + r.title + '</h3>' +
+                        '<p>' + r.summary + '</p>' +
+                        '<span class="resource-card-footer">' + label +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+                        '</span></a>';
+                }).join('');
+            })
+            .catch(function() {
+                grid.innerHTML = '<p style="text-align:center;color:var(--slate);grid-column:1/-1;">Resources coming soon.</p>';
+            });
+    })();
+    </script>
 </body>
 </html>
