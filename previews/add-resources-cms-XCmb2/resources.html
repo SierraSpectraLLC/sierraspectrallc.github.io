@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources — Sierra Spectra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral:   #E8756A;
+            --orange:  #E8A370;
+            --lime:    #C5D44A;
+            --sky:     #7BAFD4;
+            --purple:  #9B8EB8;
+            --navy:    #1e2035;
+            --blue:    #7BAFD4;
+            --blue-dk: #5A94BC;
+            --slate:   #64748b;
+            --slate-lt:#94a3b8;
+            --border:  #e2e8f0;
+            --gray-bg: #f8f7f5;
+            --white:   #ffffff;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 16px; line-height: 1.7; color: var(--navy); background: var(--white);
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        /* NAV */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--white); border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .nav::after {
+            content: ''; display: block; height: 3px;
+            background: linear-gradient(to right, #E8756A, #E8A370, #C5D44A, #7BAFD4, #9B8EB8);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .nav-logo-img { height: 40px; width: auto; flex-shrink: 0; }
+        .nav-logo-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; color: var(--navy); }
+        .nav-logo-name span { font-weight: 400; font-size: 0.7rem; color: var(--slate); letter-spacing: 0.04em; vertical-align: super; margin-left: 2px; }
+        .nav-logo-tag { font-size: 0.7rem; font-weight: 400; color: var(--slate); letter-spacing: 0.04em; margin-top: -2px; }
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--slate); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+        .nav-phone {
+            font-size: 0.875rem; font-weight: 600; color: var(--coral); text-decoration: none;
+            border: 1.5px solid var(--coral); border-radius: 6px; padding: 0.4rem 0.9rem;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .nav-phone:hover { background: var(--coral); color: var(--white); }
+        .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--navy); }
+        .mobile-menu { display: none; padding: 1rem 0; border-top: 1px solid var(--border); background: var(--white); }
+        .mobile-menu.open { display: block; }
+        .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+        .mobile-menu a { display: block; padding: 0.6rem 0; font-size: 0.95rem; font-weight: 500; color: var(--navy); text-decoration: none; }
+        .mobile-menu a:hover { color: var(--blue); }
+        .mobile-phone { display: block; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--coral); text-decoration: none; }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #1e2035 0%, #2a3a5a 55%, #3a5878 100%);
+            padding: 3.5rem 0;
+            color: var(--white);
+        }
+        .page-header h1 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { font-size: 1rem; color: #cbd5e1; max-width: 600px; }
+
+        /* FILTERS */
+        .filter-bar {
+            background: var(--gray-bg); border-bottom: 1px solid var(--border); padding: 1rem 0;
+        }
+        .filter-bar-inner { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--white); border: 1px solid var(--border); border-radius: 9999px;
+            padding: 0.35rem 1rem; font-size: 0.8rem; font-weight: 500; font-family: inherit;
+            color: var(--slate); cursor: pointer; transition: all 0.15s;
+        }
+        .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+        .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+        /* RESOURCES GRID */
+        .resources-section { padding: 3rem 0 5rem; }
+        .resources-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+        }
+        .resource-card {
+            border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
+            background: var(--white); text-decoration: none; color: inherit;
+            transition: all 0.2s; display: flex; flex-direction: column;
+        }
+        .resource-card:hover {
+            border-color: var(--blue); box-shadow: 0 4px 16px rgba(123,175,212,0.12);
+            transform: translateY(-2px);
+        }
+        .resource-card-tag {
+            display: inline-block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.75rem;
+            width: fit-content;
+        }
+        .resource-card-tag.guide { background: #eaf4fb; color: var(--blue-dk); }
+        .resource-card-tag.tool { background: #f0fdf4; color: #16a34a; }
+        .resource-card-tag.link { background: #fef3c7; color: #d97706; }
+        .resource-card-tag.video { background: #fce7f3; color: #db2777; }
+        .resource-card h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+        .resource-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; flex: 1; }
+        .resource-card-meta { font-size: 0.75rem; color: var(--slate-lt); margin-top: 0.75rem; }
+        .resource-card-footer {
+            display: flex; align-items: center; gap: 0.4rem; margin-top: 0.75rem;
+            font-size: 0.8rem; font-weight: 500; color: var(--blue);
+        }
+        .resource-card-footer svg { width: 14px; height: 14px; stroke: var(--blue); }
+
+        .empty-state { text-align: center; padding: 4rem 0; color: var(--slate); }
+
+        /* FOOTER */
+        footer { background: var(--navy); color: #94a3b8; padding: 2.5rem 0; }
+        .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-contact { font-size: 0.85rem; color: #64748b; }
+        .footer-contact a { color: #94a3b8; text-decoration: none; }
+        .footer-contact a:hover { color: var(--white); }
+        .footer-copy { font-size: 0.8rem; color: #475569; }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-phone { display: none; }
+            .nav-hamburger { display: flex; }
+            .resources-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-inner">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/logo-mark.svg" alt="Sierra Spectra logo mark" class="nav-logo-img">
+                        <div>
+                            <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
+                            <div class="nav-logo-tag">Analytical Instrument Service</div>
+                        </div>
+                    </a>
+                    <div class="nav-right">
+                        <ul class="nav-links">
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="index.html#platforms">Platforms</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="resources.html" class="active">Resources</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                        <a href="tel:8335743772" class="nav-phone">(833) 574-3772</a>
+                    </div>
+                    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mobile-menu">
+                    <ul>
+                        <li><a href="index.html#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
+                        <li><a href="index.html#platforms" onclick="this.closest('.mobile-menu').classList.remove('open')">Platforms</a></li>
+                        <li><a href="index.html#about" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
+                        <li><a href="resources.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Resources</a></li>
+                        <li><a href="index.html#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
+                    </ul>
+                    <a href="tel:8335743772" class="mobile-phone">(833) 574-3772</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Resources & Guides</h1>
+            <p>Helpful tools, guides, and reference materials for analytical instrument maintenance and best practices.</p>
+        </div>
+    </section>
+
+    <div class="filter-bar">
+        <div class="container">
+            <div class="filter-bar-inner">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="guide">Guides</button>
+                <button class="filter-btn" data-filter="tool">Tools</button>
+                <button class="filter-btn" data-filter="link">Links</button>
+                <button class="filter-btn" data-filter="video">Videos</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="resources-section">
+        <div class="container">
+            <div class="resources-grid" id="resources-grid"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#platforms">Platforms</a>
+                    <a href="index.html#about">About</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-contact">
+                    <a href="tel:8335743772">(833) 574-3772</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="mailto:info@sierraspectra.com">info@sierraspectra.com</a>
+                </div>
+                <div class="footer-copy">&copy; 2025 Sierra Spectra, LLC. All Rights Reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        var grid = document.getElementById('resources-grid');
+        var activeFilter = 'all';
+        var allResources = [];
+
+        function render() {
+            var items = allResources
+                .filter(function(r) { return r.published; })
+                .filter(function(r) { return activeFilter === 'all' || r.type === activeFilter; })
+                .sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+
+            if (!items.length) {
+                grid.innerHTML = '<div class="empty-state"><p>No resources found in this category yet.</p></div>';
+                return;
+            }
+
+            grid.innerHTML = items.map(function(r) {
+                var href = r.type === 'link' ? r.url : 'resource.html?id=' + r.id;
+                var target = r.type === 'link' ? ' target="_blank" rel="noopener"' : '';
+                var label = r.type === 'guide' ? 'Read guide' : r.type === 'tool' ? 'Open tool' : r.type === 'video' ? 'Watch video' : 'Visit link';
+                return '<a class="resource-card" href="' + href + '"' + target + '>' +
+                    '<span class="resource-card-tag ' + r.type + '">' + r.type + '</span>' +
+                    '<h3>' + r.title + '</h3>' +
+                    '<p>' + r.summary + '</p>' +
+                    '<span class="resource-card-meta">' + r.date + '</span>' +
+                    '<span class="resource-card-footer">' + label +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+                    '</span></a>';
+            }).join('');
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                activeFilter = btn.getAttribute('data-filter');
+                render();
+            });
+        });
+
+        fetch('content/resources.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                allResources = data.resources || [];
+                render();
+            })
+            .catch(function() {
+                grid.innerHTML = '<div class="empty-state"><p>Unable to load resources.</p></div>';
+            });
+    })();
+    </script>
+</body>
+</html>
