@@ -68,12 +68,29 @@
 
         /* PAGE HEADER */
         .page-header {
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
             background: linear-gradient(135deg, #1e2035 0%, #2a3a5a 55%, #3a5878 100%);
-            padding: 3.5rem 0;
+            overflow: hidden;
             color: var(--white);
         }
-        .page-header h1 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 0.5rem; }
-        .page-header p { font-size: 1rem; color: #cbd5e1; max-width: 600px; }
+        .page-header .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23ffffff' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .page-header .container { position: relative; z-index: 1; padding: 4rem 0; }
+        .page-header .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: #a8d4f0; margin-bottom: 1rem;
+        }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2; }
+        .page-header p { font-size: 1.1rem; color: #cbd5e1; max-width: 600px; line-height: 1.6; }
 
         /* FILTERS */
         .filter-bar {
@@ -184,7 +201,9 @@
     </header>
 
     <section class="page-header">
+        <div class="hero-pattern"></div>
         <div class="container">
+            <div class="hero-eyebrow">Sierra Spectra LLC</div>
             <h1>Resources & Guides</h1>
             <p>Helpful tools, guides, and reference materials for analytical instrument maintenance and best practices.</p>
         </div>
