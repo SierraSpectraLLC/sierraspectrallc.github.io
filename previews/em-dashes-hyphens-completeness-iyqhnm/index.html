@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LC/MS &amp; Analytical Instrument Service in Roseville, CA | Sierra Spectra LLC</title>
-    <meta name="description" content="Local LC/MS and analytical instrument service for Northern California labs. OEM-trained engineers in Roseville, CA with same-day emergency response.">
+    <title>Nationwide LC/MS &amp; Analytical Instrument Service | Sierra Spectra LLC</title>
+    <meta name="description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA, with same-day onsite response across Northern California.">
     <link rel="canonical" href="https://sierraspectra.com/">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#1e2035">
@@ -18,18 +18,18 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sierra Spectra LLC">
     <meta property="og:url" content="https://sierraspectra.com/">
-    <meta property="og:title" content="Sierra Spectra LLC - Local LC/MS Service for Northern California Labs">
-    <meta property="og:description" content="Local LC/MS and analytical instrument service for Northern California labs. OEM-trained engineers in Roseville, CA with same-day emergency response.">
+    <meta property="og:title" content="Sierra Spectra LLC - Nationwide LC/MS &amp; Analytical Instrument Service">
+    <meta property="og:description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA, with same-day onsite response across Northern California.">
     <meta property="og:image" content="https://sierraspectra.com/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Sierra Spectra LLC - Local LC/MS service for Northern California labs, based in Roseville">
+    <meta property="og:image:alt" content="Sierra Spectra LLC - Nationwide LC/MS and analytical instrument service, based in Roseville, California">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sierra Spectra LLC - Local LC/MS Service for Northern California Labs">
-    <meta name="twitter:description" content="Local LC/MS and analytical instrument service for Northern California labs. OEM-trained engineers based in Roseville, CA.">
+    <meta name="twitter:title" content="Sierra Spectra LLC - Nationwide LC/MS &amp; Analytical Instrument Service">
+    <meta name="twitter:description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA.">
     <meta name="twitter:image" content="https://sierraspectra.com/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1075,6 +1075,14 @@
             align-items: start;
         }
 
+        .coverage-text h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+        }
+
         .coverage-text p {
             font-size: 0.95rem;
             color: var(--slate);
@@ -1082,12 +1090,80 @@
             margin-bottom: 1.1rem;
         }
 
+        /* Two tiers: the fast-response zone and everywhere else. The city list
+           is a speed promise, not the boundary of where we work. */
+        .coverage-tiers {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .coverage-tier {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.4rem 1.5rem;
+            background: var(--white);
+            border-left: 4px solid var(--accent, var(--lime));
+        }
+
+        .coverage-tier.is-national {
+            --accent: var(--sky);
+            background: var(--gray-bg);
+        }
+
+        .coverage-tier-head {
+            margin-bottom: 1rem;
+        }
+
+        .coverage-tier-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--lime-ink);
+            margin-bottom: 0.3rem;
+        }
+
+        .coverage-tier.is-national .coverage-tier-badge {
+            color: var(--sky-ink);
+        }
+
+        .coverage-tier-head h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .coverage-national {
+            list-style: none;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .coverage-national li {
+            position: relative;
+            padding-left: 1.4rem;
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        .coverage-national li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 9px;
+            height: 5px;
+            border-left: 2px solid var(--sky);
+            border-bottom: 2px solid var(--sky);
+            transform: rotate(-45deg);
+        }
+
         .coverage-cities {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 0.5rem 1rem;
             list-style: none;
-            margin-top: 0.5rem;
         }
 
         .coverage-cities li {
@@ -1108,9 +1184,14 @@
         }
 
         .coverage-note {
-            margin-top: 1.5rem;
+            margin-top: 1.1rem;
             font-size: 0.85rem;
             color: var(--slate-lt);
+        }
+
+        .coverage-note a {
+            color: var(--sky-ink);
+            font-weight: 600;
         }
 
         /* ===== FAQ ===== */
@@ -1323,6 +1404,8 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .coverage-text h2 br { display: none; }
+
             .about-highlights {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1383,7 +1466,7 @@
       "@id": "https://sierraspectra.com/#business",
       "name": "Sierra Spectra LLC",
       "alternateName": "Sierra Spectra",
-      "description": "Local LC/MS and analytical instrument service for Northern California laboratories. OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems, based in Roseville, CA.",
+      "description": "Nationwide LC/MS and analytical instrument service. OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems, headquartered in Roseville, CA, with same-day onsite response across Northern California.",
       "url": "https://sierraspectra.com/",
       "logo": "https://sierraspectra.com/assets/SSLogo_FullColor.png",
       "image": "https://sierraspectra.com/assets/og-image.png",
@@ -1397,6 +1480,8 @@
         "addressCountry": "US"
       },
       "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "State", "name": "California" },
         { "@type": "State", "name": "Northern California" },
         { "@type": "City", "name": "Roseville" },
         { "@type": "City", "name": "Sacramento" },
@@ -1479,7 +1564,7 @@
           "name": "What areas do you cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We are based in Roseville, CA and serve the greater Sacramento region and Northern California, including Rocklin, Sacramento, Folsom, West Sacramento, Davis, Elk Grove, Woodland, Vacaville, Fairfield, Stockton, and Auburn."
+            "text": "We serve laboratories nationwide. Our engineers are headquartered in Roseville, CA, so labs across Northern California get same-day and next-day onsite response. Everywhere else in the country we schedule onsite visits, preventative maintenance, installations, and relocations, and support service contracts."
           }
         },
         {
@@ -1556,18 +1641,18 @@
                     <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Based in Roseville, CA
+                Roseville, CA - serving labs nationwide
             </div>
-            <h1><span class="spectrum-mark">Local</span> LC/MS service for Northern California labs.</h1>
-            <p class="hero-sub">OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems. We're based in Roseville, not three time zones away, which is what makes same-day response on a down instrument realistic instead of aspirational.</p>
+            <h1>LC/MS and analytical instrument service, <span class="spectrum-mark">nationwide</span>.</h1>
+            <p class="hero-sub">OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems, supporting labs across the country. We're headquartered in Roseville, CA, so Northern California gets same-day response when an instrument goes down.</p>
             <div class="hero-ctas">
                 <a href="#contact" class="btn-primary">Request Service</a>
                 <a href="#services" class="btn-ghost">View Services</a>
             </div>
             <ul class="hero-proof">
-                <li>Onsite across the Sacramento region</li>
+                <li>Same-day onsite in Northern California</li>
+                <li>Scheduled nationwide coverage</li>
                 <li>Sciex, Agilent, Waters, Shimadzu &amp; more</li>
-                <li>Contracts or one-off visits</li>
             </ul>
         </div>
 
@@ -1654,8 +1739,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Northern California</div>
-                        <div class="stat-sub">Pharma, research &amp; industrial labs</div>
+                        <div class="stat-label">Nationwide Coverage</div>
+                        <div class="stat-sub">Same-day in Northern California</div>
                     </div>
                 </div>
             </div>
@@ -1896,8 +1981,8 @@
                             <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <h4>Northern California</h4>
-                        <p>Based in Roseville, serving the greater Sacramento region</p>
+                        <h4>Local Base, National Reach</h4>
+                        <p>Headquartered in Roseville, CA, serving labs across the country</p>
                     </div>
                 </div>
             </div>
@@ -1941,35 +2026,61 @@
             <div class="coverage-grid">
                 <div class="coverage-text">
                     <div class="section-eyebrow is-purple">Service Area</div>
-                    <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--navy); margin-bottom: 1.25rem;">Where We Work</h2>
-                    <p>We're based in Roseville and cover the greater Sacramento region and Northern California, with regular onsite visits to the pharmaceutical, biotech, and research labs concentrated along the I-80 and Highway 50 corridors.</p>
-                    <p>Travel beyond the listed areas is often possible for contract clients and scheduled preventative maintenance. If you're outside this list, ask.</p>
+                    <h2>Nationwide Coverage, With a Same-Day Home Base</h2>
+                    <p>We support laboratories across the country. Wherever you are, we schedule onsite service, preventative maintenance, installations, and relocations, and we back multi-site contracts for labs with instruments in more than one state.</p>
+                    <p>Our engineers are headquartered in Roseville, CA, so labs across Northern California get something distance can't buy: same-day and next-day response when an instrument goes down.</p>
+                    <a href="#contact" class="about-cta">
+                        Tell us where your lab is
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
                 </div>
 
-                <div>
-                    <!--
-                      TODO - CONFIRM OR TRIM THIS LIST. This is the one place on the
-                      page that commits you to driving somewhere. It was drafted from
-                      "Northern California / Roseville" and the biotech corridors near
-                      Sacramento. Delete any city you would not actually travel to, and
-                      add the ones you would (Bay Area? Reno? Chico? Modesto?).
-                      Keep it in sync with "areaServed" in the JSON-LD block in <head>.
-                    -->
-                    <ul class="coverage-cities">
-                        <li>Roseville</li>
-                        <li>Rocklin</li>
-                        <li>Sacramento</li>
-                        <li>Folsom</li>
-                        <li>West Sacramento</li>
-                        <li>Davis</li>
-                        <li>Elk Grove</li>
-                        <li>Woodland</li>
-                        <li>Vacaville</li>
-                        <li>Fairfield</li>
-                        <li>Stockton</li>
-                        <li>Auburn</li>
-                    </ul>
-                    <p class="coverage-note">Emergency and contract coverage may extend further. <a href="#contact" style="color: var(--blue);">Ask about your location</a>.</p>
+                <div class="coverage-tiers">
+                    <div class="coverage-tier is-same-day">
+                        <div class="coverage-tier-head">
+                            <span class="coverage-tier-badge">Same-day territory</span>
+                            <h3>Northern California</h3>
+                        </div>
+                        <!--
+                          TODO - CONFIRM OR TRIM THIS LIST. These are the cities where
+                          you're committing to a same-day/next-day drive, so they should
+                          be the ones you'd genuinely reach that fast. Add or remove
+                          freely (Bay Area? Reno? Chico? Modesto?) and keep it in sync
+                          with "areaServed" in the JSON-LD block in <head>.
+                          This list is NOT the limit of where you work - the nationwide
+                          tier below covers everywhere else.
+                        -->
+                        <ul class="coverage-cities">
+                            <li>Roseville</li>
+                            <li>Rocklin</li>
+                            <li>Sacramento</li>
+                            <li>Folsom</li>
+                            <li>West Sacramento</li>
+                            <li>Davis</li>
+                            <li>Elk Grove</li>
+                            <li>Woodland</li>
+                            <li>Vacaville</li>
+                            <li>Fairfield</li>
+                            <li>Stockton</li>
+                            <li>Auburn</li>
+                        </ul>
+                    </div>
+
+                    <div class="coverage-tier is-national">
+                        <div class="coverage-tier-head">
+                            <span class="coverage-tier-badge">Scheduled onsite</span>
+                            <h3>Everywhere else in the U.S.</h3>
+                        </div>
+                        <ul class="coverage-national">
+                            <li>Preventative maintenance programs</li>
+                            <li>Repairs and troubleshooting visits</li>
+                            <li>Installations and relocations</li>
+                            <li>Multi-site service contracts</li>
+                        </ul>
+                        <p class="coverage-note">Out of state? <a href="#contact">Ask about scheduling</a> - travel is routine for us.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2016,7 +2127,7 @@
                 <details class="faq-item">
                     <summary>What areas do you cover?</summary>
                     <div class="faq-answer">
-                        <p>We're based in Roseville, CA and serve the greater Sacramento region and Northern California. See <a href="#coverage">our service area</a> for the cities we visit regularly. Coverage often extends further for contract clients and scheduled work.</p>
+                        <p>We serve laboratories nationwide. Our engineers are headquartered in Roseville, CA, so labs across Northern California get same-day and next-day onsite response; everywhere else in the country we schedule onsite visits, PMs, installations, and relocations, and we support multi-site contracts. See <a href="#coverage">our service area</a> for the breakdown.</p>
                     </div>
                 </details>
 
