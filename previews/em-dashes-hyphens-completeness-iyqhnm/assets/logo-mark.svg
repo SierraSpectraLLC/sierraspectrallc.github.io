@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 90" fill="none" aria-label="Sierra Spectra logo mark">
+  <defs>
+    <!-- Segment gradients using userSpaceOnUse so they follow each line direction -->
+    <linearGradient id="g1" x1="10" y1="68" x2="32" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8756A"/>
+      <stop offset="1" stop-color="#E8A370"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="32" y1="40" x2="50" y2="55" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8A370"/>
+      <stop offset="1" stop-color="#C5D44A"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="50" y1="55" x2="70" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C5D44A"/>
+      <stop offset="1" stop-color="#7BAFD4"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="70" y1="18" x2="100" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7BAFD4"/>
+      <stop offset="1" stop-color="#9B8EB8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Line segments -->
+  <line x1="10" y1="68" x2="32" y2="40" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="32" y1="40" x2="50" y2="55" stroke="url(#g2)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="50" y1="55" x2="70" y2="18" stroke="url(#g3)" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="70" y1="18" x2="100" y2="68" stroke="url(#g4)" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- Dots -->
+  <circle cx="10"  cy="68" r="5.5" fill="#E8756A"/>
+  <circle cx="32"  cy="40" r="5.5" fill="#E8A370"/>
+  <circle cx="50"  cy="55" r="5.5" fill="#C5D44A"/>
+  <circle cx="70"  cy="18" r="5.5" fill="#7BAFD4"/>
+  <circle cx="100" cy="68" r="5.5" fill="#9B8EB8"/>
+</svg>
