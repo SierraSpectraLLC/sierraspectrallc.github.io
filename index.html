@@ -3,7 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sierra Spectra - Analytical Instrument Service Specialists</title>
+
+    <title>Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service | Roseville, CA</title>
+    <meta name="description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California. Same-day emergency response, preventative maintenance, and flexible service contracts. Based in Roseville, CA.">
+    <link rel="canonical" href="https://sierraspectra.com/">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e2035">
+
+    <!-- Favicons -->
+    <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/SSLogo_FullColor_NoText.png">
+
+    <!-- Open Graph (LinkedIn, Facebook, Slack, iMessage link previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sierra Spectra LLC">
+    <meta property="og:url" content="https://sierraspectra.com/">
+    <meta property="og:title" content="Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service">
+    <meta property="og:description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California. Same-day emergency response and flexible service contracts.">
+    <meta property="og:image" content="https://sierraspectra.com/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sierra Spectra LLC - Expert LC/MS and analytical instrument service, Roseville, California">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service">
+    <meta name="twitter:description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California.">
+    <meta name="twitter:image" content="https://sierraspectra.com/assets/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -423,21 +451,18 @@
             margin-bottom: 0.75rem;
         }
 
+        /* Pills wrap rather than scrolling behind a hidden scrollbar, so every
+           supported platform is visible without the user guessing there's more. */
         .scroll-track {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.625rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .scroll-track::-webkit-scrollbar {
-            display: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .scroll-pill {
-            flex-shrink: 0;
             display: inline-block;
             background: var(--white);
             border: 1px solid var(--border);
@@ -653,6 +678,23 @@
             appearance: none;
         }
 
+        /* appearance:none strips the native dropdown arrow, so draw one back in
+           or the selects read as plain text inputs. */
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.875rem center;
+            padding-right: 2.25rem;
+            cursor: pointer;
+        }
+
+        /* Show the "nothing chosen yet" option in placeholder gray, like the
+           text inputs. :invalid covers the required select on older browsers. */
+        .form-group select:invalid,
+        .form-group select:has(option[value=""]:checked) {
+            color: var(--slate-lt);
+        }
+
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
@@ -786,6 +828,314 @@
             text-decoration: none;
         }
 
+        /* ===== ACCESSIBILITY ===== */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 200;
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 0 0 6px 0;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 2px;
+            border-radius: 3px;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .process {
+            padding: 4.5rem 0;
+            background: var(--gray-bg);
+            border-top: 1px solid var(--border);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            counter-reset: step;
+        }
+
+        .process-step {
+            position: relative;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.75rem 1.5rem 1.5rem;
+        }
+
+        .process-step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.65;
+        }
+
+        /* ===== SERVICE AREA ===== */
+        .coverage {
+            padding: 4.5rem 0;
+            background: var(--white);
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .coverage-text p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.75;
+            margin-bottom: 1.1rem;
+        }
+
+        .coverage-cities {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem 1rem;
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .coverage-cities li {
+            font-size: 0.9rem;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .coverage-cities li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--lime);
+            flex-shrink: 0;
+        }
+
+        .coverage-note {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--slate-lt);
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 5rem 0;
+            background: var(--gray-bg);
+        }
+
+        .faq-list {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.1rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '';
+            width: 9px;
+            height: 9px;
+            flex-shrink: 0;
+            border-right: 2px solid var(--slate-lt);
+            border-bottom: 2px solid var(--slate-lt);
+            transform: rotate(45deg) translate(-2px, -2px);
+            transition: transform 0.2s;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(-135deg) translate(-2px, -2px);
+        }
+
+        .faq-item[open] summary {
+            color: var(--blue-dk);
+        }
+
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        .faq-answer a {
+            color: var(--blue-dk);
+        }
+
+        .faq-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        .faq-footer a {
+            color: var(--coral);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .faq-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FORM STATES ===== */
+        .form-hp {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .form-note {
+            margin-top: 0.85rem;
+            font-size: 0.75rem;
+            color: var(--slate-lt);
+            line-height: 1.5;
+        }
+
+        .form-note a {
+            color: var(--slate);
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .form-status.is-visible {
+            display: block;
+        }
+
+        .form-status.is-error {
+            background: #fdf0ee;
+            border: 1px solid #f3c4bd;
+            color: #9c3a2f;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        /* Success panel replaces the form entirely */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 1.5rem 0.5rem;
+        }
+
+        .form-success.is-visible {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: #eef7e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-success-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: #6d9c2f;
+        }
+
+        .form-success h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .form-success p a {
+            color: var(--blue-dk);
+        }
+
+        .required-mark {
+            color: var(--coral);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-links,
@@ -804,9 +1154,18 @@
             }
 
             .about-grid,
-            .contact-grid {
+            .contact-grid,
+            .coverage-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .coverage-cities {
+                grid-template-columns: 1fr 1fr;
             }
 
             .about-highlights {
@@ -839,16 +1198,145 @@
             }
         }
     </style>
+
+    <!--
+      Structured data (JSON-LD). This is what feeds Google's local results and
+      knowledge panel. TODO for Sierra Spectra:
+        - add "streetAddress" once you're comfortable publishing it (Google
+          matches this against your Google Business Profile listing)
+        - add "priceRange" (e.g. "$$") if you want it shown
+        - add "sameAs" links (LinkedIn company page, Google Business Profile)
+        - do NOT add "aggregateRating" until you have real, verifiable reviews
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://sierraspectra.com/#business",
+      "name": "Sierra Spectra LLC",
+      "alternateName": "Sierra Spectra",
+      "description": "OEM-trained engineers providing maintenance, repair, and support for mass spectrometry, liquid chromatography, and analytical instrumentation across Northern California.",
+      "url": "https://sierraspectra.com/",
+      "logo": "https://sierraspectra.com/assets/SSLogo_FullColor.png",
+      "image": "https://sierraspectra.com/assets/og-image.png",
+      "telephone": "+1-833-574-3772",
+      "email": "info@sierraspectra.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Roseville",
+        "addressRegion": "CA",
+        "postalCode": "95678",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "State", "name": "Northern California" },
+        { "@type": "City", "name": "Roseville" },
+        { "@type": "City", "name": "Sacramento" },
+        { "@type": "City", "name": "Rocklin" },
+        { "@type": "City", "name": "Folsom" },
+        { "@type": "City", "name": "Davis" },
+        { "@type": "City", "name": "West Sacramento" },
+        { "@type": "City", "name": "Elk Grove" },
+        { "@type": "City", "name": "Woodland" },
+        { "@type": "City", "name": "Vacaville" },
+        { "@type": "City", "name": "Fairfield" },
+        { "@type": "City", "name": "Stockton" }
+      ],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }],
+      "knowsAbout": [
+        "Mass spectrometry service", "LC/MS", "HPLC", "UHPLC", "GC-MS", "ICP-MS",
+        "Triple quadrupole MS", "Q-TOF", "Orbitrap", "Ion trap",
+        "Preventative maintenance", "Analytical instrument repair"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Analytical Instrument Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mass Spectrometry Service", "description": "Maintenance, repair, and optimization for Sciex, Agilent, Waters, and Shimadzu MS systems." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LC System Maintenance", "description": "Service for HPLC and UHPLC systems including pumps, autosamplers, detectors, and columns." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Preventative Maintenance", "description": "Scheduled maintenance programs to maximize uptime and extend instrument life." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Response", "description": "Same-day or next-day onsite support for critical instrument failures." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "System Integration", "description": "Instrument networking, data systems, and software integration." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service Contracts", "description": "Flexible service agreements from basic coverage to comprehensive plans." } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Keep in sync with the FAQ section in the page body. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which manufacturers and instruments do you service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can you respond when an instrument goes down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer service contracts, or is it all per-visit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement ranging from basic coverage to comprehensive plans with dedicated engineer support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a preventative maintenance visit include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of the work performed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We are based in Roseville, CA and serve the greater Sacramento region and Northern California, including Rocklin, Sacramento, Folsom, West Sacramento, Davis, Elk Grove, Woodland, Vacaville, Fairfield, Stockton, and Auburn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get a quote?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Send us the instrument make, model, and a description of the issue using the contact form, or call (833) 574-3772. We confirm scope and timing and send a written quote before any work begins."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <!-- NAVIGATION -->
     <header>
-        <nav class="nav">
+        <nav class="nav" aria-label="Main">
             <div class="container">
                 <div class="nav-inner">
                     <a href="#home" class="nav-logo">
-                        <img src="assets/SSLogo_FullColor.png" alt="Sierra Spectra logo mark" class="nav-logo-img">
+                        <img src="assets/SSLogo_FullColor.png" alt="Sierra Spectra logo mark" class="nav-logo-img" width="202" height="139">
                         <div>
                             <div class="nav-logo-name">SIERRA SPECTRA<span>LLC</span></div>
                             <div class="nav-logo-tag">Analytical Instrument Service</div>
@@ -860,13 +1348,14 @@
                             <li><a href="#services">Services</a></li>
                             <li><a href="#platforms">Platforms</a></li>
                             <li><a href="#about">About</a></li>
+                            <li><a href="#faq">FAQ</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
-                        <a href="tel:8335743772" class="nav-phone">(833) 574-3772</a>
+                        <a href="tel:+18335743772" class="nav-phone">(833) 574-3772</a>
                     </div>
 
-                    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <line x1="3" y1="6" x2="21" y2="6"/>
                             <line x1="3" y1="12" x2="21" y2="12"/>
                             <line x1="3" y1="18" x2="21" y2="18"/>
@@ -874,24 +1363,27 @@
                     </button>
                 </div>
 
-                <div class="mobile-menu">
+                <div class="mobile-menu" id="mobileMenu">
                     <ul>
-                        <li><a href="#services" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
-                        <li><a href="#platforms" onclick="this.closest('.mobile-menu').classList.remove('open')">Platforms</a></li>
-                        <li><a href="#about" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
-                        <li><a href="#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#platforms">Platforms</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
-                    <a href="tel:8335743772" class="mobile-phone">(833) 574-3772</a>
+                    <a href="tel:+18335743772" class="mobile-phone">(833) 574-3772</a>
                 </div>
             </div>
         </nav>
     </header>
 
+    <main id="main">
+
     <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-pattern"></div>
         <div class="container hero-content">
-            <div class="hero-eyebrow">Northern California &mdash; Roseville, CA</div>
+            <div class="hero-eyebrow">Northern California - Roseville, CA</div>
             <h1>Expert LC/MS &amp; Analytical Instrument Service</h1>
             <p class="hero-sub">OEM-trained engineers providing rapid-response maintenance, repair, and support for mass spectrometry, liquid chromatography, and analytical instrumentation across pharmaceutical, research, and industrial laboratories.</p>
             <div class="hero-ctas">
@@ -1046,6 +1538,37 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header centered">
+                <div class="section-eyebrow">How It Works</div>
+                <h2>Getting Service Is Straightforward</h2>
+                <p>No drawn-out procurement cycle to get an engineer looking at your instrument.</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-step-num">1</div>
+                    <h3>Tell us what you need</h3>
+                    <p>Call us or send the form below with your instrument make, model, and what it's doing. The more detail you can give us up front, the faster we can come prepared with the right parts.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-num">2</div>
+                    <h3>Assessment and quote</h3>
+                    <p>We confirm the scope of work, parts availability, and timing, then send you a written quote. For contract clients, covered work proceeds without a new quote each time.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-num">3</div>
+                    <h3>Onsite service</h3>
+                    <p>An OEM-trained engineer performs the work at your lab and walks you through what was done, what was replaced, and what to watch for before your next scheduled maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PLATFORMS WE SERVICE -->
     <section id="platforms" class="platforms">
         <div class="container">
@@ -1057,32 +1580,32 @@
 
             <div class="scroll-row">
                 <div class="scroll-row-label">Manufacturer Platforms</div>
-                <div class="scroll-track" role="list" aria-label="Supported manufacturer platforms">
-                    <span class="scroll-pill">Sciex</span>
-                    <span class="scroll-pill">Agilent</span>
-                    <span class="scroll-pill">Waters</span>
-                    <span class="scroll-pill">Shimadzu</span>
-                    <span class="scroll-pill">Thermo Fisher</span>
-                    <span class="scroll-pill">Bruker</span>
-                    <span class="scroll-pill">PerkinElmer</span>
-                </div>
+                <ul class="scroll-track" aria-label="Supported manufacturer platforms">
+                    <li class="scroll-pill">Sciex</li>
+                    <li class="scroll-pill">Agilent</li>
+                    <li class="scroll-pill">Waters</li>
+                    <li class="scroll-pill">Shimadzu</li>
+                    <li class="scroll-pill">Thermo Fisher</li>
+                    <li class="scroll-pill">Bruker</li>
+                    <li class="scroll-pill">PerkinElmer</li>
+                </ul>
             </div>
 
             <div class="scroll-row">
                 <div class="scroll-row-label">Instrument Types</div>
-                <div class="scroll-track" role="list" aria-label="Supported instrument types">
-                    <span class="scroll-pill">Triple Quadrupole MS</span>
-                    <span class="scroll-pill">Q-TOF</span>
-                    <span class="scroll-pill">HPLC</span>
-                    <span class="scroll-pill">UHPLC</span>
-                    <span class="scroll-pill">Ion Trap</span>
-                    <span class="scroll-pill">Orbitrap</span>
-                    <span class="scroll-pill">GC-MS</span>
-                    <span class="scroll-pill">ICP-MS</span>
-                    <span class="scroll-pill">LC-MS/MS</span>
-                    <span class="scroll-pill">QTRAP</span>
-                    <span class="scroll-pill">Single Quadrupole</span>
-                </div>
+                <ul class="scroll-track" aria-label="Supported instrument types">
+                    <li class="scroll-pill">Triple Quadrupole MS</li>
+                    <li class="scroll-pill">Q-TOF</li>
+                    <li class="scroll-pill">HPLC</li>
+                    <li class="scroll-pill">UHPLC</li>
+                    <li class="scroll-pill">Ion Trap</li>
+                    <li class="scroll-pill">Orbitrap</li>
+                    <li class="scroll-pill">GC-MS</li>
+                    <li class="scroll-pill">ICP-MS</li>
+                    <li class="scroll-pill">LC-MS/MS</li>
+                    <li class="scroll-pill">QTRAP</li>
+                    <li class="scroll-pill">Single Quadrupole</li>
+                </ul>
             </div>
 
             <p class="platforms-note">Don't see your instrument? <a href="#contact" style="color: var(--blue);">Contact us</a> - our expertise extends to many additional platforms and configurations.</p>
@@ -1102,6 +1625,24 @@
                     <p>What sets us apart is our dedication to responsive communication, rapid service delivery, and a deep understanding of the critical role these instruments play in your operations. We don't just fix instruments - we partner with you to ensure your analytical capabilities remain consistently available and reliable.</p>
 
                     <p>Our founder's background includes years of experience as an engineer for major instrument manufacturers, giving us unique insight into the complexities of modern analytical systems. This expertise allows us to offer solutions that address not just immediate issues but underlying causes, resulting in more reliable instrument performance long-term.</p>
+
+                    <!--
+                      TODO - NAME THE FOUNDER. This paragraph is currently anonymous
+                      ("our founder"), which is the single weakest point on the page:
+                      you're asking a lab manager to let a stranger open a $400K
+                      instrument. Replace the paragraph above with something like:
+
+                      <p><strong>[Full Name]</strong>, founder and lead engineer, spent
+                      [N] years as a field service engineer for [Manufacturer(s)],
+                      supporting [platforms] across [region]. That background means ...</p>
+
+                      A headshot next to it is worth more than another paragraph of copy.
+                      Other trust signals worth adding once you can state them factually:
+                        - years in business / number of systems serviced
+                        - liability insurance coverage (procurement departments ask)
+                        - any OEM certifications you can name
+                        - whether you're set up as an approved vendor / W-9 on file
+                    -->
 
                     <a href="#contact" class="about-cta">
                         Request a service quote
@@ -1151,6 +1692,152 @@
         </div>
     </section>
 
+    <!--
+      ============================================================
+      TESTIMONIALS - markup is ready, intentionally commented out.
+      Do NOT publish this until you have real, attributable quotes with
+      permission to use them. Fake or composite testimonials are both an
+      FTC problem and the fastest way to lose a technical buyer's trust.
+
+      Ask two or three existing clients for one sentence each. Best format is
+      name + title + organization; "Lab Manager, mid-size pharma CRO in
+      Sacramento" works if they can't be named publicly.
+
+      To publish: delete this comment wrapper, and add a "Testimonials" style
+      block to the CSS (the .service-card pattern works as-is).
+
+      <section class="services" aria-labelledby="testimonials-heading">
+        <div class="container">
+          <div class="section-header centered">
+            <div class="section-eyebrow">Client Feedback</div>
+            <h2 id="testimonials-heading">What Labs Say About Working With Us</h2>
+          </div>
+          <div class="service-grid">
+            <figure class="service-card">
+              <blockquote><p>[One-sentence quote about response time, expertise, or uptime.]</p></blockquote>
+              <figcaption><strong>[Name]</strong>, [Title], [Organization]</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      ============================================================
+    -->
+
+    <!-- SERVICE AREA -->
+    <section id="coverage" class="coverage">
+        <div class="container">
+            <div class="coverage-grid">
+                <div class="coverage-text">
+                    <div class="section-eyebrow">Service Area</div>
+                    <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--navy); margin-bottom: 1.25rem;">Where We Work</h2>
+                    <p>We're based in Roseville and cover the greater Sacramento region and Northern California, with regular onsite visits to the pharmaceutical, biotech, and research labs concentrated along the I-80 and Highway 50 corridors.</p>
+                    <p>Travel beyond the listed areas is often possible for contract clients and scheduled preventative maintenance. If you're outside this list, ask.</p>
+                </div>
+
+                <div>
+                    <!--
+                      TODO - CONFIRM OR TRIM THIS LIST. This is the one place on the
+                      page that commits you to driving somewhere. It was drafted from
+                      "Northern California / Roseville" and the biotech corridors near
+                      Sacramento. Delete any city you would not actually travel to, and
+                      add the ones you would (Bay Area? Reno? Chico? Modesto?).
+                      Keep it in sync with "areaServed" in the JSON-LD block in <head>.
+                    -->
+                    <ul class="coverage-cities">
+                        <li>Roseville</li>
+                        <li>Rocklin</li>
+                        <li>Sacramento</li>
+                        <li>Folsom</li>
+                        <li>West Sacramento</li>
+                        <li>Davis</li>
+                        <li>Elk Grove</li>
+                        <li>Woodland</li>
+                        <li>Vacaville</li>
+                        <li>Fairfield</li>
+                        <li>Stockton</li>
+                        <li>Auburn</li>
+                    </ul>
+                    <p class="coverage-note">Emergency and contract coverage may extend further. <a href="#contact" style="color: var(--blue);">Ask about your location</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header centered">
+                <div class="section-eyebrow">Common Questions</div>
+                <h2>Frequently Asked Questions</h2>
+                <p>The things labs usually want to know before they call us in.</p>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Which manufacturers and instruments do you service?</summary>
+                    <div class="faq-answer">
+                        <p>We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC. If your instrument isn't in <a href="#platforms">our platform list</a>, contact us anyway; our experience extends to many additional configurations.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How quickly can you respond when an instrument goes down?</summary>
+                    <div class="faq-answer">
+                        <p>For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service. Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster than the form if your instrument is down right now.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do you offer service contracts, or is it all per-visit?</summary>
+                    <div class="faq-answer">
+                        <p>Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement. Contracts range from basic coverage to comprehensive plans with dedicated engineer support, and are built around your instrument mix, usage, and budget rather than a fixed tier list.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does a preventative maintenance visit include?</summary>
+                    <div class="faq-answer">
+                        <p>PM scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of what was done. We build PM schedules around your actual usage patterns rather than a generic annual interval.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What areas do you cover?</summary>
+                    <div class="faq-answer">
+                        <p>We're based in Roseville, CA and serve the greater Sacramento region and Northern California. See <a href="#coverage">our service area</a> for the cities we visit regularly. Coverage often extends further for contract clients and scheduled work.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I get a quote?</summary>
+                    <div class="faq-answer">
+                        <p>Send us the instrument make, model, and a description of the issue or the service you need using <a href="#contact">the contact form</a>, or call us directly. We'll confirm scope and timing and send a written quote before any work begins.</p>
+                    </div>
+                </details>
+
+                <!--
+                  TODO - ADD THESE ONCE YOU CAN ANSWER THEM DEFINITIVELY. They are the
+                  highest-value questions a technical buyer has, and every one of them
+                  is a reason someone picks a competitor instead of calling you. I left
+                  them out rather than guess at your policies:
+
+                    - "Do you service instruments that are out of warranty or no longer
+                       supported by the OEM?"  (very common search; big differentiator)
+                    - "Do you supply parts, or do we source our own?"
+                    - "Can you support IQ/OQ/PQ or requalification after a repair?"
+                       (critical for GMP/regulated labs - answer carefully)
+                    - "How are you priced - hourly, flat rate, travel charges?"
+                    - "Are you insured? Can you meet our site vendor requirements?"
+
+                  If you add an FAQ here, also add it to the FAQPage JSON-LD block
+                  below so it stays eligible for Google's FAQ rich results.
+                -->
+            </div>
+
+            <p class="faq-footer">Still have a question? <a href="#contact">Ask us directly</a>.</p>
+        </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact">
         <div class="container">
@@ -1186,7 +1873,7 @@
                         </div>
                         <div class="contact-detail-text">
                             <span class="label">Toll Free</span>
-                            <a href="tel:8335743772">(833) 574-3772</a>
+                            <a href="tel:+18335743772">(833) 574-3772</a>
                         </div>
                     </div>
 
@@ -1212,60 +1899,249 @@
                         </div>
                         <div class="contact-detail-text">
                             <span class="label">Hours</span>
-                            Monday &ndash; Friday: 8:00 AM &ndash; 6:00 PM<br>
+                            Monday - Friday: 8:00 AM - 6:00 PM<br>
                             <span style="color: var(--slate); font-size: 0.85rem;">Weekend emergency service for contract clients</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-form-wrap">
-                    <h3>Send a Message</h3>
-                    <form action="https://formspree.io/f/xaneznog" method="POST">
+                    <h3 id="formHeading">Request Service or a Quote</h3>
+
+                    <form id="contactForm" action="https://formspree.io/f/xaneznog" method="POST">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                                <label for="name">Name <span class="required-mark" aria-hidden="true">*</span></label>
+                                <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                                <label for="email">Email <span class="required-mark" aria-hidden="true">*</span></label>
+                                <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Service request, quote, general inquiry…">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555">
+                            </div>
+                            <div class="form-group">
+                                <label for="organization">Company / Lab</label>
+                                <input type="text" id="organization" name="organization" autocomplete="organization" placeholder="Organization name">
+                            </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Describe your instrument, issue, or what you're looking for…" required></textarea>
+                            <label for="request-type">What do you need? <span class="required-mark" aria-hidden="true">*</span></label>
+                            <select id="request-type" name="request_type" required>
+                                <option value="">Select one</option>
+                                <option>Emergency repair - instrument is down</option>
+                                <option>Preventative maintenance</option>
+                                <option>Service contract quote</option>
+                                <option>Installation, relocation, or integration</option>
+                                <option>General inquiry</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn-submit">Send Message</button>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="manufacturer">Manufacturer</label>
+                                <select id="manufacturer" name="manufacturer">
+                                    <option value="">Select if applicable</option>
+                                    <option>Sciex</option>
+                                    <option>Agilent</option>
+                                    <option>Waters</option>
+                                    <option>Shimadzu</option>
+                                    <option>Thermo Fisher</option>
+                                    <option>Bruker</option>
+                                    <option>PerkinElmer</option>
+                                    <option>Other / multiple</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="instrument">Instrument model</label>
+                                <input type="text" id="instrument" name="instrument" placeholder="e.g. Triple Quad 6500+">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message <span class="required-mark" aria-hidden="true">*</span></label>
+                            <textarea id="message" name="message" placeholder="Describe the issue, the symptoms you're seeing, or what you're looking for..." required></textarea>
+                        </div>
+
+                        <!-- Spam honeypot: hidden from humans, bots fill it, Formspree drops it. -->
+                        <div class="form-hp" aria-hidden="true">
+                            <label for="company-website">Leave this field empty</label>
+                            <input type="text" id="company-website" name="_gotcha" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <input type="hidden" name="_subject" value="New service request - sierraspectra.com">
+                        <!-- No-JS fallback: without this, Formspree redirects to its own
+                             branded confirmation page and the visitor leaves your site. -->
+                        <input type="hidden" name="_next" value="https://sierraspectra.com/thank-you.html">
+
+                        <button type="submit" class="btn-submit" id="formSubmit">Send Message</button>
+
+                        <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
+
+                        <p class="form-note">
+                            <span class="required-mark" aria-hidden="true">*</span> Required.
+                            Instrument down right now? Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster.
+                            We use your details only to respond to this request - see our <a href="privacy.html">Privacy Policy</a>.
+                        </p>
                     </form>
+
+                    <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                        <div class="form-success-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <h4>Thanks - your request is in.</h4>
+                        <p>
+                            We'll get back to you within one business day. If your instrument is
+                            down and you need someone sooner, call <a href="tel:+18335743772">(833) 574-3772</a>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-links">
+                <nav class="footer-links" aria-label="Footer">
                     <a href="#home">Home</a>
                     <a href="#services">Services</a>
                     <a href="#platforms">Platforms</a>
                     <a href="#about">About</a>
+                    <a href="#faq">FAQ</a>
                     <a href="#contact">Contact</a>
-                </div>
+                    <a href="privacy.html">Privacy</a>
+                </nav>
                 <div class="footer-contact">
-                    <a href="tel:8335743772">(833) 574-3772</a>
+                    <a href="tel:+18335743772">(833) 574-3772</a>
                     &nbsp;&middot;&nbsp;
                     <a href="mailto:info@sierraspectra.com">info@sierraspectra.com</a>
                 </div>
-                <div class="footer-copy">&copy; 2025 Sierra Spectra, LLC. All Rights Reserved.</div>
+                <div class="footer-copy">&copy; <span id="year">2026</span> Sierra Spectra, LLC. All Rights Reserved.</div>
             </div>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            'use strict';
+
+            /* ---- Mobile navigation ---- */
+            var toggle = document.getElementById('navToggle');
+            var menu = document.getElementById('mobileMenu');
+
+            function setMenu(open) {
+                menu.classList.toggle('open', open);
+                toggle.setAttribute('aria-expanded', String(open));
+            }
+
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    setMenu(!menu.classList.contains('open'));
+                });
+
+                // Close after tapping a link, and on Escape.
+                menu.addEventListener('click', function (e) {
+                    if (e.target.closest('a')) { setMenu(false); }
+                });
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && menu.classList.contains('open')) {
+                        setMenu(false);
+                        toggle.focus();
+                    }
+                });
+            }
+
+            /* ---- Footer year ---- */
+            var year = document.getElementById('year');
+            if (year) { year.textContent = String(new Date().getFullYear()); }
+
+            /* ---- Contact form: submit in place, keep the visitor on the site ----
+               Without this the browser posts to Formspree and lands the visitor on
+               formspree.io. The hidden _next field covers the no-JS case. */
+            var form = document.getElementById('contactForm');
+            var status = document.getElementById('formStatus');
+            var success = document.getElementById('formSuccess');
+            var submit = document.getElementById('formSubmit');
+
+            function showError(msg) {
+                status.textContent = msg;
+                status.classList.add('is-visible', 'is-error');
+            }
+
+            if (form && window.fetch && window.FormData) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    status.classList.remove('is-visible', 'is-error');
+                    submit.disabled = true;
+                    submit.textContent = 'Sending...';
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    })
+                        .then(function (res) {
+                            if (res.ok) {
+                                form.style.display = 'none';
+                                document.getElementById('formHeading').style.display = 'none';
+                                success.classList.add('is-visible');
+                                success.setAttribute('tabindex', '-1');
+                                success.focus();
+                                return;
+                            }
+                            return res.json().then(function (data) {
+                                var detail = data && data.errors
+                                    ? data.errors.map(function (x) { return x.message; }).join(', ')
+                                    : '';
+                                throw new Error(detail);
+                            });
+                        })
+                        .catch(function (err) {
+                            showError(
+                                (err && err.message ? err.message + ' ' : '') +
+                                'We could not send that. Please email info@sierraspectra.com or call (833) 574-3772.'
+                            );
+                            submit.disabled = false;
+                            submit.textContent = 'Send Message';
+                        });
+                });
+            }
+        })();
+    </script>
+
+    <!--
+      TODO - ANALYTICS. Right now there is no way to tell whether any of this
+      works: how many people reach the page, how many scroll to the form, how
+      many submit it. Paste your GA4 snippet here and swap G-XXXXXXXXXX for your
+      real Measurement ID (Google Analytics > Admin > Data Streams).
+
+      A privacy-first alternative with no cookie banner obligation is Plausible
+      or Fathom (paid, one script tag, no consent prompt needed).
+
+      If you enable GA4, keep the "Analytics" section of privacy.html accurate -
+      it currently states that no analytics or advertising cookies are used.
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+      </script>
+    -->
 
 </body>
 </html>

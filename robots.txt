@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Preview builds are deployed here by .github/workflows/deploy-preview.yml.
+# Keep them out of search results so they never compete with the live site.
+Disallow: /previews/
+
+Sitemap: https://sierraspectra.com/sitemap.xml
