@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service | Roseville, CA</title>
-    <meta name="description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California. Same-day emergency response, preventative maintenance, and flexible service contracts. Based in Roseville, CA.">
+    <title>Nationwide LC/MS &amp; Analytical Instrument Service | Sierra Spectra LLC</title>
+    <meta name="description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA, with same-day onsite response across Northern California.">
     <link rel="canonical" href="https://sierraspectra.com/">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#1e2035">
@@ -18,18 +18,18 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Sierra Spectra LLC">
     <meta property="og:url" content="https://sierraspectra.com/">
-    <meta property="og:title" content="Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service">
-    <meta property="og:description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California. Same-day emergency response and flexible service contracts.">
+    <meta property="og:title" content="Sierra Spectra LLC - Nationwide LC/MS &amp; Analytical Instrument Service">
+    <meta property="og:description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA, with same-day onsite response across Northern California.">
     <meta property="og:image" content="https://sierraspectra.com/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Sierra Spectra LLC - Expert LC/MS and analytical instrument service, Roseville, California">
+    <meta property="og:image:alt" content="Sierra Spectra LLC - Nationwide LC/MS and analytical instrument service, based in Roseville, California">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sierra Spectra LLC - LC/MS &amp; Analytical Instrument Service">
-    <meta name="twitter:description" content="OEM-trained engineers servicing mass spectrometry, HPLC, and UHPLC systems across Northern California.">
+    <meta name="twitter:title" content="Sierra Spectra LLC - Nationwide LC/MS &amp; Analytical Instrument Service">
+    <meta name="twitter:description" content="OEM-trained engineers servicing LC/MS, HPLC, and UHPLC systems nationwide. Based in Roseville, CA.">
     <meta name="twitter:image" content="https://sierraspectra.com/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,16 @@
             --sky:     #7BAFD4;   /* logo: peak dot      */
             --purple:  #9B8EB8;   /* logo: rightmost dot */
 
+            /* Darkened spectrum for TEXT. Every raw brand color above fails
+               WCAG AA on white for small text (coral is 2.92:1, lime 1.63:1),
+               so labels and headings use these instead. Raw colors stay for
+               decorative marks, and on navy where they all pass comfortably. */
+            --coral-ink:  #B8493F;   /* 5.17:1 on white */
+            --orange-ink: #A66430;   /* 4.68:1 */
+            --lime-ink:   #6E7D1F;   /* 4.55:1 */
+            --sky-ink:    #3D7CA6;   /* 4.53:1 */
+            --purple-ink: #6B5E8A;   /* 5.84:1 */
+
             /* Functional aliases */
             --navy:    #1e2035;   /* dark text / header bg */
             --blue:    #7BAFD4;   /* sky blue - links, icons, accents */
@@ -51,6 +61,7 @@
             --slate:   #64748b;
             --slate-lt:#94a3b8;
             --border:  #e2e8f0;
+            --border-dk:#cbd5e1;
             --gray-bg: #f8f7f5;   /* very slightly warm off-white */
             --white:   #ffffff;
         }
@@ -192,55 +203,140 @@
             color: var(--navy);
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO =====
+           Light and spectrum-led. The chromatogram trace along the bottom is
+           built from the same peak geometry as the logo mark, so the identity
+           lives in the layout instead of only in the header. */
         .hero {
             position: relative;
-            min-height: 520px;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #1e2035 0%, #2a3a5a 55%, #3a5878 100%);
+            background: linear-gradient(180deg, var(--white) 0%, #fdfcfa 45%, var(--gray-bg) 100%);
             overflow: hidden;
         }
 
         .hero-pattern {
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23ffffff' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%231e2035' stroke-width='0.5' opacity='0.05'/%3E%3C/svg%3E");
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 5rem 0;
+            /* The trace is full-bleed, so its height is always 100vw/6.
+               Reserving that plus a gap keeps text clear of it at any width,
+               including ultrawide, without a breakpoint per size. */
+            padding: 4.5rem 0 calc(16.7vw + 2.5rem);
         }
 
         .hero-eyebrow {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: #a8d4f0;
-            margin-bottom: 1.25rem;
+            color: var(--coral-ink);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            padding: 0.4rem 0.9rem 0.4rem 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(30,32,53,0.05);
+        }
+
+        .hero-eyebrow svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--coral);
+            flex-shrink: 0;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.1rem, 4.4vw, 3.25rem);
             font-weight: 700;
-            color: var(--white);
-            line-height: 1.2;
-            max-width: 680px;
+            color: var(--navy);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 720px;
             margin-bottom: 1.25rem;
+        }
+
+        /* Spectrum underline on the locality phrase - the differentiator gets
+           the brand's own visual signature. */
+        .hero h1 .spectrum-mark {
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .hero h1 .spectrum-mark::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.02em;
+            height: 0.14em;
+            border-radius: 9999px;
+            background: linear-gradient(to right, #E8756A, #E8A370, #C5D44A, #7BAFD4, #9B8EB8);
         }
 
         .hero-sub {
             font-size: 1.1rem;
             font-weight: 400;
-            color: #cbd5e1;
-            max-width: 600px;
-            margin-bottom: 2.25rem;
-            line-height: 1.6;
+            color: var(--slate);
+            max-width: 620px;
+            margin-bottom: 2rem;
+            line-height: 1.65;
+        }
+
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-top: 1.75rem;
+            list-style: none;
+        }
+
+        .hero-proof li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--slate);
+        }
+
+        .hero-proof li::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .hero-proof li:nth-child(1)::before { background: var(--coral); }
+        .hero-proof li:nth-child(2)::before { background: var(--lime); }
+        .hero-proof li:nth-child(3)::before { background: var(--sky); }
+
+        /* Chromatogram trace across the base of the hero. aspect-ratio matches
+           the 1200x200 viewBox, so the whole trace fits at every width without
+           cropping (slice) or letterboxing (meet), and the apex dots stay round. */
+        .hero-chroma {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            aspect-ratio: 6 / 1;
+            height: auto;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-chroma svg {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         .hero-ctas {
@@ -270,27 +366,28 @@
 
         .btn-ghost {
             display: inline-block;
-            background: transparent;
-            color: var(--white);
+            background: var(--white);
+            color: var(--navy);
             font-size: 0.9rem;
             font-weight: 600;
             padding: 0.75rem 1.75rem;
             border-radius: 6px;
             text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.4);
+            border: 2px solid var(--border-dk);
             transition: all 0.2s;
         }
 
         .btn-ghost:hover {
-            border-color: rgba(255,255,255,0.8);
-            background: rgba(255,255,255,0.1);
+            border-color: var(--navy);
+            transform: translateY(-1px);
         }
 
-        /* ===== STATS BAR ===== */
+        /* ===== STATS BAR =====
+           Inverted to navy. The page silhouette is light hero -> dark band ->
+           light body, rather than the usual dark hero on a light page. */
         .stats-bar {
-            background: var(--gray-bg);
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
+            background: var(--navy);
+            padding: 1.75rem 0;
         }
 
         .stats-grid {
@@ -307,11 +404,11 @@
         }
 
         .stat-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--white);
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.07);
             border-radius: 8px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255,255,255,0.14);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -321,19 +418,23 @@
         .stat-icon svg {
             width: 18px;
             height: 18px;
-            color: var(--blue);
-            stroke: var(--blue);
         }
+
+        /* One spectrum color per stat. All five clear 5:1 on navy. */
+        .stat-item:nth-child(1) .stat-icon svg { stroke: var(--coral); }
+        .stat-item:nth-child(2) .stat-icon svg { stroke: var(--lime); }
+        .stat-item:nth-child(3) .stat-icon svg { stroke: var(--sky); }
+        .stat-item:nth-child(4) .stat-icon svg { stroke: var(--purple); }
 
         .stat-label {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--navy);
+            color: var(--white);
         }
 
         .stat-sub {
             font-size: 0.75rem;
-            color: var(--slate);
+            color: #94a3b8;
             margin-top: -2px;
         }
 
@@ -346,14 +447,43 @@
             text-align: center;
         }
 
+        /* Each section takes one color from the logo, so the page reads as a
+           spectrum from top to bottom. Ink variants, not the raw brand colors,
+           because this is small uppercase text. */
         .section-eyebrow {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--coral);
+            color: var(--coral-ink);
             margin-bottom: 0.5rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 18px;
+            height: 3px;
+            border-radius: 9999px;
+            background: var(--coral);
+        }
+
+        .section-eyebrow.is-orange { color: var(--orange-ink); }
+        .section-eyebrow.is-orange::before { background: var(--orange); }
+
+        .section-eyebrow.is-lime { color: var(--lime-ink); }
+        .section-eyebrow.is-lime::before { background: var(--lime); }
+
+        .section-eyebrow.is-sky { color: var(--sky-ink); }
+        .section-eyebrow.is-sky::before { background: var(--sky); }
+
+        .section-eyebrow.is-purple { color: var(--purple-ink); }
+        .section-eyebrow.is-purple::before { background: var(--purple); }
+
+        .section-header.centered .section-eyebrow {
+            justify-content: center;
         }
 
         .section-header h2 {
@@ -387,25 +517,45 @@
             gap: 1.5rem;
         }
 
+        /* Each card carries one color from the logo. --accent is set per card
+           below, so the grid sweeps through the spectrum left to right. */
         .service-card {
+            --accent: var(--coral);
+            --accent-tint: rgba(232,117,106,0.10);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.75rem;
             background: var(--white);
             transition: all 0.2s;
-            border-left: 4px solid transparent;
+            border-top: 3px solid var(--accent);
         }
 
         .service-card:hover {
-            border-left-color: var(--coral);
-            box-shadow: 0 4px 16px rgba(232,117,106,0.12);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30,32,53,0.09);
+            transform: translateY(-3px);
+        }
+
+        .service-card:nth-child(2) {
+            --accent: var(--orange);
+            --accent-tint: rgba(232,163,112,0.14);
+        }
+        .service-card:nth-child(3) {
+            --accent: var(--lime);
+            --accent-tint: rgba(197,212,74,0.16);
+        }
+        .service-card:nth-child(4) {
+            --accent: var(--sky);
+            --accent-tint: rgba(123,175,212,0.16);
+        }
+        .service-card:nth-child(5) {
+            --accent: var(--purple);
+            --accent-tint: rgba(155,142,184,0.16);
         }
 
         .service-card-icon {
             width: 44px;
             height: 44px;
-            background: #eaf4fb;
+            background: var(--accent-tint);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -416,7 +566,7 @@
         .service-card-icon svg {
             width: 22px;
             height: 22px;
-            stroke: var(--blue);
+            stroke: var(--navy);
         }
 
         .service-card h3 {
@@ -435,7 +585,7 @@
         /* ===== PLATFORMS WE SERVICE ===== */
         .platforms {
             padding: 4.5rem 0;
-            background: var(--gray-bg);
+            background: var(--white);
         }
 
         .scroll-row {
@@ -493,7 +643,7 @@
         /* ===== ABOUT ===== */
         .about {
             padding: 5rem 0;
-            background: var(--white);
+            background: var(--gray-bg);
         }
 
         .about-grid {
@@ -569,7 +719,7 @@
         /* ===== CONTACT ===== */
         .contact {
             padding: 5rem 0;
-            background: var(--gray-bg);
+            background: var(--white);
         }
 
         .contact-grid {
@@ -642,6 +792,7 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 2rem;
+            box-shadow: 0 6px 24px rgba(30,32,53,0.07);
         }
 
         .contact-form-wrap h3 {
@@ -881,8 +1032,8 @@
         }
 
         .process-step-num {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: var(--navy);
             color: var(--white);
@@ -892,7 +1043,12 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
+            box-shadow: 0 0 0 4px var(--ring, rgba(232,117,106,0.18));
         }
+
+        .process-step:nth-child(1) .process-step-num { --ring: rgba(232,117,106,0.20); }
+        .process-step:nth-child(2) .process-step-num { --ring: rgba(197,212,74,0.28); }
+        .process-step:nth-child(3) .process-step-num { --ring: rgba(123,175,212,0.28); }
 
         .process-step h3 {
             font-size: 1rem;
@@ -920,6 +1076,14 @@
             align-items: start;
         }
 
+        .coverage-text h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+        }
+
         .coverage-text p {
             font-size: 0.95rem;
             color: var(--slate);
@@ -927,35 +1091,87 @@
             margin-bottom: 1.1rem;
         }
 
-        .coverage-cities {
+        /* Two tiers: the fast-response zone and everywhere else. The city list
+           is a speed promise, not the boundary of where we work. */
+        .coverage-tiers {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem 1rem;
-            list-style: none;
-            margin-top: 0.5rem;
+            gap: 1rem;
         }
 
-        .coverage-cities li {
-            font-size: 0.9rem;
+        .coverage-tier {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.4rem 1.5rem;
+            background: var(--white);
+            border-left: 4px solid var(--accent, var(--sky));
+        }
+
+        .coverage-tier.is-national {
+            --accent: var(--sky);
+            background: var(--gray-bg);
+        }
+
+        /* Sections alternate white / warm-grey so neighbours never merge into
+           one another. About and Service Area were both white and read as a
+           single block. */
+        .about { border-top: 1px solid var(--border); }
+        .coverage { border-top: 1px solid var(--border); }
+        .contact { border-top: 1px solid var(--border); }
+
+        .coverage-tier-head {
+            margin-bottom: 1rem;
+        }
+
+        .coverage-tier-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sky-ink);
+            margin-bottom: 0.3rem;
+        }
+
+        .coverage-tier-head h3 {
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--navy);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .coverage-cities li::before {
+        .coverage-national {
+            list-style: none;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .coverage-national li {
+            position: relative;
+            padding-left: 1.4rem;
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+
+        .coverage-national li::before {
             content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--lime);
-            flex-shrink: 0;
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 9px;
+            height: 5px;
+            border-left: 2px solid var(--sky);
+            border-bottom: 2px solid var(--sky);
+            transform: rotate(-45deg);
         }
 
         .coverage-note {
-            margin-top: 1.5rem;
+            margin-top: 1.1rem;
             font-size: 0.85rem;
             color: var(--slate-lt);
+        }
+
+        .coverage-note a {
+            color: var(--sky-ink);
+            font-weight: 600;
         }
 
         /* ===== FAQ ===== */
@@ -1164,16 +1380,21 @@
                 grid-template-columns: 1fr;
             }
 
-            .coverage-cities {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .about-highlights {
                 grid-template-columns: 1fr 1fr;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 3.5rem 0 calc(16.7vw + 2rem);
+            }
+
+            .hero-proof {
+                flex-direction: column;
+                gap: 0.4rem;
             }
 
             .hero-ctas {
@@ -1196,6 +1417,10 @@
             .about-highlights {
                 grid-template-columns: 1fr;
             }
+
+            .hero-content {
+                padding: 3rem 0 calc(16.7vw + 1.5rem);
+            }
         }
     </style>
 
@@ -1215,7 +1440,7 @@
       "@id": "https://sierraspectra.com/#business",
       "name": "Sierra Spectra LLC",
       "alternateName": "Sierra Spectra",
-      "description": "OEM-trained engineers providing maintenance, repair, and support for mass spectrometry, liquid chromatography, and analytical instrumentation across Northern California.",
+      "description": "Nationwide LC/MS and analytical instrument service. OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems, headquartered in Roseville, CA, with same-day onsite response across Northern California.",
       "url": "https://sierraspectra.com/",
       "logo": "https://sierraspectra.com/assets/SSLogo_FullColor.png",
       "image": "https://sierraspectra.com/assets/og-image.png",
@@ -1229,6 +1454,8 @@
         "addressCountry": "US"
       },
       "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "State", "name": "California" },
         { "@type": "State", "name": "Northern California" },
         { "@type": "City", "name": "Roseville" },
         { "@type": "City", "name": "Sacramento" },
@@ -1279,7 +1506,7 @@
           "name": "Which manufacturers and instruments do you service?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC."
+            "text": "Sciex, Agilent, Waters, Shimadzu, Thermo, Bruker, and PerkinElmer. Triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, plus HPLC and UHPLC."
           }
         },
         {
@@ -1287,7 +1514,7 @@
           "name": "How quickly can you respond when an instrument goes down?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service."
+            "text": "In Northern California, same-day or next-day depending on parts availability. Further out it depends on flights, and we will tell you honestly. Contract clients also get weekend emergency coverage."
           }
         },
         {
@@ -1295,7 +1522,7 @@
           "name": "Do you offer service contracts, or is it all per-visit?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement ranging from basic coverage to comprehensive plans with dedicated engineer support."
+            "text": "Both. Call us once, or put us on contract. Coverage runs from PM-only to full parts and labor, priced on the instruments you run rather than a fixed tier sheet."
           }
         },
         {
@@ -1303,7 +1530,7 @@
           "name": "What does a preventative maintenance visit include?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of the work performed."
+            "text": "Depends on the platform, but generally: wear parts replaced, source and flow path cleaned, calibration and performance checks, and a written report. We set the interval on run hours rather than the calendar."
           }
         },
         {
@@ -1311,7 +1538,7 @@
           "name": "What areas do you cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We are based in Roseville, CA and serve the greater Sacramento region and Northern California, including Rocklin, Sacramento, Folsom, West Sacramento, Davis, Elk Grove, Woodland, Vacaville, Fairfield, Stockton, and Auburn."
+            "text": "Anywhere in the United States. We are based in Roseville, CA, so Northern California gets same-day and next-day response. Everywhere else we schedule the trip."
           }
         },
         {
@@ -1319,7 +1546,7 @@
           "name": "How do I get a quote?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Send us the instrument make, model, and a description of the issue using the contact form, or call (833) 574-3772. We confirm scope and timing and send a written quote before any work begins."
+            "text": "Send the make, model, and what is wrong through the contact form, or call (833) 574-3772. You get scope, timing, and price in writing before we start."
           }
         }
       ]
@@ -1383,13 +1610,57 @@
     <section id="home" class="hero">
         <div class="hero-pattern"></div>
         <div class="container hero-content">
-            <div class="hero-eyebrow">Northern California - Roseville, CA</div>
-            <h1>Expert LC/MS &amp; Analytical Instrument Service</h1>
-            <p class="hero-sub">OEM-trained engineers providing rapid-response maintenance, repair, and support for mass spectrometry, liquid chromatography, and analytical instrumentation across pharmaceutical, research, and industrial laboratories.</p>
-            <div class="hero-ctas">
-                <a href="#contact" class="btn-primary">Request Service</a>
-                <a href="#services" class="btn-ghost">View Services</a>
+            <div class="hero-eyebrow" data-edit="hero.eyebrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Service labs nationwide
             </div>
+            <h1 data-edit="hero.headline">LC/MS and analytical instrument service, <span class="spectrum-mark">nationwide</span>.</h1>
+            <p class="hero-sub" data-edit="hero.sub">OEM-trained engineers for mass spec, HPLC, and UHPLC. We work on instruments all over the country, and if you're near our Roseville shop we can usually be there the same day.</p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn-primary" data-edit="hero.cta.primary">Request Service</a>
+                <a href="#services" class="btn-ghost" data-edit="hero.cta.secondary">View Services</a>
+            </div>
+            <ul class="hero-proof">
+                <li data-edit="hero.proof.1">Onsite anywhere in the U.S.</li>
+                <li data-edit="hero.proof.2">Same-day in Northern California</li>
+                <li data-edit="hero.proof.3">Sciex, Agilent, Waters, Shimadzu, Thermo</li>
+            </ul>
+        </div>
+
+        <!-- Chromatogram built from the same peak geometry as the logo mark.
+             Decorative: the information is all stated in the text above. -->
+        <div class="hero-chroma" aria-hidden="true">
+            <svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="chroma-line" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.10" stop-color="#E8756A"/>
+                        <stop offset="0.32" stop-color="#E8A370"/>
+                        <stop offset="0.55" stop-color="#C5D44A"/>
+                        <stop offset="0.72" stop-color="#7BAFD4"/>
+                        <stop offset="0.92" stop-color="#9B8EB8"/>
+                    </linearGradient>
+                    <linearGradient id="chroma-fill" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.10" stop-color="#E8756A" stop-opacity="0.16"/>
+                        <stop offset="0.32" stop-color="#E8A370" stop-opacity="0.16"/>
+                        <stop offset="0.55" stop-color="#C5D44A" stop-opacity="0.18"/>
+                        <stop offset="0.72" stop-color="#7BAFD4" stop-opacity="0.18"/>
+                        <stop offset="0.92" stop-color="#9B8EB8" stop-opacity="0.16"/>
+                    </linearGradient>
+                </defs>
+
+                <path fill="url(#chroma-fill)" d="M0,175.4 L4,175.1 L8,174.7 L12,174.2 L16,173.5 L20,172.5 L24,171.4 L28,170.0 L32,168.4 L36,166.6 L40,164.7 L44,162.7 L48,160.6 L52,158.7 L56,157.0 L60,155.6 L64,154.6 L68,154.0 L72,154.0 L76,154.4 L80,155.3 L84,156.5 L88,158.0 L92,159.4 L96,160.8 L100,161.8 L104,162.4 L108,162.3 L112,161.5 L116,159.9 L120,157.5 L124,154.5 L128,151.1 L132,147.5 L136,144.0 L140,141.1 L144,138.9 L148,137.7 L152,137.7 L156,138.8 L160,141.0 L164,143.9 L168,147.2 L172,150.7 L176,153.8 L180,156.4 L184,158.2 L188,158.9 L192,158.4 L196,156.7 L200,153.8 L204,149.6 L208,144.3 L212,138.1 L216,130.9 L220,123.1 L224,114.9 L228,106.6 L232,98.4 L236,90.9 L240,84.2 L244,78.8 L248,74.8 L252,72.5 L256,72.1 L260,73.4 L264,76.6 L268,81.3 L272,87.4 L276,94.5 L280,102.4 L284,110.6 L288,118.9 L292,126.8 L296,134.3 L300,140.9 L304,146.6 L308,151.3 L312,154.8 L316,157.3 L320,158.6 L324,158.9 L328,158.3 L332,156.9 L336,155.1 L340,152.9 L344,150.7 L348,148.6 L352,147.0 L356,145.9 L360,145.5 L364,145.8 L368,146.8 L372,148.2 L376,150.0 L380,151.9 L384,153.4 L388,154.5 L392,154.6 L396,153.6 L400,151.2 L404,147.2 L408,141.6 L412,134.3 L416,125.4 L420,115.1 L424,103.8 L428,91.8 L432,79.7 L436,68.1 L440,57.6 L444,48.9 L448,42.5 L452,38.8 L456,38.1 L460,40.3 L464,45.5 L468,53.1 L472,62.8 L476,74.0 L480,86.0 L484,98.4 L488,110.4 L492,121.6 L496,131.8 L500,140.5 L504,147.6 L508,153.1 L512,156.9 L516,159.0 L520,159.6 L524,158.7 L528,156.5 L532,153.2 L536,149.1 L540,144.6 L544,140.1 L548,136.0 L552,132.7 L556,130.6 L560,129.8 L564,130.5 L568,132.6 L572,135.8 L576,139.9 L580,144.4 L584,148.8 L588,152.9 L592,156.3 L596,158.8 L600,160.1 L604,160.1 L608,159.0 L612,156.6 L616,153.1 L620,148.5 L624,142.9 L628,136.6 L632,129.7 L636,122.5 L640,115.2 L644,108.3 L648,101.9 L652,96.4 L656,92.1 L660,89.3 L664,88.1 L668,88.5 L672,90.5 L676,94.1 L680,99.0 L684,105.0 L688,111.7 L692,118.9 L696,126.1 L700,133.2 L704,139.9 L708,145.8 L712,150.9 L716,154.9 L720,157.9 L724,159.7 L728,160.5 L732,160.1 L736,158.9 L740,157.1 L744,154.9 L748,152.8 L752,150.9 L756,149.7 L760,149.3 L764,149.8 L768,151.2 L772,153.1 L776,155.4 L780,157.6 L784,159.5 L788,160.7 L792,160.8 L796,159.7 L800,157.2 L804,153.1 L808,147.4 L812,140.1 L816,131.3 L820,120.9 L824,109.3 L828,96.8 L832,83.8 L836,70.7 L840,58.2 L844,46.9 L848,37.3 L852,30.1 L856,25.5 L860,24.0 L864,25.5 L868,30.1 L872,37.3 L876,46.9 L880,58.2 L884,70.7 L888,83.8 L892,96.9 L896,109.4 L900,121.1 L904,131.6 L908,140.7 L912,148.3 L916,154.5 L920,159.2 L924,162.5 L928,164.6 L932,165.4 L936,165.1 L940,163.8 L944,161.7 L948,158.9 L952,155.6 L956,152.1 L960,148.7 L964,145.7 L968,143.4 L972,142.0 L976,141.6 L980,142.2 L984,143.7 L988,146.0 L992,148.6 L996,151.4 L1000,153.9 L1004,155.8 L1008,156.9 L1012,156.9 L1016,155.8 L1020,153.5 L1024,150.1 L1028,145.4 L1032,139.7 L1036,133.2 L1040,125.9 L1044,118.3 L1048,110.5 L1052,102.9 L1056,95.8 L1060,89.5 L1064,84.4 L1068,80.6 L1072,78.5 L1076,78.0 L1080,79.3 L1084,82.2 L1088,86.7 L1092,92.3 L1096,98.9 L1100,106.1 L1104,113.5 L1108,120.8 L1112,127.6 L1116,133.7 L1120,138.8 L1124,142.8 L1128,145.7 L1132,147.4 L1136,148.2 L1140,148.1 L1144,147.5 L1148,146.8 L1152,146.2 L1156,145.9 L1160,146.2 L1164,147.3 L1168,149.0 L1172,151.3 L1176,154.2 L1180,157.3 L1184,160.4 L1188,163.5 L1192,166.2 L1196,168.6 L1200,170.6 L1200,200 L0,200 Z"/>
+
+                <path fill="none" stroke="url(#chroma-line)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" d="M0,175.4 L4,175.1 L8,174.7 L12,174.2 L16,173.5 L20,172.5 L24,171.4 L28,170.0 L32,168.4 L36,166.6 L40,164.7 L44,162.7 L48,160.6 L52,158.7 L56,157.0 L60,155.6 L64,154.6 L68,154.0 L72,154.0 L76,154.4 L80,155.3 L84,156.5 L88,158.0 L92,159.4 L96,160.8 L100,161.8 L104,162.4 L108,162.3 L112,161.5 L116,159.9 L120,157.5 L124,154.5 L128,151.1 L132,147.5 L136,144.0 L140,141.1 L144,138.9 L148,137.7 L152,137.7 L156,138.8 L160,141.0 L164,143.9 L168,147.2 L172,150.7 L176,153.8 L180,156.4 L184,158.2 L188,158.9 L192,158.4 L196,156.7 L200,153.8 L204,149.6 L208,144.3 L212,138.1 L216,130.9 L220,123.1 L224,114.9 L228,106.6 L232,98.4 L236,90.9 L240,84.2 L244,78.8 L248,74.8 L252,72.5 L256,72.1 L260,73.4 L264,76.6 L268,81.3 L272,87.4 L276,94.5 L280,102.4 L284,110.6 L288,118.9 L292,126.8 L296,134.3 L300,140.9 L304,146.6 L308,151.3 L312,154.8 L316,157.3 L320,158.6 L324,158.9 L328,158.3 L332,156.9 L336,155.1 L340,152.9 L344,150.7 L348,148.6 L352,147.0 L356,145.9 L360,145.5 L364,145.8 L368,146.8 L372,148.2 L376,150.0 L380,151.9 L384,153.4 L388,154.5 L392,154.6 L396,153.6 L400,151.2 L404,147.2 L408,141.6 L412,134.3 L416,125.4 L420,115.1 L424,103.8 L428,91.8 L432,79.7 L436,68.1 L440,57.6 L444,48.9 L448,42.5 L452,38.8 L456,38.1 L460,40.3 L464,45.5 L468,53.1 L472,62.8 L476,74.0 L480,86.0 L484,98.4 L488,110.4 L492,121.6 L496,131.8 L500,140.5 L504,147.6 L508,153.1 L512,156.9 L516,159.0 L520,159.6 L524,158.7 L528,156.5 L532,153.2 L536,149.1 L540,144.6 L544,140.1 L548,136.0 L552,132.7 L556,130.6 L560,129.8 L564,130.5 L568,132.6 L572,135.8 L576,139.9 L580,144.4 L584,148.8 L588,152.9 L592,156.3 L596,158.8 L600,160.1 L604,160.1 L608,159.0 L612,156.6 L616,153.1 L620,148.5 L624,142.9 L628,136.6 L632,129.7 L636,122.5 L640,115.2 L644,108.3 L648,101.9 L652,96.4 L656,92.1 L660,89.3 L664,88.1 L668,88.5 L672,90.5 L676,94.1 L680,99.0 L684,105.0 L688,111.7 L692,118.9 L696,126.1 L700,133.2 L704,139.9 L708,145.8 L712,150.9 L716,154.9 L720,157.9 L724,159.7 L728,160.5 L732,160.1 L736,158.9 L740,157.1 L744,154.9 L748,152.8 L752,150.9 L756,149.7 L760,149.3 L764,149.8 L768,151.2 L772,153.1 L776,155.4 L780,157.6 L784,159.5 L788,160.7 L792,160.8 L796,159.7 L800,157.2 L804,153.1 L808,147.4 L812,140.1 L816,131.3 L820,120.9 L824,109.3 L828,96.8 L832,83.8 L836,70.7 L840,58.2 L844,46.9 L848,37.3 L852,30.1 L856,25.5 L860,24.0 L864,25.5 L868,30.1 L872,37.3 L876,46.9 L880,58.2 L884,70.7 L888,83.8 L892,96.9 L896,109.4 L900,121.1 L904,131.6 L908,140.7 L912,148.3 L916,154.5 L920,159.2 L924,162.5 L928,164.6 L932,165.4 L936,165.1 L940,163.8 L944,161.7 L948,158.9 L952,155.6 L956,152.1 L960,148.7 L964,145.7 L968,143.4 L972,142.0 L976,141.6 L980,142.2 L984,143.7 L988,146.0 L992,148.6 L996,151.4 L1000,153.9 L1004,155.8 L1008,156.9 L1012,156.9 L1016,155.8 L1020,153.5 L1024,150.1 L1028,145.4 L1032,139.7 L1036,133.2 L1040,125.9 L1044,118.3 L1048,110.5 L1052,102.9 L1056,95.8 L1060,89.5 L1064,84.4 L1068,80.6 L1072,78.5 L1076,78.0 L1080,79.3 L1084,82.2 L1088,86.7 L1092,92.3 L1096,98.9 L1100,106.1 L1104,113.5 L1108,120.8 L1112,127.6 L1116,133.7 L1120,138.8 L1124,142.8 L1128,145.7 L1132,147.4 L1136,148.2 L1140,148.1 L1144,147.5 L1148,146.8 L1152,146.2 L1156,145.9 L1160,146.2 L1164,147.3 L1168,149.0 L1172,151.3 L1176,154.2 L1180,157.3 L1184,160.4 L1188,163.5 L1192,166.2 L1196,168.6 L1200,170.6"/>
+
+                <circle cx="255" cy="72.0" r="6.5" fill="#E8756A"/>
+                <circle cx="455" cy="38.0" r="6.5" fill="#E8A370"/>
+                <circle cx="665" cy="88.0" r="6.5" fill="#C5D44A"/>
+                <circle cx="860" cy="24.0" r="6.5" fill="#7BAFD4"/>
+                <circle cx="1075" cy="78.0" r="6.5" fill="#9B8EB8"/>
+            </svg>
         </div>
     </section>
 
@@ -1405,8 +1676,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Same-Day Response</div>
-                        <div class="stat-sub">Emergency onsite support</div>
+                        <div class="stat-label" data-edit="stats.1.label">Same-Day Response</div>
+                        <div class="stat-sub" data-edit="stats.1.sub">Emergency onsite support</div>
                     </div>
                 </div>
 
@@ -1417,8 +1688,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">OEM-Trained Engineers</div>
-                        <div class="stat-sub">All major platforms</div>
+                        <div class="stat-label" data-edit="stats.2.label">OEM-Trained Engineers</div>
+                        <div class="stat-sub" data-edit="stats.2.sub">All major platforms</div>
                     </div>
                 </div>
 
@@ -1429,8 +1700,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Flexible Service Contracts</div>
-                        <div class="stat-sub">Basic to comprehensive coverage</div>
+                        <div class="stat-label" data-edit="stats.3.label">Flexible Service Contracts</div>
+                        <div class="stat-sub" data-edit="stats.3.sub">Basic to comprehensive coverage</div>
                     </div>
                 </div>
 
@@ -1442,8 +1713,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Northern California</div>
-                        <div class="stat-sub">Pharma, research &amp; industrial labs</div>
+                        <div class="stat-label" data-edit="stats.4.label">Nationwide Coverage</div>
+                        <div class="stat-sub" data-edit="stats.4.sub">Same-day in Northern California</div>
                     </div>
                 </div>
             </div>
@@ -1454,9 +1725,9 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow">What We Do</div>
-                <h2>Comprehensive Analytical Instrument Services</h2>
-                <p>Expert support across the full service lifecycle - from scheduled preventative maintenance to emergency repair.</p>
+                <div class="section-eyebrow" data-edit="services.eyebrow">What We Do</div>
+                <h2 data-edit="services.heading">What We Work On</h2>
+                <p data-edit="services.sub">Scheduled PMs, and the 6 a.m. call when nothing is working.</p>
             </div>
 
             <div class="service-grid">
@@ -1469,8 +1740,8 @@
                             <path d="M7.8 15h8.4"/>
                         </svg>
                     </div>
-                    <h3>Mass Spectrometry Service</h3>
-                    <p>Expert maintenance, repair, and optimization for Sciex, Agilent, Waters, and Shimadzu MS systems. From routine maintenance to complex troubleshooting, our specialists ensure peak performance.</p>
+                    <h3 data-edit="services.item1.title">Mass Spectrometry Service</h3>
+                    <p data-edit="services.item1.body">Source cleaning, vacuum problems, sensitivity you can't get back, calibrations that won't hold. Sciex, Agilent, Waters, Shimadzu, Thermo.</p>
                 </div>
 
                 <div class="service-card">
@@ -1481,8 +1752,8 @@
                             <path d="M7 16l4-6 4 3 4-7"/>
                         </svg>
                     </div>
-                    <h3>LC System Maintenance</h3>
-                    <p>Comprehensive service for HPLC and UHPLC systems including pumps, autosamplers, detectors, and columns. We provide preventative maintenance, repairs, and performance optimization.</p>
+                    <h3 data-edit="services.item2.title">LC System Maintenance</h3>
+                    <p data-edit="services.item2.body">Pumps, autosamplers, detectors, degassers, valves. Pressure that won't hold, leaks you can't find, retention times drifting on you.</p>
                 </div>
 
                 <div class="service-card">
@@ -1492,8 +1763,8 @@
                             <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
                         </svg>
                     </div>
-                    <h3>Preventative Maintenance</h3>
-                    <p>Scheduled maintenance programs designed to maximize uptime, extend instrument life, and ensure consistent analytical results. Custom PM schedules based on your specific usage patterns.</p>
+                    <h3 data-edit="services.item3.title">Preventative Maintenance</h3>
+                    <p data-edit="services.item3.body">PM intervals built around what you actually run, not a generic annual date. Kits, verification, and a written record for your files.</p>
                 </div>
 
                 <div class="service-card">
@@ -1503,8 +1774,8 @@
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                         </svg>
                     </div>
-                    <h3>Emergency Response</h3>
-                    <p>Rapid response services for critical instrument failures. Our team provides same-day or next-day onsite support to minimize downtime and get your lab back up and running quickly.</p>
+                    <h3 data-edit="services.item4.title">Emergency Response</h3>
+                    <p data-edit="services.item4.body">Instrument down, samples waiting. Same-day or next-day in Northern California, and a straight answer on how fast we can reach you anywhere else.</p>
                 </div>
 
                 <div class="service-card">
@@ -1517,8 +1788,8 @@
                             <path d="M12 17v4m-4 0h8"/>
                         </svg>
                     </div>
-                    <h3>System Integration</h3>
-                    <p>Expert assistance with instrument networking, data systems, and software integration. We help optimize your lab's entire analytical workflow for maximum efficiency.</p>
+                    <h3 data-edit="services.item5.title">System Integration</h3>
+                    <p data-edit="services.item5.body">Getting the instrument talking to the software, the software talking to your network, and both surviving the next IT update.</p>
                 </div>
 
                 <div class="service-card">
@@ -1530,8 +1801,8 @@
                             <path d="M9 12h6M9 16h4"/>
                         </svg>
                     </div>
-                    <h3>Service Contracts</h3>
-                    <p>Flexible service agreement options from basic coverage to comprehensive plans with dedicated engineer support. Customized to meet your lab's specific needs and budget requirements.</p>
+                    <h3 data-edit="services.item6.title">Service Contracts</h3>
+                    <p data-edit="services.item6.body">Full coverage, PM-only, or pay per visit. Priced on the instruments you have and how hard you run them.</p>
                 </div>
 
             </div>
@@ -1542,28 +1813,28 @@
     <section id="process" class="process">
         <div class="container">
             <div class="section-header centered">
-                <div class="section-eyebrow">How It Works</div>
-                <h2>Getting Service Is Straightforward</h2>
-                <p>No drawn-out procurement cycle to get an engineer looking at your instrument.</p>
+                <div class="section-eyebrow is-orange" data-edit="process.eyebrow">How It Works</div>
+                <h2 data-edit="process.heading">How to Get Us Out There</h2>
+                <p data-edit="process.sub">Three steps. No procurement maze.</p>
             </div>
 
             <div class="process-grid">
                 <div class="process-step">
                     <div class="process-step-num">1</div>
-                    <h3>Tell us what you need</h3>
-                    <p>Call us or send the form below with your instrument make, model, and what it's doing. The more detail you can give us up front, the faster we can come prepared with the right parts.</p>
+                    <h3 data-edit="process.item1.title">Tell us what it's doing</h3>
+                    <p data-edit="process.item1.body">Call, or use the form below. Make, model, and the symptom. The more you tell us now, the better the odds we show up with the right part in the van.</p>
                 </div>
 
                 <div class="process-step">
                     <div class="process-step-num">2</div>
-                    <h3>Assessment and quote</h3>
-                    <p>We confirm the scope of work, parts availability, and timing, then send you a written quote. For contract clients, covered work proceeds without a new quote each time.</p>
+                    <h3 data-edit="process.item2.title">You get a quote</h3>
+                    <p data-edit="process.item2.body">What's involved, what parts it needs, when we can be there. In writing, before anyone touches the instrument. Contract work skips this step.</p>
                 </div>
 
                 <div class="process-step">
                     <div class="process-step-num">3</div>
-                    <h3>Onsite service</h3>
-                    <p>An OEM-trained engineer performs the work at your lab and walks you through what was done, what was replaced, and what to watch for before your next scheduled maintenance.</p>
+                    <h3 data-edit="process.item3.title">We show up</h3>
+                    <p data-edit="process.item3.body">An OEM-trained engineer does the work at your bench, then tells you what failed, what got replaced, and what to keep an eye on.</p>
                 </div>
             </div>
         </div>
@@ -1573,13 +1844,13 @@
     <section id="platforms" class="platforms">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow">Supported Equipment</div>
-                <h2>Platforms &amp; Systems We Service</h2>
-                <p>We maintain expertise across the major manufacturers and instrument types used in modern analytical laboratories.</p>
+                <div class="section-eyebrow is-lime" data-edit="platforms.eyebrow">Supported Equipment</div>
+                <h2 data-edit="platforms.heading">Platforms &amp; Systems We Service</h2>
+                <p data-edit="platforms.sub">The manufacturers and instrument types we see most.</p>
             </div>
 
             <div class="scroll-row">
-                <div class="scroll-row-label">Manufacturer Platforms</div>
+                <div class="scroll-row-label" data-edit="platforms.rowlabel1">Manufacturer Platforms</div>
                 <ul class="scroll-track" aria-label="Supported manufacturer platforms">
                     <li class="scroll-pill">Sciex</li>
                     <li class="scroll-pill">Agilent</li>
@@ -1592,7 +1863,7 @@
             </div>
 
             <div class="scroll-row">
-                <div class="scroll-row-label">Instrument Types</div>
+                <div class="scroll-row-label" data-edit="platforms.rowlabel2">Instrument Types</div>
                 <ul class="scroll-track" aria-label="Supported instrument types">
                     <li class="scroll-pill">Triple Quadrupole MS</li>
                     <li class="scroll-pill">Q-TOF</li>
@@ -1608,7 +1879,7 @@
                 </ul>
             </div>
 
-            <p class="platforms-note">Don't see your instrument? <a href="#contact" style="color: var(--blue);">Contact us</a> - our expertise extends to many additional platforms and configurations.</p>
+            <p class="platforms-note" data-edit="platforms.note">Don't see yours? <a href="#contact" style="color: var(--blue);">Ask us</a>. This list isn't everything we touch.</p>
         </div>
     </section>
 
@@ -1617,14 +1888,14 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <div class="section-eyebrow">About Sierra Spectra</div>
-                    <h2>Service Excellence Built on OEM Experience</h2>
+                    <div class="section-eyebrow is-sky" data-edit="about.eyebrow">About Sierra Spectra</div>
+                    <h2 data-edit="about.heading">We Came Up Through the OEMs</h2>
 
-                    <p>Sierra Spectra was founded with a singular mission: to provide analytical laboratories with service excellence that exceeds industry standards. Our team consists of OEM-trained engineers with extensive experience across all major analytical instrument platforms.</p>
+                    <p data-edit="about.para1">Our engineers spent years doing field service for the companies that build these instruments. Same training, same tools, same service manuals. What's different is who answers when you call.</p>
 
-                    <p>What sets us apart is our dedication to responsive communication, rapid service delivery, and a deep understanding of the critical role these instruments play in your operations. We don't just fix instruments - we partner with you to ensure your analytical capabilities remain consistently available and reliable.</p>
+                    <p data-edit="about.para2">Most LC/MS problems aren't mysterious. It's a leak, a dirty source, a worn seal, a pump that's been drifting out of spec for months. We chase the actual cause instead of swapping parts until the symptom goes away, and we tell you what we found without the runaround.</p>
 
-                    <p>Our founder's background includes years of experience as an engineer for major instrument manufacturers, giving us unique insight into the complexities of modern analytical systems. This expertise allows us to offer solutions that address not just immediate issues but underlying causes, resulting in more reliable instrument performance long-term.</p>
+                    <p data-edit="about.para3">We're a small shop, which is the point. You get the same engineer who was there last time, and they remember your instrument.</p>
 
                     <!--
                       TODO - NAME THE FOUNDER. This paragraph is currently anonymous
@@ -1645,7 +1916,7 @@
                     -->
 
                     <a href="#contact" class="about-cta">
-                        Request a service quote
+                        Get a quote
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -1658,16 +1929,16 @@
                             <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
                             <path d="M12 8v4l3 3"/>
                         </svg>
-                        <h4>OEM-Trained Engineers</h4>
-                        <p>Factory-level expertise across all supported platforms</p>
+                        <h4 data-edit="about.card1.title">OEM-Trained</h4>
+                        <p data-edit="about.card1.body">We trained at the factories that build these systems</p>
                     </div>
 
                     <div class="highlight-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.78 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                         </svg>
-                        <h4>Pharma &amp; Biotech Focus</h4>
-                        <p>Serving regulated labs with compliance-aware service</p>
+                        <h4 data-edit="about.card2.title">Regulated Labs</h4>
+                        <p data-edit="about.card2.body">We work in GMP environments and document like it</p>
                     </div>
 
                     <div class="highlight-card">
@@ -1675,8 +1946,8 @@
                             <circle cx="12" cy="12" r="3"/>
                             <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
                         </svg>
-                        <h4>All Major Platforms</h4>
-                        <p>Sciex, Agilent, Waters, Shimadzu, Thermo &amp; more</p>
+                        <h4 data-edit="about.card3.title">All Major Platforms</h4>
+                        <p data-edit="about.card3.body">Sciex, Agilent, Waters, Shimadzu, Thermo and more</p>
                     </div>
 
                     <div class="highlight-card">
@@ -1684,8 +1955,8 @@
                             <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <h4>Northern California</h4>
-                        <p>Based in Roseville, serving the greater Sacramento region</p>
+                        <h4 data-edit="about.card4.title">Roseville, CA</h4>
+                        <p data-edit="about.card4.body">And we travel. Instruments don't stay put either</p>
                     </div>
                 </div>
             </div>
@@ -1728,36 +1999,32 @@
         <div class="container">
             <div class="coverage-grid">
                 <div class="coverage-text">
-                    <div class="section-eyebrow">Service Area</div>
-                    <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--navy); margin-bottom: 1.25rem;">Where We Work</h2>
-                    <p>We're based in Roseville and cover the greater Sacramento region and Northern California, with regular onsite visits to the pharmaceutical, biotech, and research labs concentrated along the I-80 and Highway 50 corridors.</p>
-                    <p>Travel beyond the listed areas is often possible for contract clients and scheduled preventative maintenance. If you're outside this list, ask.</p>
+                    <div class="section-eyebrow is-purple" data-edit="coverage.eyebrow">Service Area</div>
+                    <h2 data-edit="coverage.heading">We Come to You</h2>
+                    <p data-edit="coverage.para1">Wherever your lab is, we schedule the visit and get on a plane if that's what it takes. PMs, repairs, installs, moves, and contracts covering sites in more than one state.</p>
+                    <p data-edit="coverage.para2">Our shop is in Roseville, CA, so Northern California labs get same-day and next-day response. Everywhere else, we book it and tell you exactly when we'll be there.</p>
+                    <a href="#contact" class="about-cta">
+                        Tell us where your lab is
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
                 </div>
 
-                <div>
-                    <!--
-                      TODO - CONFIRM OR TRIM THIS LIST. This is the one place on the
-                      page that commits you to driving somewhere. It was drafted from
-                      "Northern California / Roseville" and the biotech corridors near
-                      Sacramento. Delete any city you would not actually travel to, and
-                      add the ones you would (Bay Area? Reno? Chico? Modesto?).
-                      Keep it in sync with "areaServed" in the JSON-LD block in <head>.
-                    -->
-                    <ul class="coverage-cities">
-                        <li>Roseville</li>
-                        <li>Rocklin</li>
-                        <li>Sacramento</li>
-                        <li>Folsom</li>
-                        <li>West Sacramento</li>
-                        <li>Davis</li>
-                        <li>Elk Grove</li>
-                        <li>Woodland</li>
-                        <li>Vacaville</li>
-                        <li>Fairfield</li>
-                        <li>Stockton</li>
-                        <li>Auburn</li>
-                    </ul>
-                    <p class="coverage-note">Emergency and contract coverage may extend further. <a href="#contact" style="color: var(--blue);">Ask about your location</a>.</p>
+                <div class="coverage-tiers">
+                    <div class="coverage-tier is-national">
+                        <div class="coverage-tier-head">
+                            <span class="coverage-tier-badge" data-edit="coverage.tier.badge">Scheduled onsite</span>
+                            <h3 data-edit="coverage.tier.title">Everywhere in the U.S.</h3>
+                        </div>
+                        <ul class="coverage-national">
+                            <li data-edit="coverage.item1">Preventative maintenance programs</li>
+                            <li data-edit="coverage.item2">Repairs and troubleshooting visits</li>
+                            <li data-edit="coverage.item3">Installations and relocations</li>
+                            <li data-edit="coverage.item4">Multi-site service contracts</li>
+                        </ul>
+                        <p class="coverage-note" data-edit="coverage.note">Out of state? <a href="#contact">Ask about scheduling</a> - we travel constantly.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1767,51 +2034,51 @@
     <section id="faq" class="faq">
         <div class="container">
             <div class="section-header centered">
-                <div class="section-eyebrow">Common Questions</div>
-                <h2>Frequently Asked Questions</h2>
-                <p>The things labs usually want to know before they call us in.</p>
+                <div class="section-eyebrow is-sky" data-edit="faq.eyebrow">Common Questions</div>
+                <h2 data-edit="faq.heading">Questions We Get</h2>
+                <p data-edit="faq.sub">The things labs ask before they call us in.</p>
             </div>
 
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>Which manufacturers and instruments do you service?</summary>
+                    <summary data-edit="faq.q1">Which manufacturers and instruments do you service?</summary>
                     <div class="faq-answer">
-                        <p>We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC. If your instrument isn't in <a href="#platforms">our platform list</a>, contact us anyway; our experience extends to many additional configurations.</p>
+                        <p data-edit="faq.a1">Sciex, Agilent, Waters, Shimadzu, Thermo, Bruker, PerkinElmer. Triple quads, Q-TOF, ion traps, Orbitraps, GC-MS, ICP-MS, single quads, plus HPLC and UHPLC. If yours isn't on <a href="#platforms">the list</a>, ask anyway.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>How quickly can you respond when an instrument goes down?</summary>
+                    <summary data-edit="faq.q2">How quickly can you respond when an instrument goes down?</summary>
                     <div class="faq-answer">
-                        <p>For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service. Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster than the form if your instrument is down right now.</p>
+                        <p data-edit="faq.a2">In Northern California, same-day or next-day depending on parts. Further out it depends on flights, and we'll tell you straight. Contract clients get weekend coverage. If it's down right now, call <a href="tel:+18335743772">(833) 574-3772</a> instead of using the form.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Do you offer service contracts, or is it all per-visit?</summary>
+                    <summary data-edit="faq.q3">Do you offer service contracts, or is it all per-visit?</summary>
                     <div class="faq-answer">
-                        <p>Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement. Contracts range from basic coverage to comprehensive plans with dedicated engineer support, and are built around your instrument mix, usage, and budget rather than a fixed tier list.</p>
+                        <p data-edit="faq.a3">Both. Call us once, or put us on contract. Coverage runs from PM-only to full parts and labor, priced on what you run rather than a fixed tier sheet.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What does a preventative maintenance visit include?</summary>
+                    <summary data-edit="faq.q4">What does a preventative maintenance visit include?</summary>
                     <div class="faq-answer">
-                        <p>PM scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of what was done. We build PM schedules around your actual usage patterns rather than a generic annual interval.</p>
+                        <p data-edit="faq.a4">Depends on the platform, but generally: wear parts replaced, source and flow path cleaned, calibration and performance checks, and a written report for your files. We set the interval on your run hours, not the calendar.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What areas do you cover?</summary>
+                    <summary data-edit="faq.q5">What areas do you cover?</summary>
                     <div class="faq-answer">
-                        <p>We're based in Roseville, CA and serve the greater Sacramento region and Northern California. See <a href="#coverage">our service area</a> for the cities we visit regularly. Coverage often extends further for contract clients and scheduled work.</p>
+                        <p data-edit="faq.a5">Anywhere in the U.S. We're based in Roseville, CA, so Northern California gets same-day and next-day. Everywhere else we schedule the trip. See <a href="#coverage">service area</a>.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>How do I get a quote?</summary>
+                    <summary data-edit="faq.q6">How do I get a quote?</summary>
                     <div class="faq-answer">
-                        <p>Send us the instrument make, model, and a description of the issue or the service you need using <a href="#contact">the contact form</a>, or call us directly. We'll confirm scope and timing and send a written quote before any work begins.</p>
+                        <p data-edit="faq.a6">Send the make, model, and what's wrong through <a href="#contact">the form</a>, or call. You'll get scope, timing, and price in writing before we start.</p>
                     </div>
                 </details>
 
@@ -1834,7 +2101,7 @@
                 -->
             </div>
 
-            <p class="faq-footer">Still have a question? <a href="#contact">Ask us directly</a>.</p>
+            <p class="faq-footer" data-edit="faq.footer">Still have a question? <a href="#contact">Ask us directly</a>.</p>
         </div>
     </section>
 
@@ -1842,14 +2109,14 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow">Get In Touch</div>
-                <h2>Contact Us</h2>
-                <p>Reach out for service inquiries, quotes, or to discuss your laboratory's specific needs.</p>
+                <div class="section-eyebrow" data-edit="contact.eyebrow">Get In Touch</div>
+                <h2 data-edit="contact.heading">Get In Touch</h2>
+                <p data-edit="contact.sub">Tell us what you have and what it's doing.</p>
             </div>
 
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Our Contact Information</h3>
+                    <h3 data-edit="contact.info.heading">Our Contact Information</h3>
 
                     <div class="contact-detail">
                         <div class="contact-detail-icon">
@@ -1906,7 +2173,7 @@
                 </div>
 
                 <div class="contact-form-wrap">
-                    <h3 id="formHeading">Request Service or a Quote</h3>
+                    <h3 id="formHeading" data-edit="contact.form.heading">Request Service or a Quote</h3>
 
                     <form id="contactForm" action="https://formspree.io/f/xaneznog" method="POST">
                         <div class="form-row">
@@ -1984,7 +2251,7 @@
 
                         <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
 
-                        <p class="form-note">
+                        <p class="form-note" data-edit="contact.form.note">
                             <span class="required-mark" aria-hidden="true">*</span> Required.
                             Instrument down right now? Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster.
                             We use your details only to respond to this request - see our <a href="privacy.html">Privacy Policy</a>.
@@ -1997,7 +2264,7 @@
                                 <path d="M20 6L9 17l-5-5"/>
                             </svg>
                         </div>
-                        <h4>Thanks - your request is in.</h4>
+                        <h4 data-edit="contact.success.heading">Thanks - your request is in.</h4>
                         <p>
                             We'll get back to you within one business day. If your instrument is
                             down and you need someone sooner, call <a href="tel:+18335743772">(833) 574-3772</a>.
