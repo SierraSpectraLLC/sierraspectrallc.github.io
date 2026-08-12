@@ -585,7 +585,7 @@
         /* ===== PLATFORMS WE SERVICE ===== */
         .platforms {
             padding: 4.5rem 0;
-            background: var(--gray-bg);
+            background: var(--white);
         }
 
         .scroll-row {
@@ -643,7 +643,7 @@
         /* ===== ABOUT ===== */
         .about {
             padding: 5rem 0;
-            background: var(--white);
+            background: var(--gray-bg);
         }
 
         .about-grid {
@@ -719,7 +719,7 @@
         /* ===== CONTACT ===== */
         .contact {
             padding: 5rem 0;
-            background: var(--gray-bg);
+            background: var(--white);
         }
 
         .contact-grid {
@@ -792,6 +792,7 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 2rem;
+            box-shadow: 0 6px 24px rgba(30,32,53,0.07);
         }
 
         .contact-form-wrap h3 {
@@ -1102,13 +1103,20 @@
             border-radius: 10px;
             padding: 1.4rem 1.5rem;
             background: var(--white);
-            border-left: 4px solid var(--accent, var(--lime));
+            border-left: 4px solid var(--accent, var(--sky));
         }
 
         .coverage-tier.is-national {
             --accent: var(--sky);
             background: var(--gray-bg);
         }
+
+        /* Sections alternate white / warm-grey so neighbours never merge into
+           one another. About and Service Area were both white and read as a
+           single block. */
+        .about { border-top: 1px solid var(--border); }
+        .coverage { border-top: 1px solid var(--border); }
+        .contact { border-top: 1px solid var(--border); }
 
         .coverage-tier-head {
             margin-bottom: 1rem;
@@ -1120,12 +1128,8 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--lime-ink);
-            margin-bottom: 0.3rem;
-        }
-
-        .coverage-tier.is-national .coverage-tier-badge {
             color: var(--sky-ink);
+            margin-bottom: 0.3rem;
         }
 
         .coverage-tier-head h3 {
@@ -1157,30 +1161,6 @@
             border-left: 2px solid var(--sky);
             border-bottom: 2px solid var(--sky);
             transform: rotate(-45deg);
-        }
-
-        .coverage-cities {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem 1rem;
-            list-style: none;
-        }
-
-        .coverage-cities li {
-            font-size: 0.9rem;
-            color: var(--navy);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .coverage-cities li::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--lime);
-            flex-shrink: 0;
         }
 
         .coverage-note {
@@ -1400,12 +1380,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .coverage-cities {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .coverage-text h2 br { display: none; }
-
             .about-highlights {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1532,7 +1506,7 @@
           "name": "Which manufacturers and instruments do you service?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC."
+            "text": "Sciex, Agilent, Waters, Shimadzu, Thermo, Bruker, and PerkinElmer. Triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, plus HPLC and UHPLC."
           }
         },
         {
@@ -1540,7 +1514,7 @@
           "name": "How quickly can you respond when an instrument goes down?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service."
+            "text": "In Northern California, same-day or next-day depending on parts availability. Further out it depends on flights, and we will tell you honestly. Contract clients also get weekend emergency coverage."
           }
         },
         {
@@ -1548,7 +1522,7 @@
           "name": "Do you offer service contracts, or is it all per-visit?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement ranging from basic coverage to comprehensive plans with dedicated engineer support."
+            "text": "Both. Call us once, or put us on contract. Coverage runs from PM-only to full parts and labor, priced on the instruments you run rather than a fixed tier sheet."
           }
         },
         {
@@ -1556,7 +1530,7 @@
           "name": "What does a preventative maintenance visit include?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of the work performed."
+            "text": "Depends on the platform, but generally: wear parts replaced, source and flow path cleaned, calibration and performance checks, and a written report. We set the interval on run hours rather than the calendar."
           }
         },
         {
@@ -1564,7 +1538,7 @@
           "name": "What areas do you cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We serve laboratories nationwide. Our engineers are headquartered in Roseville, CA, so labs across Northern California get same-day and next-day onsite response. Everywhere else in the country we schedule onsite visits, preventative maintenance, installations, and relocations, and support service contracts."
+            "text": "Anywhere in the United States. We are based in Roseville, CA, so Northern California gets same-day and next-day response. Everywhere else we schedule the trip."
           }
         },
         {
@@ -1572,7 +1546,7 @@
           "name": "How do I get a quote?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Send us the instrument make, model, and a description of the issue using the contact form, or call (833) 574-3772. We confirm scope and timing and send a written quote before any work begins."
+            "text": "Send the make, model, and what is wrong through the contact form, or call (833) 574-3772. You get scope, timing, and price in writing before we start."
           }
         }
       ]
@@ -1636,23 +1610,23 @@
     <section id="home" class="hero">
         <div class="hero-pattern"></div>
         <div class="container hero-content">
-            <div class="hero-eyebrow">
+            <div class="hero-eyebrow" data-edit="hero.eyebrow">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Roseville, CA - serving labs nationwide
+                Service labs nationwide
             </div>
-            <h1>LC/MS and analytical instrument service, <span class="spectrum-mark">nationwide</span>.</h1>
-            <p class="hero-sub">OEM-trained engineers for mass spectrometry, HPLC, and UHPLC systems, supporting labs across the country. We're headquartered in Roseville, CA, so Northern California gets same-day response when an instrument goes down.</p>
+            <h1 data-edit="hero.headline">LC/MS and analytical instrument service, <span class="spectrum-mark">nationwide</span>.</h1>
+            <p class="hero-sub" data-edit="hero.sub">OEM-trained engineers for mass spec, HPLC, and UHPLC. We work on instruments all over the country, and if you're near our Roseville shop we can usually be there the same day.</p>
             <div class="hero-ctas">
-                <a href="#contact" class="btn-primary">Request Service</a>
-                <a href="#services" class="btn-ghost">View Services</a>
+                <a href="#contact" class="btn-primary" data-edit="hero.cta.primary">Request Service</a>
+                <a href="#services" class="btn-ghost" data-edit="hero.cta.secondary">View Services</a>
             </div>
             <ul class="hero-proof">
-                <li>Same-day onsite in Northern California</li>
-                <li>Scheduled nationwide coverage</li>
-                <li>Sciex, Agilent, Waters, Shimadzu &amp; more</li>
+                <li data-edit="hero.proof.1">Onsite anywhere in the U.S.</li>
+                <li data-edit="hero.proof.2">Same-day in Northern California</li>
+                <li data-edit="hero.proof.3">Sciex, Agilent, Waters, Shimadzu, Thermo</li>
             </ul>
         </div>
 
@@ -1702,8 +1676,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Same-Day Response</div>
-                        <div class="stat-sub">Emergency onsite support</div>
+                        <div class="stat-label" data-edit="stats.1.label">Same-Day Response</div>
+                        <div class="stat-sub" data-edit="stats.1.sub">Emergency onsite support</div>
                     </div>
                 </div>
 
@@ -1714,8 +1688,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">OEM-Trained Engineers</div>
-                        <div class="stat-sub">All major platforms</div>
+                        <div class="stat-label" data-edit="stats.2.label">OEM-Trained Engineers</div>
+                        <div class="stat-sub" data-edit="stats.2.sub">All major platforms</div>
                     </div>
                 </div>
 
@@ -1726,8 +1700,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Flexible Service Contracts</div>
-                        <div class="stat-sub">Basic to comprehensive coverage</div>
+                        <div class="stat-label" data-edit="stats.3.label">Flexible Service Contracts</div>
+                        <div class="stat-sub" data-edit="stats.3.sub">Basic to comprehensive coverage</div>
                     </div>
                 </div>
 
@@ -1739,8 +1713,8 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="stat-label">Nationwide Coverage</div>
-                        <div class="stat-sub">Same-day in Northern California</div>
+                        <div class="stat-label" data-edit="stats.4.label">Nationwide Coverage</div>
+                        <div class="stat-sub" data-edit="stats.4.sub">Same-day in Northern California</div>
                     </div>
                 </div>
             </div>
@@ -1751,9 +1725,9 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow">What We Do</div>
-                <h2>Comprehensive Analytical Instrument Services</h2>
-                <p>Expert support across the full service lifecycle - from scheduled preventative maintenance to emergency repair.</p>
+                <div class="section-eyebrow" data-edit="services.eyebrow">What We Do</div>
+                <h2 data-edit="services.heading">What We Work On</h2>
+                <p data-edit="services.sub">Scheduled PMs, and the 6 a.m. call when nothing is working.</p>
             </div>
 
             <div class="service-grid">
@@ -1766,8 +1740,8 @@
                             <path d="M7.8 15h8.4"/>
                         </svg>
                     </div>
-                    <h3>Mass Spectrometry Service</h3>
-                    <p>Expert maintenance, repair, and optimization for Sciex, Agilent, Waters, and Shimadzu MS systems. From routine maintenance to complex troubleshooting, our specialists ensure peak performance.</p>
+                    <h3 data-edit="services.item1.title">Mass Spectrometry Service</h3>
+                    <p data-edit="services.item1.body">Source cleaning, vacuum problems, sensitivity you can't get back, calibrations that won't hold. Sciex, Agilent, Waters, Shimadzu, Thermo.</p>
                 </div>
 
                 <div class="service-card">
@@ -1778,8 +1752,8 @@
                             <path d="M7 16l4-6 4 3 4-7"/>
                         </svg>
                     </div>
-                    <h3>LC System Maintenance</h3>
-                    <p>Comprehensive service for HPLC and UHPLC systems including pumps, autosamplers, detectors, and columns. We provide preventative maintenance, repairs, and performance optimization.</p>
+                    <h3 data-edit="services.item2.title">LC System Maintenance</h3>
+                    <p data-edit="services.item2.body">Pumps, autosamplers, detectors, degassers, valves. Pressure that won't hold, leaks you can't find, retention times drifting on you.</p>
                 </div>
 
                 <div class="service-card">
@@ -1789,8 +1763,8 @@
                             <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
                         </svg>
                     </div>
-                    <h3>Preventative Maintenance</h3>
-                    <p>Scheduled maintenance programs designed to maximize uptime, extend instrument life, and ensure consistent analytical results. Custom PM schedules based on your specific usage patterns.</p>
+                    <h3 data-edit="services.item3.title">Preventative Maintenance</h3>
+                    <p data-edit="services.item3.body">PM intervals built around what you actually run, not a generic annual date. Kits, verification, and a written record for your files.</p>
                 </div>
 
                 <div class="service-card">
@@ -1800,8 +1774,8 @@
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                         </svg>
                     </div>
-                    <h3>Emergency Response</h3>
-                    <p>Rapid response services for critical instrument failures. Our team provides same-day or next-day onsite support to minimize downtime and get your lab back up and running quickly.</p>
+                    <h3 data-edit="services.item4.title">Emergency Response</h3>
+                    <p data-edit="services.item4.body">Instrument down, samples waiting. Same-day or next-day in Northern California, and a straight answer on how fast we can reach you anywhere else.</p>
                 </div>
 
                 <div class="service-card">
@@ -1814,8 +1788,8 @@
                             <path d="M12 17v4m-4 0h8"/>
                         </svg>
                     </div>
-                    <h3>System Integration</h3>
-                    <p>Expert assistance with instrument networking, data systems, and software integration. We help optimize your lab's entire analytical workflow for maximum efficiency.</p>
+                    <h3 data-edit="services.item5.title">System Integration</h3>
+                    <p data-edit="services.item5.body">Getting the instrument talking to the software, the software talking to your network, and both surviving the next IT update.</p>
                 </div>
 
                 <div class="service-card">
@@ -1827,8 +1801,8 @@
                             <path d="M9 12h6M9 16h4"/>
                         </svg>
                     </div>
-                    <h3>Service Contracts</h3>
-                    <p>Flexible service agreement options from basic coverage to comprehensive plans with dedicated engineer support. Customized to meet your lab's specific needs and budget requirements.</p>
+                    <h3 data-edit="services.item6.title">Service Contracts</h3>
+                    <p data-edit="services.item6.body">Full coverage, PM-only, or pay per visit. Priced on the instruments you have and how hard you run them.</p>
                 </div>
 
             </div>
@@ -1839,28 +1813,28 @@
     <section id="process" class="process">
         <div class="container">
             <div class="section-header centered">
-                <div class="section-eyebrow is-orange">How It Works</div>
-                <h2>Getting Service Is Straightforward</h2>
-                <p>No drawn-out procurement cycle to get an engineer looking at your instrument.</p>
+                <div class="section-eyebrow is-orange" data-edit="process.eyebrow">How It Works</div>
+                <h2 data-edit="process.heading">How to Get Us Out There</h2>
+                <p data-edit="process.sub">Three steps. No procurement maze.</p>
             </div>
 
             <div class="process-grid">
                 <div class="process-step">
                     <div class="process-step-num">1</div>
-                    <h3>Tell us what you need</h3>
-                    <p>Call us or send the form below with your instrument make, model, and what it's doing. The more detail you can give us up front, the faster we can come prepared with the right parts.</p>
+                    <h3 data-edit="process.item1.title">Tell us what it's doing</h3>
+                    <p data-edit="process.item1.body">Call, or use the form below. Make, model, and the symptom. The more you tell us now, the better the odds we show up with the right part in the van.</p>
                 </div>
 
                 <div class="process-step">
                     <div class="process-step-num">2</div>
-                    <h3>Assessment and quote</h3>
-                    <p>We confirm the scope of work, parts availability, and timing, then send you a written quote. For contract clients, covered work proceeds without a new quote each time.</p>
+                    <h3 data-edit="process.item2.title">You get a quote</h3>
+                    <p data-edit="process.item2.body">What's involved, what parts it needs, when we can be there. In writing, before anyone touches the instrument. Contract work skips this step.</p>
                 </div>
 
                 <div class="process-step">
                     <div class="process-step-num">3</div>
-                    <h3>Onsite service</h3>
-                    <p>An OEM-trained engineer performs the work at your lab and walks you through what was done, what was replaced, and what to watch for before your next scheduled maintenance.</p>
+                    <h3 data-edit="process.item3.title">We show up</h3>
+                    <p data-edit="process.item3.body">An OEM-trained engineer does the work at your bench, then tells you what failed, what got replaced, and what to keep an eye on.</p>
                 </div>
             </div>
         </div>
@@ -1870,13 +1844,13 @@
     <section id="platforms" class="platforms">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow is-lime">Supported Equipment</div>
-                <h2>Platforms &amp; Systems We Service</h2>
-                <p>We maintain expertise across the major manufacturers and instrument types used in modern analytical laboratories.</p>
+                <div class="section-eyebrow is-lime" data-edit="platforms.eyebrow">Supported Equipment</div>
+                <h2 data-edit="platforms.heading">Platforms &amp; Systems We Service</h2>
+                <p data-edit="platforms.sub">The manufacturers and instrument types we see most.</p>
             </div>
 
             <div class="scroll-row">
-                <div class="scroll-row-label">Manufacturer Platforms</div>
+                <div class="scroll-row-label" data-edit="platforms.rowlabel1">Manufacturer Platforms</div>
                 <ul class="scroll-track" aria-label="Supported manufacturer platforms">
                     <li class="scroll-pill">Sciex</li>
                     <li class="scroll-pill">Agilent</li>
@@ -1889,7 +1863,7 @@
             </div>
 
             <div class="scroll-row">
-                <div class="scroll-row-label">Instrument Types</div>
+                <div class="scroll-row-label" data-edit="platforms.rowlabel2">Instrument Types</div>
                 <ul class="scroll-track" aria-label="Supported instrument types">
                     <li class="scroll-pill">Triple Quadrupole MS</li>
                     <li class="scroll-pill">Q-TOF</li>
@@ -1905,7 +1879,7 @@
                 </ul>
             </div>
 
-            <p class="platforms-note">Don't see your instrument? <a href="#contact" style="color: var(--blue);">Contact us</a> - our expertise extends to many additional platforms and configurations.</p>
+            <p class="platforms-note" data-edit="platforms.note">Don't see yours? <a href="#contact" style="color: var(--blue);">Ask us</a>. This list isn't everything we touch.</p>
         </div>
     </section>
 
@@ -1914,14 +1888,14 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <div class="section-eyebrow is-sky">About Sierra Spectra</div>
-                    <h2>Service Excellence Built on OEM Experience</h2>
+                    <div class="section-eyebrow is-sky" data-edit="about.eyebrow">About Sierra Spectra</div>
+                    <h2 data-edit="about.heading">We Came Up Through the OEMs</h2>
 
-                    <p>Sierra Spectra was founded with a singular mission: to provide analytical laboratories with service excellence that exceeds industry standards. Our team consists of OEM-trained engineers with extensive experience across all major analytical instrument platforms.</p>
+                    <p data-edit="about.para1">Our engineers spent years doing field service for the companies that build these instruments. Same training, same tools, same service manuals. What's different is who answers when you call.</p>
 
-                    <p>What sets us apart is our dedication to responsive communication, rapid service delivery, and a deep understanding of the critical role these instruments play in your operations. We don't just fix instruments - we partner with you to ensure your analytical capabilities remain consistently available and reliable.</p>
+                    <p data-edit="about.para2">Most LC/MS problems aren't mysterious. It's a leak, a dirty source, a worn seal, a pump that's been drifting out of spec for months. We chase the actual cause instead of swapping parts until the symptom goes away, and we tell you what we found without the runaround.</p>
 
-                    <p>Our founder's background includes years of experience as an engineer for major instrument manufacturers, giving us unique insight into the complexities of modern analytical systems. This expertise allows us to offer solutions that address not just immediate issues but underlying causes, resulting in more reliable instrument performance long-term.</p>
+                    <p data-edit="about.para3">We're a small shop, which is the point. You get the same engineer who was there last time, and they remember your instrument.</p>
 
                     <!--
                       TODO - NAME THE FOUNDER. This paragraph is currently anonymous
@@ -1942,7 +1916,7 @@
                     -->
 
                     <a href="#contact" class="about-cta">
-                        Request a service quote
+                        Get a quote
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -1955,16 +1929,16 @@
                             <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
                             <path d="M12 8v4l3 3"/>
                         </svg>
-                        <h4>OEM-Trained Engineers</h4>
-                        <p>Factory-level expertise across all supported platforms</p>
+                        <h4 data-edit="about.card1.title">OEM-Trained</h4>
+                        <p data-edit="about.card1.body">We trained at the factories that build these systems</p>
                     </div>
 
                     <div class="highlight-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.78 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                         </svg>
-                        <h4>Pharma &amp; Biotech Focus</h4>
-                        <p>Serving regulated labs with compliance-aware service</p>
+                        <h4 data-edit="about.card2.title">Regulated Labs</h4>
+                        <p data-edit="about.card2.body">We work in GMP environments and document like it</p>
                     </div>
 
                     <div class="highlight-card">
@@ -1972,8 +1946,8 @@
                             <circle cx="12" cy="12" r="3"/>
                             <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
                         </svg>
-                        <h4>All Major Platforms</h4>
-                        <p>Sciex, Agilent, Waters, Shimadzu, Thermo &amp; more</p>
+                        <h4 data-edit="about.card3.title">All Major Platforms</h4>
+                        <p data-edit="about.card3.body">Sciex, Agilent, Waters, Shimadzu, Thermo and more</p>
                     </div>
 
                     <div class="highlight-card">
@@ -1981,8 +1955,8 @@
                             <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <h4>Local Base, National Reach</h4>
-                        <p>Headquartered in Roseville, CA, serving labs across the country</p>
+                        <h4 data-edit="about.card4.title">Roseville, CA</h4>
+                        <p data-edit="about.card4.body">And we travel. Instruments don't stay put either</p>
                     </div>
                 </div>
             </div>
@@ -2025,10 +1999,10 @@
         <div class="container">
             <div class="coverage-grid">
                 <div class="coverage-text">
-                    <div class="section-eyebrow is-purple">Service Area</div>
-                    <h2>Nationwide Coverage, With a Same-Day Home Base</h2>
-                    <p>We support laboratories across the country. Wherever you are, we schedule onsite service, preventative maintenance, installations, and relocations, and we back multi-site contracts for labs with instruments in more than one state.</p>
-                    <p>Our engineers are headquartered in Roseville, CA, so labs across Northern California get something distance can't buy: same-day and next-day response when an instrument goes down.</p>
+                    <div class="section-eyebrow is-purple" data-edit="coverage.eyebrow">Service Area</div>
+                    <h2 data-edit="coverage.heading">We Come to You</h2>
+                    <p data-edit="coverage.para1">Wherever your lab is, we schedule the visit and get on a plane if that's what it takes. PMs, repairs, installs, moves, and contracts covering sites in more than one state.</p>
+                    <p data-edit="coverage.para2">Our shop is in Roseville, CA, so Northern California labs get same-day and next-day response. Everywhere else, we book it and tell you exactly when we'll be there.</p>
                     <a href="#contact" class="about-cta">
                         Tell us where your lab is
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -2038,48 +2012,18 @@
                 </div>
 
                 <div class="coverage-tiers">
-                    <div class="coverage-tier is-same-day">
-                        <div class="coverage-tier-head">
-                            <span class="coverage-tier-badge">Same-day territory</span>
-                            <h3>Northern California</h3>
-                        </div>
-                        <!--
-                          TODO - CONFIRM OR TRIM THIS LIST. These are the cities where
-                          you're committing to a same-day/next-day drive, so they should
-                          be the ones you'd genuinely reach that fast. Add or remove
-                          freely (Bay Area? Reno? Chico? Modesto?) and keep it in sync
-                          with "areaServed" in the JSON-LD block in <head>.
-                          This list is NOT the limit of where you work - the nationwide
-                          tier below covers everywhere else.
-                        -->
-                        <ul class="coverage-cities">
-                            <li>Roseville</li>
-                            <li>Rocklin</li>
-                            <li>Sacramento</li>
-                            <li>Folsom</li>
-                            <li>West Sacramento</li>
-                            <li>Davis</li>
-                            <li>Elk Grove</li>
-                            <li>Woodland</li>
-                            <li>Vacaville</li>
-                            <li>Fairfield</li>
-                            <li>Stockton</li>
-                            <li>Auburn</li>
-                        </ul>
-                    </div>
-
                     <div class="coverage-tier is-national">
                         <div class="coverage-tier-head">
-                            <span class="coverage-tier-badge">Scheduled onsite</span>
-                            <h3>Everywhere else in the U.S.</h3>
+                            <span class="coverage-tier-badge" data-edit="coverage.tier.badge">Scheduled onsite</span>
+                            <h3 data-edit="coverage.tier.title">Everywhere in the U.S.</h3>
                         </div>
                         <ul class="coverage-national">
-                            <li>Preventative maintenance programs</li>
-                            <li>Repairs and troubleshooting visits</li>
-                            <li>Installations and relocations</li>
-                            <li>Multi-site service contracts</li>
+                            <li data-edit="coverage.item1">Preventative maintenance programs</li>
+                            <li data-edit="coverage.item2">Repairs and troubleshooting visits</li>
+                            <li data-edit="coverage.item3">Installations and relocations</li>
+                            <li data-edit="coverage.item4">Multi-site service contracts</li>
                         </ul>
-                        <p class="coverage-note">Out of state? <a href="#contact">Ask about scheduling</a> - travel is routine for us.</p>
+                        <p class="coverage-note" data-edit="coverage.note">Out of state? <a href="#contact">Ask about scheduling</a> - we travel constantly.</p>
                     </div>
                 </div>
             </div>
@@ -2090,51 +2034,51 @@
     <section id="faq" class="faq">
         <div class="container">
             <div class="section-header centered">
-                <div class="section-eyebrow is-sky">Common Questions</div>
-                <h2>Frequently Asked Questions</h2>
-                <p>The things labs usually want to know before they call us in.</p>
+                <div class="section-eyebrow is-sky" data-edit="faq.eyebrow">Common Questions</div>
+                <h2 data-edit="faq.heading">Questions We Get</h2>
+                <p data-edit="faq.sub">The things labs ask before they call us in.</p>
             </div>
 
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>Which manufacturers and instruments do you service?</summary>
+                    <summary data-edit="faq.q1">Which manufacturers and instruments do you service?</summary>
                     <div class="faq-answer">
-                        <p>We work across Sciex, Agilent, Waters, Shimadzu, Thermo Fisher, Bruker, and PerkinElmer platforms, covering triple quadrupole MS, Q-TOF, ion trap, Orbitrap, GC-MS, ICP-MS, and single quadrupole systems, along with HPLC and UHPLC. If your instrument isn't in <a href="#platforms">our platform list</a>, contact us anyway; our experience extends to many additional configurations.</p>
+                        <p data-edit="faq.a1">Sciex, Agilent, Waters, Shimadzu, Thermo, Bruker, PerkinElmer. Triple quads, Q-TOF, ion traps, Orbitraps, GC-MS, ICP-MS, single quads, plus HPLC and UHPLC. If yours isn't on <a href="#platforms">the list</a>, ask anyway.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>How quickly can you respond when an instrument goes down?</summary>
+                    <summary data-edit="faq.q2">How quickly can you respond when an instrument goes down?</summary>
                     <div class="faq-answer">
-                        <p>For critical failures we provide same-day or next-day onsite support depending on your location and parts availability. Contract clients also have access to weekend emergency service. Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster than the form if your instrument is down right now.</p>
+                        <p data-edit="faq.a2">In Northern California, same-day or next-day depending on parts. Further out it depends on flights, and we'll tell you straight. Contract clients get weekend coverage. If it's down right now, call <a href="tel:+18335743772">(833) 574-3772</a> instead of using the form.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>Do you offer service contracts, or is it all per-visit?</summary>
+                    <summary data-edit="faq.q3">Do you offer service contracts, or is it all per-visit?</summary>
                     <div class="faq-answer">
-                        <p>Both. You can bring us in for one-off repairs and preventative maintenance, or set up a service agreement. Contracts range from basic coverage to comprehensive plans with dedicated engineer support, and are built around your instrument mix, usage, and budget rather than a fixed tier list.</p>
+                        <p data-edit="faq.a3">Both. Call us once, or put us on contract. Coverage runs from PM-only to full parts and labor, priced on what you run rather than a fixed tier sheet.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What does a preventative maintenance visit include?</summary>
+                    <summary data-edit="faq.q4">What does a preventative maintenance visit include?</summary>
                     <div class="faq-answer">
-                        <p>PM scope depends on the platform, but generally covers inspection and replacement of consumable and wear components, cleaning of the source and flow path, calibration and performance verification, and a written record of what was done. We build PM schedules around your actual usage patterns rather than a generic annual interval.</p>
+                        <p data-edit="faq.a4">Depends on the platform, but generally: wear parts replaced, source and flow path cleaned, calibration and performance checks, and a written report for your files. We set the interval on your run hours, not the calendar.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>What areas do you cover?</summary>
+                    <summary data-edit="faq.q5">What areas do you cover?</summary>
                     <div class="faq-answer">
-                        <p>We serve laboratories nationwide. Our engineers are headquartered in Roseville, CA, so labs across Northern California get same-day and next-day onsite response; everywhere else in the country we schedule onsite visits, PMs, installations, and relocations, and we support multi-site contracts. See <a href="#coverage">our service area</a> for the breakdown.</p>
+                        <p data-edit="faq.a5">Anywhere in the U.S. We're based in Roseville, CA, so Northern California gets same-day and next-day. Everywhere else we schedule the trip. See <a href="#coverage">service area</a>.</p>
                     </div>
                 </details>
 
                 <details class="faq-item">
-                    <summary>How do I get a quote?</summary>
+                    <summary data-edit="faq.q6">How do I get a quote?</summary>
                     <div class="faq-answer">
-                        <p>Send us the instrument make, model, and a description of the issue or the service you need using <a href="#contact">the contact form</a>, or call us directly. We'll confirm scope and timing and send a written quote before any work begins.</p>
+                        <p data-edit="faq.a6">Send the make, model, and what's wrong through <a href="#contact">the form</a>, or call. You'll get scope, timing, and price in writing before we start.</p>
                     </div>
                 </details>
 
@@ -2157,7 +2101,7 @@
                 -->
             </div>
 
-            <p class="faq-footer">Still have a question? <a href="#contact">Ask us directly</a>.</p>
+            <p class="faq-footer" data-edit="faq.footer">Still have a question? <a href="#contact">Ask us directly</a>.</p>
         </div>
     </section>
 
@@ -2165,14 +2109,14 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <div class="section-eyebrow">Get In Touch</div>
-                <h2>Contact Us</h2>
-                <p>Reach out for service inquiries, quotes, or to discuss your laboratory's specific needs.</p>
+                <div class="section-eyebrow" data-edit="contact.eyebrow">Get In Touch</div>
+                <h2 data-edit="contact.heading">Get In Touch</h2>
+                <p data-edit="contact.sub">Tell us what you have and what it's doing.</p>
             </div>
 
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Our Contact Information</h3>
+                    <h3 data-edit="contact.info.heading">Our Contact Information</h3>
 
                     <div class="contact-detail">
                         <div class="contact-detail-icon">
@@ -2229,7 +2173,7 @@
                 </div>
 
                 <div class="contact-form-wrap">
-                    <h3 id="formHeading">Request Service or a Quote</h3>
+                    <h3 id="formHeading" data-edit="contact.form.heading">Request Service or a Quote</h3>
 
                     <form id="contactForm" action="https://formspree.io/f/xaneznog" method="POST">
                         <div class="form-row">
@@ -2307,7 +2251,7 @@
 
                         <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
 
-                        <p class="form-note">
+                        <p class="form-note" data-edit="contact.form.note">
                             <span class="required-mark" aria-hidden="true">*</span> Required.
                             Instrument down right now? Calling <a href="tel:+18335743772">(833) 574-3772</a> is faster.
                             We use your details only to respond to this request - see our <a href="privacy.html">Privacy Policy</a>.
@@ -2320,7 +2264,7 @@
                                 <path d="M20 6L9 17l-5-5"/>
                             </svg>
                         </div>
-                        <h4>Thanks - your request is in.</h4>
+                        <h4 data-edit="contact.success.heading">Thanks - your request is in.</h4>
                         <p>
                             We'll get back to you within one business day. If your instrument is
                             down and you need someone sooner, call <a href="tel:+18335743772">(833) 574-3772</a>.

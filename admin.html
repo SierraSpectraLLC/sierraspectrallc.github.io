@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit site text | Sierra Spectra</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --coral:#E8756A; --coral-ink:#B8493F; --lime-ink:#6E7D1F; --sky:#7BAFD4; --sky-ink:#3D7CA6;
+            --navy:#1e2035; --slate:#64748b; --slate-lt:#94a3b8;
+            --border:#e2e8f0; --border-dk:#cbd5e1; --gray-bg:#f8f7f5; --white:#fff;
+        }
+        *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+            font-size:15px; line-height:1.6; color:var(--navy); background:var(--gray-bg);
+            padding-bottom:6rem;
+        }
+        header {
+            background:var(--white); border-bottom:1px solid var(--border);
+            position:sticky; top:0; z-index:20;
+        }
+        header::after {
+            content:''; display:block; height:3px;
+            background:linear-gradient(to right,#E8756A,#E8A370,#C5D44A,#7BAFD4,#9B8EB8);
+        }
+        .bar { max-width:900px; margin:0 auto; padding:0.9rem 1.25rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+        .bar h1 { font-size:1.05rem; font-weight:700; }
+        .bar .spacer { margin-left:auto; }
+        .wrap { max-width:900px; margin:0 auto; padding:1.5rem 1.25rem; }
+
+        .panel {
+            background:var(--white); border:1px solid var(--border);
+            border-radius:10px; padding:1.25rem; margin-bottom:1.25rem;
+        }
+        .panel h2 { font-size:0.95rem; font-weight:700; margin-bottom:0.75rem; }
+        .panel p.help { font-size:0.85rem; color:var(--slate); margin-bottom:0.75rem; }
+        .panel a { color:var(--sky-ink); }
+
+        label.f { display:block; font-size:0.8rem; font-weight:600; margin:0.9rem 0 0.3rem; }
+        label.f span.k { font-weight:400; color:var(--slate-lt); font-size:0.72rem; margin-left:0.4rem; }
+        input[type=text], input[type=password], textarea, select {
+            width:100%; padding:0.55rem 0.7rem; border:1px solid var(--border-dk);
+            border-radius:6px; font:inherit; font-size:0.9rem; color:var(--navy); background:var(--white);
+        }
+        textarea { resize:vertical; min-height:2.6rem; line-height:1.5; }
+        input:focus, textarea:focus, select:focus {
+            outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(123,175,212,.25);
+        }
+        textarea.changed, input.changed { border-color:var(--coral); background:#fffaf9; }
+
+        details.sec { border:1px solid var(--border); border-radius:10px; background:var(--white); margin-bottom:0.75rem; }
+        details.sec > summary {
+            list-style:none; cursor:pointer; padding:0.85rem 1.1rem; font-weight:700; font-size:0.9rem;
+            display:flex; align-items:center; gap:0.6rem;
+        }
+        details.sec > summary::-webkit-details-marker { display:none; }
+        details.sec > summary::before {
+            content:''; width:8px; height:8px; border-right:2px solid var(--slate-lt);
+            border-bottom:2px solid var(--slate-lt); transform:rotate(-45deg); transition:transform .15s;
+        }
+        details.sec[open] > summary::before { transform:rotate(45deg); }
+        details.sec .body { padding:0 1.1rem 1.1rem; }
+        .count { margin-left:auto; font-weight:400; font-size:0.75rem; color:var(--slate-lt); }
+        .count.dirty { color:var(--coral-ink); font-weight:700; }
+
+        button {
+            font:inherit; font-size:0.875rem; font-weight:600; border-radius:6px;
+            padding:0.5rem 1.1rem; cursor:pointer; border:2px solid transparent;
+        }
+        .primary { background:var(--coral); color:#fff; border-color:var(--coral); }
+        .primary:hover:not(:disabled) { background:#c95c52; border-color:#c95c52; }
+        .ghost { background:var(--white); color:var(--navy); border-color:var(--border-dk); }
+        .ghost:hover:not(:disabled) { border-color:var(--navy); }
+        button:disabled { opacity:.55; cursor:not-allowed; }
+
+        .msg { margin-top:0.85rem; padding:0.7rem 0.9rem; border-radius:6px; font-size:0.85rem; display:none; }
+        .msg.show { display:block; }
+        .msg.ok  { background:#eef7e6; border:1px solid #cbe4ad; color:#4a6b18; }
+        .msg.err { background:#fdf0ee; border:1px solid #f3c4bd; color:#9c3a2f; }
+        .msg.info{ background:#eef4f9; border:1px solid #c6dcec; color:#31607f; }
+
+        .savebar {
+            position:fixed; left:0; right:0; bottom:0; background:var(--white);
+            border-top:1px solid var(--border); box-shadow:0 -4px 20px rgba(30,32,53,.08); z-index:30;
+        }
+        .savebar .inner {
+            max-width:900px; margin:0 auto; padding:0.85rem 1.25rem;
+            display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;
+        }
+        .savebar .status { font-size:0.85rem; color:var(--slate); }
+        .savebar .spacer { margin-left:auto; }
+        .warn { font-size:0.78rem; color:var(--slate); background:var(--gray-bg);
+                border-left:3px solid var(--coral); padding:0.6rem 0.8rem; border-radius:0 6px 6px 0; margin-top:0.75rem; }
+        code { background:var(--gray-bg); padding:0.1rem 0.3rem; border-radius:3px; font-size:0.85em; }
+        .hidden { display:none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="bar">
+        <h1>Edit site text</h1>
+        <span class="count" id="dirtyTotal"></span>
+        <span class="spacer"></span>
+        <button class="ghost" id="reload" type="button">Reload from GitHub</button>
+    </div>
+</header>
+
+<div class="wrap">
+
+    <!-- ---------- connection ---------- -->
+    <div class="panel" id="authPanel">
+        <h2>Connect</h2>
+        <p class="help">
+            This page edits the text on your live site by committing directly to GitHub.
+            It needs a token so GitHub knows it's you. Nothing is sent anywhere else.
+        </p>
+
+        <label class="f" for="token">GitHub token</label>
+        <input type="password" id="token" placeholder="github_pat_..." autocomplete="off" spellcheck="false">
+
+        <label class="f" for="branch">Branch</label>
+        <select id="branch">
+            <option value="main">main - publishes to sierraspectra.com in about a minute</option>
+            <option value="claude/em-dashes-hyphens-completeness-iyqhnm">claude/em-dashes-hyphens-completeness-iyqhnm - preview only</option>
+        </select>
+
+        <div class="warn">
+            <strong>Make the token narrow.</strong> GitHub &rarr; Settings &rarr; Developer settings &rarr;
+            Fine-grained tokens &rarr; Generate new token. Repository access: only
+            <code>SierraSpectraLLC/sierraspectrallc.github.io</code>. Permissions: <strong>Contents &rarr; Read and write</strong>,
+            nothing else. Give it an expiry date. The token is stored in this browser only
+            (localStorage), never committed. If you use a shared computer, hit "Forget token"
+            when you're done.
+        </div>
+
+        <div style="margin-top:0.9rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <button class="primary" id="connect" type="button">Connect</button>
+            <button class="ghost" id="forget" type="button">Forget token</button>
+        </div>
+        <div class="msg" id="authMsg"></div>
+    </div>
+
+    <!-- ---------- editor ---------- -->
+    <div id="editor" class="hidden">
+        <div class="panel">
+            <h2>How this works</h2>
+            <p class="help">
+                Every box below is a piece of text on your site. Change it, hit <strong>Publish changes</strong>,
+                and it's live. Changed boxes turn orange. Nothing is saved until you publish.
+            </p>
+            <p class="help" style="margin-bottom:0;">
+                A few boxes contain link tags like <code>&lt;a href="#contact"&gt;text&lt;/a&gt;</code>.
+                Edit the words between the tags and leave the pointy brackets alone.
+            </p>
+        </div>
+
+        <div id="sections"></div>
+    </div>
+</div>
+
+<div class="savebar hidden" id="savebar">
+    <div class="inner">
+        <span class="status" id="saveStatus">No changes yet</span>
+        <span class="spacer"></span>
+        <button class="ghost" id="revert" type="button" disabled>Discard changes</button>
+        <button class="primary" id="publish" type="button" disabled>Publish changes</button>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var OWNER = 'SierraSpectraLLC';
+    var REPO  = 'sierraspectrallc.github.io';
+    var PATH  = 'index.html';
+    var TOKEN_KEY = 'ss_admin_token';
+    var BRANCH_KEY = 'ss_admin_branch';
+
+    var raw = '';       // the file exactly as it is on GitHub
+    var sha = '';       // blob sha, for optimistic concurrency
+    var fields = [];    // {key, original, el}
+    var els = {
+        token: document.getElementById('token'),
+        branch: document.getElementById('branch'),
+        connect: document.getElementById('connect'),
+        forget: document.getElementById('forget'),
+        authMsg: document.getElementById('authMsg'),
+        editor: document.getElementById('editor'),
+        sections: document.getElementById('sections'),
+        savebar: document.getElementById('savebar'),
+        saveStatus: document.getElementById('saveStatus'),
+        publish: document.getElementById('publish'),
+        revert: document.getElementById('revert'),
+        reload: document.getElementById('reload'),
+        dirtyTotal: document.getElementById('dirtyTotal')
+    };
+
+    /* ---------- helpers ---------- */
+
+    function msg(node, text, kind) {
+        node.textContent = text;
+        node.className = 'msg show ' + kind;
+    }
+    function clearMsg(node) { node.className = 'msg'; }
+
+    // GitHub returns base64; the file is UTF-8 and contains non-ASCII, so decode properly.
+    function b64decode(b64) {
+        var bin = atob(b64.replace(/\n/g, ''));
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+    function b64encode(str) {
+        var bytes = new TextEncoder().encode(str);
+        var bin = '';
+        for (var i = 0; i < bytes.length; i++) { bin += String.fromCharCode(bytes[i]); }
+        return btoa(bin);
+    }
+
+    function api(path, opts) {
+        opts = opts || {};
+        return fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + path, {
+            method: opts.method || 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + els.token.value.trim(),
+                'Accept': 'application/vnd.github+json',
+                'X-GitHub-Api-Version': '2022-11-28'
+            },
+            body: opts.body ? JSON.stringify(opts.body) : undefined
+        }).then(function (r) {
+            return r.json().then(function (j) {
+                if (!r.ok) {
+                    var e = new Error((j && j.message) || ('HTTP ' + r.status));
+                    e.status = r.status;
+                    throw e;
+                }
+                return j;
+            });
+        });
+    }
+
+    /* ---------- locating an editable element inside the raw file ----------
+       We do NOT reserialize the DOM: that would reformat the whole file and
+       normalise entities. Instead we find the exact byte range of one
+       element's inner HTML and splice only that. Editable elements are leaf
+       nodes by construction (no nested tag of the same name), which is what
+       makes the matching-close-tag scan below safe. */
+
+    function findRange(text, key) {
+        var marker = 'data-edit="' + key + '"';
+        var at = text.indexOf(marker);
+        if (at < 0) { return null; }
+
+        // walk back to the '<' that opens this tag, and read the tag name
+        var lt = text.lastIndexOf('<', at);
+        var nameMatch = /^<([a-zA-Z][a-zA-Z0-9]*)/.exec(text.slice(lt, at));
+        if (!nameMatch) { return null; }
+        var tagName = nameMatch[1];
+
+        // find the '>' that closes the opening tag, ignoring '>' inside quotes
+        var i = at, quote = null;
+        while (i < text.length) {
+            var ch = text[i];
+            if (quote) { if (ch === quote) { quote = null; } }
+            else if (ch === '"' || ch === "'") { quote = ch; }
+            else if (ch === '>') { break; }
+            i++;
+        }
+        if (i >= text.length) { return null; }
+        var start = i + 1;
+
+        // find the matching close tag, allowing for same-name nesting
+        var open = new RegExp('<' + tagName + '(?=[\\s/>])', 'gi');
+        var close = new RegExp('</' + tagName + '\\s*>', 'gi');
+        var depth = 1, cursor = start;
+        while (depth > 0) {
+            close.lastIndex = cursor;
+            var c = close.exec(text);
+            if (!c) { return null; }
+            open.lastIndex = cursor;
+            var o;
+            while ((o = open.exec(text)) && o.index < c.index) { depth++; }
+            depth--;
+            cursor = c.index + c[0].length;
+            if (depth === 0) { return { start: start, end: c.index }; }
+        }
+        return null;
+    }
+
+    /* ---------- load ---------- */
+
+    var SECTION_LABELS = {
+        hero: 'Hero (top of page)',
+        stats: 'Stats bar',
+        services: 'What We Work On',
+        process: 'How to Get Us Out There',
+        platforms: 'Platforms',
+        about: 'About Sierra Spectra',
+        coverage: 'Service Area',
+        faq: 'Questions We Get',
+        contact: 'Contact'
+    };
+
+    function load() {
+        clearMsg(els.authMsg);
+        els.connect.disabled = true;
+        els.connect.textContent = 'Loading...';
+
+        api('/contents/' + PATH + '?ref=' + encodeURIComponent(els.branch.value))
+            .then(function (j) {
+                raw = b64decode(j.content);
+                sha = j.sha;
+                localStorage.setItem(TOKEN_KEY, els.token.value.trim());
+                localStorage.setItem(BRANCH_KEY, els.branch.value);
+                build();
+                els.editor.classList.remove('hidden');
+                els.savebar.classList.remove('hidden');
+                document.getElementById('authPanel').open = false;
+                msg(els.authMsg, 'Connected. Loaded ' + fields.length + ' text fields from ' + els.branch.value + '.', 'ok');
+            })
+            .catch(function (e) {
+                var hint = e.status === 401 ? ' (token rejected - check you copied all of it, and that it has not expired)'
+                         : e.status === 404 ? ' (repo or branch not found, or the token has no access to this repository)'
+                         : '';
+                msg(els.authMsg, 'Could not load: ' + e.message + hint, 'err');
+            })
+            .then(function () {
+                els.connect.disabled = false;
+                els.connect.textContent = 'Connect';
+            });
+    }
+
+    function build() {
+        var doc = new DOMParser().parseFromString(raw, 'text/html');
+        var nodes = doc.querySelectorAll('[data-edit]');
+        fields = [];
+        els.sections.innerHTML = '';
+
+        var groups = {}, order = [];
+        Array.prototype.forEach.call(nodes, function (n) {
+            var key = n.getAttribute('data-edit');
+            var group = key.split('.')[0];
+            if (!groups[group]) { groups[group] = []; order.push(group); }
+            groups[group].push({ key: key, value: n.innerHTML.trim() });
+        });
+
+        order.forEach(function (group) {
+            var d = document.createElement('details');
+            d.className = 'sec';
+            var sum = document.createElement('summary');
+            sum.textContent = SECTION_LABELS[group] || group;
+            var cnt = document.createElement('span');
+            cnt.className = 'count';
+            cnt.textContent = groups[group].length + ' fields';
+            sum.appendChild(cnt);
+            d.appendChild(sum);
+
+            var body = document.createElement('div');
+            body.className = 'body';
+
+            groups[group].forEach(function (f) {
+                var lab = document.createElement('label');
+                lab.className = 'f';
+                lab.setAttribute('for', 'f_' + f.key);
+                lab.textContent = prettyName(f.key);
+                var k = document.createElement('span');
+                k.className = 'k';
+                k.textContent = f.key;
+                lab.appendChild(k);
+
+                var ta = document.createElement('textarea');
+                ta.id = 'f_' + f.key;
+                ta.value = f.value;
+                ta.rows = Math.min(8, Math.max(1, Math.ceil(f.value.length / 70)));
+                ta.addEventListener('input', function () { onChange(ta, f, cnt, groups[group]); });
+
+                body.appendChild(lab);
+                body.appendChild(ta);
+                fields.push({ key: f.key, original: f.value, el: ta, count: cnt, group: groups[group] });
+            });
+
+            d.appendChild(body);
+            els.sections.appendChild(d);
+        });
+
+        updateStatus();
+    }
+
+    function prettyName(key) {
+        var parts = key.split('.');
+        return parts.slice(1).join(' ')
+            .replace(/item(\d+)/, 'item $1')
+            .replace(/card(\d+)/, 'card $1')
+            .replace(/para(\d+)/, 'paragraph $1')
+            .replace(/proof\s?/, 'proof ')
+            .replace(/\bq(\d+)\b/, 'question $1')
+            .replace(/\ba(\d+)\b/, 'answer $1')
+            .replace(/^\w/, function (c) { return c.toUpperCase(); }) || key;
+    }
+
+    function onChange(ta, f, cnt, group) {
+        ta.classList.toggle('changed', ta.value.trim() !== f.value);
+        var dirty = fields.filter(function (x) { return x.group === group && x.el.value.trim() !== x.original; }).length;
+        cnt.textContent = dirty ? dirty + ' changed' : group.length + ' fields';
+        cnt.classList.toggle('dirty', dirty > 0);
+        updateStatus();
+    }
+
+    function dirtyFields() {
+        return fields.filter(function (f) { return f.el.value.trim() !== f.original; });
+    }
+
+    function updateStatus() {
+        var n = dirtyFields().length;
+        els.saveStatus.textContent = n === 0 ? 'No changes yet'
+            : n + (n === 1 ? ' change' : ' changes') + ' ready to publish';
+        els.publish.disabled = n === 0;
+        els.revert.disabled = n === 0;
+        els.dirtyTotal.textContent = n ? n + ' unsaved' : '';
+        els.dirtyTotal.classList.toggle('dirty', n > 0);
+    }
+
+    /* ---------- validation ----------
+       These fields hold inline copy, so only inline formatting tags are
+       allowed. The parser is deliberately lenient about broken HTML, which
+       means an unclosed tag would be silently "repaired" into something that
+       still parses but renders wrong. So we check the typed value itself
+       rather than trusting a post-parse element count. */
+
+    var ALLOWED = ['A','BR','STRONG','EM','B','I','SPAN','SUP','SUB','SMALL'];
+    var VOID_TAG = /^(br|img|hr|input|meta|link|source)$/i;
+
+    function validateValue(val) {
+        var tpl = document.createElement('template');
+        tpl.innerHTML = val;                       // inert: nothing executes here
+        var bad = [];
+        Array.prototype.forEach.call(tpl.content.querySelectorAll('*'), function (el) {
+            if (ALLOWED.indexOf(el.tagName) < 0 && bad.indexOf(el.tagName.toLowerCase()) < 0) {
+                bad.push(el.tagName.toLowerCase());
+            }
+        });
+        if (bad.length) {
+            return 'uses <' + bad.join('>, <') + '> which is not allowed in this field';
+        }
+
+        var opens = {}, closes = {}, re = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)\b[^>]*?(\/?)>/g, m;
+        while ((m = re.exec(val))) {
+            var name = m[2].toLowerCase();
+            if (VOID_TAG.test(name) || m[3] === '/') { continue; }
+            if (m[1] === '/') { closes[name] = (closes[name] || 0) + 1; }
+            else { opens[name] = (opens[name] || 0) + 1; }
+        }
+        var names = Object.keys(opens).concat(Object.keys(closes));
+        for (var i = 0; i < names.length; i++) {
+            var n = names[i];
+            if ((opens[n] || 0) !== (closes[n] || 0)) {
+                return 'has an unclosed or extra <' + n + '> tag';
+            }
+        }
+        return null;
+    }
+
+    /* ---------- publish ---------- */
+
+    function publish() {
+        var changed = dirtyFields();
+        if (!changed.length) { return; }
+
+        for (var v = 0; v < changed.length; v++) {
+            var why = validateValue(changed[v].el.value.trim());
+            if (why) {
+                msg(els.authMsg, 'Nothing published: "' + prettyName(changed[v].key) + '" ' + why + '.', 'err');
+                changed[v].el.focus();
+                document.getElementById('authPanel').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+        }
+
+        var out = raw, problem = null;
+
+        // Splice from the end backwards so earlier offsets stay valid.
+        var ranges = [];
+        changed.forEach(function (f) {
+            var r = findRange(out, f.key);
+            if (!r) { problem = 'Could not locate "' + f.key + '" in the file. Reload and try again.'; return; }
+            ranges.push({ f: f, r: r });
+        });
+        if (problem) { msg(els.authMsg, problem, 'err'); document.getElementById('authPanel').scrollIntoView(); return; }
+
+        ranges.sort(function (a, b) { return b.r.start - a.r.start; });
+        ranges.forEach(function (x) {
+            out = out.slice(0, x.r.start) + x.f.el.value.trim() + out.slice(x.r.end);
+        });
+
+        // Sanity check: the result must still parse, and must still contain
+        // every field we know about. Catches a stray unclosed tag.
+        var check = new DOMParser().parseFromString(out, 'text/html');
+        if (check.querySelectorAll('[data-edit]').length !== fields.length) {
+            msg(els.authMsg, 'That edit would break the page markup (probably an unclosed tag). Nothing was published.', 'err');
+            document.getElementById('authPanel').scrollIntoView();
+            return;
+        }
+
+        els.publish.disabled = true;
+        els.publish.textContent = 'Publishing...';
+
+        api('/contents/' + PATH, {
+            method: 'PUT',
+            body: {
+                message: 'Edit site text (' + changed.length + ' field' + (changed.length === 1 ? '' : 's') + ') via admin',
+                content: b64encode(out),
+                sha: sha,
+                branch: els.branch.value
+            }
+        }).then(function (j) {
+            raw = out;
+            sha = j.content.sha;
+            fields.forEach(function (f) {
+                f.original = f.el.value.trim();
+                f.el.classList.remove('changed');
+            });
+            Array.prototype.forEach.call(document.querySelectorAll('.count'), function (c) {
+                c.classList.remove('dirty');
+            });
+            build();
+            var where = els.branch.value === 'main'
+                ? 'Live on sierraspectra.com in about a minute (GitHub Pages has to rebuild).'
+                : 'Pushed to ' + els.branch.value + '. Check the preview URL.';
+            msg(els.authMsg, 'Published. ' + where, 'ok');
+            document.getElementById('authPanel').scrollIntoView({ behavior: 'smooth' });
+        }).catch(function (e) {
+            var hint = e.status === 409 || /does not match/i.test(e.message)
+                ? ' The file changed on GitHub since you loaded it. Hit "Reload from GitHub" and redo this edit.'
+                : '';
+            msg(els.authMsg, 'Publish failed: ' + e.message + hint, 'err');
+            document.getElementById('authPanel').scrollIntoView();
+        }).then(function () {
+            els.publish.disabled = false;
+            els.publish.textContent = 'Publish changes';
+            updateStatus();
+        });
+    }
+
+    /* ---------- wiring ---------- */
+
+    els.connect.addEventListener('click', function () {
+        if (!els.token.value.trim()) { msg(els.authMsg, 'Paste your GitHub token first.', 'err'); return; }
+        load();
+    });
+
+    els.reload.addEventListener('click', function () {
+        if (dirtyFields().length && !confirm('You have unpublished changes. Reloading will discard them. Continue?')) { return; }
+        load();
+    });
+
+    els.revert.addEventListener('click', function () {
+        if (!confirm('Discard all unpublished changes?')) { return; }
+        fields.forEach(function (f) { f.el.value = f.original; f.el.classList.remove('changed'); });
+        Array.prototype.forEach.call(document.querySelectorAll('.count'), function (c) { c.classList.remove('dirty'); });
+        build();
+    });
+
+    els.publish.addEventListener('click', publish);
+
+    els.forget.addEventListener('click', function () {
+        localStorage.removeItem(TOKEN_KEY);
+        els.token.value = '';
+        msg(els.authMsg, 'Token removed from this browser.', 'info');
+    });
+
+    window.addEventListener('beforeunload', function (e) {
+        if (dirtyFields().length) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    // restore previous session
+    var saved = localStorage.getItem(TOKEN_KEY);
+    var savedBranch = localStorage.getItem(BRANCH_KEY);
+    if (savedBranch) { els.branch.value = savedBranch; }
+    if (saved) { els.token.value = saved; load(); }
+})();
+</script>
+
+</body>
+</html>
