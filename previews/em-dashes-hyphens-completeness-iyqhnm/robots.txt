@@ -5,4 +5,7 @@ Allow: /
 # Keep them out of search results so they never compete with the live site.
 Disallow: /previews/
 
+# The text editor. Useless without a GitHub token, but no reason to index it.
+Disallow: /admin.html
+
 Sitemap: https://sierraspectra.com/sitemap.xml
